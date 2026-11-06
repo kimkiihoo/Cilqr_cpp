@@ -1,0 +1,5 @@
+﻿map,method,measurement_batch,planning_mode,timing_unit,measured_calls,mean_mpc_cycle_ms,max_mpc_cycle_ms,sum_mpc_calls_over_40s_ms,mean_path_preparation_ms,mean_global_st_search_ms,mean_two_stage_total_ms,mean_optimizer_iterations,mean_st_expanded_nodes,source,mean_speed_limit_preparation_ms,mean_st_graph_search_ms,mean_other_st_initialization_ms
+B201,R-CILQR,B201_正式统计,receding_horizon_8s,one MPC planning cycle,400,2.2681215,40.4086,907.2486,,,,1.445,,B201_正式统计\B201\cilqr,,,
+B201,AL-iLQR,B201_正式统计,receding_horizon_8s,one MPC planning cycle,400,16.86769,70.1065,6747.076,,,,8.58,,B201_正式统计\B201\alilqr,,,
+B201,SQP-NMPC,B201_正式统计,receding_horizon_8s,one MPC planning cycle,400,490.28058875010265,4093.0490000152295,196112.23550004105,,,,10.87,,B201_正式统计\B201\sqp,,,
+B201,Hybrid A* + ST*,B201_HybridA_ST_开销统计,one global plan for the 40s window,one complete two-stage plan,1,,,,1559.2440000000352,9082.980000000134,10642.22400000017,,517814.0,E:\BIT\01-lqr\第1次返修\A05_开销统计\B201_HybridA_ST_开销统计\summary.json,757.035999999971,8296.821300000374,29.122699999788892

@@ -1,0 +1,39 @@
+B201: preparing Hybrid A* + smoothing path
+Configuration loaded from config/main.json, config/ilqr.json, config/hybrid_astar.json
+Computed articulated limits: kappa_max=0.06274, R_min=15.9388
+Derived gamma_dot limits: [-0.15685, 0.15685]
+代价分析日志文件已创建: C:\Temp\original_mpc_psad5u_m\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261105_131251.csv
+B201: searching independent ST speed graph
+{
+  "map": "B201",
+  "method": "Hybrid A* + ST*",
+  "planning_success": true,
+  "reason": "safe_partial_plan",
+  "reached_graph_goal": false,
+  "arrival_time_s": null,
+  "terminal_time_s": 40.0,
+  "planned_remaining_distance_m": 2.717600368169286,
+  "planned_max_obstacle_residual_10ms": -13.305405088946952,
+  "planned_obstacle_violation_samples_10ms": 0,
+  "path_stage_wall_ms": 1559.2440000000352,
+  "st_search_wall_ms": 9082.980000000134,
+  "geometric_speed_limit_wall_ms": 757.035999999971,
+  "graph_search_wall_ms": 8296.821300000374,
+  "follower_total_wall_ms": 16.37750000190863,
+  "execution": {
+    "executed_frames": 400,
+    "final_goal_distance_m": 2.649436846250509,
+    "max_abs_lateral_error_m": 0.18285284903290658,
+    "max_obstacle_residual": -13.257478790728744,
+    "obstacle_violation_samples": 0,
+    "max_lane_violation_m": 0.0,
+    "max_articulation_violation_rad": 0.0,
+    "max_rate_violation_radps": 0.0,
+    "max_internal_acceleration_violation_mps2": 4.376943252282217e-12,
+    "initial_acceleration_mps2": 1.5000000000000002,
+    "dense_obstacle_max_residual": -13.257478790728744,
+    "dense_obstacle_violation_samples": 0,
+    "dense_collision_check_dt_s": 0.01
+  }
+}
+代价分析日志已保存到: C:\Temp\original_mpc_psad5u_m\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261105_131251.csv

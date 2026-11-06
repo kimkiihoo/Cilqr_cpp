@@ -1,0 +1,336 @@
+{
+  "audit_passed": true,
+  "audit_errors": [],
+  "map": "B201",
+  "planner": "R-CILQR",
+  "controller": "LTV-MPC",
+  "case": "nominal",
+  "targets": {
+    "scope": "B201, R-CILQR spatial reference, nominal initial pose, LTV-MPC tracking with dynamic obstacles at actual simulation time",
+    "purpose": "Engineering acceptance targets fixed before evaluating final tracking, not universal safety guarantees or a literature standard.",
+    "front_lateral_rmse_max_m": 0.1,
+    "rear_lateral_rmse_max_m": 0.1,
+    "front_lateral_absolute_error_max_m": 0.3,
+    "rear_lateral_absolute_error_max_m": 0.3,
+    "minimum_body_obstacle_clearance_m": 0.05,
+    "body_collision_samples_max": 0,
+    "goal_distance_max_m": 1.5,
+    "terminal_speed_absolute_max_mps": 0.5,
+    "dense_geometry_dt_s": 0.002,
+    "state_and_input_bound_tolerance": 1e-05,
+    "reference_policy": "Keep the original spatial reference and terminal point. Any speed/time reparameterization must be recorded and described, without resetting the reference to measured vehicle state.",
+    "timing_policy": "Report all controller computation times and deadline exceedances. A no-delay offline simulation is not evidence of real-time execution when computation exceeds the control period."
+  },
+  "original_duration_s": 40.0,
+  "retimed_duration_with_settling_s": 64.8,
+  "retimed_travel_time_s": 60.79753323906941,
+  "samples": 6481,
+  "expected_control_cycles": 1296,
+  "reference_vertices_preserved": 401,
+  "spatial_reference_reanchored": false,
+  "time_matched_metrics": {
+    "front_lateral_error_m": {
+      "rmse": 0.04204324787891738,
+      "max_abs": 0.27773663665657844
+    },
+    "rear_lateral_error_m": {
+      "rmse": 0.05839285530902361,
+      "max_abs": 0.22092881061776465
+    },
+    "front_position_error_m": {
+      "rmse": 0.04597279112693818,
+      "max_abs": 0.2960205763577261
+    },
+    "rear_position_error_m": {
+      "rmse": 0.06428153298588991,
+      "max_abs": 0.22209368688908343
+    },
+    "heading_error_rad": {
+      "rmse": 0.016228081701138503,
+      "max_abs": 0.0836461080110118
+    },
+    "gamma_error_rad": {
+      "rmse": 0.027223007726585903,
+      "max_abs": 0.12338665235972468
+    },
+    "speed_error_mps": {
+      "rmse": 0.056121171853286855,
+      "max_abs": 0.5223130352077714
+    }
+  },
+  "frozen_original_polyline_spatial_metrics": {
+    "front_lateral_m": {
+      "rmse": 0.042070078173290414,
+      "max_abs": 0.27690406986883714
+    },
+    "rear_lateral_m": {
+      "rmse": 0.05820472785578497,
+      "max_abs": 0.22087098748560335
+    },
+    "front_nearest_polyline_distance_m": {
+      "rmse": 0.04207008031670474,
+      "max_abs": 0.27690406986883714
+    },
+    "rear_nearest_polyline_distance_m": {
+      "rmse": 0.05820473176152983,
+      "max_abs": 0.22087098748560338
+    }
+  },
+  "spatial_error_definition": "Nearest continuous segment on the frozen original front/rear axle polylines, independently of controller progress. Lateral projection and Euclidean nearest distance both reported; all actual samples retained.",
+  "dense_plant_replay_max_abs_error": 1.2115959208136573e-08,
+  "dense_actual_clock_geometry": {
+    "sample_count": 32401,
+    "zero_clearance_or_collision_samples": 0,
+    "minimum_clearance_m": 19.109500727722818,
+    "minimum_clearance_time_s": 38.374,
+    "minimum_clearance_obstacle_index": 0,
+    "geometry": "rectangles extended to the articulation joint",
+    "sample_dt_s": 0.002,
+    "method": "Independent DOP853 over each held-control interval from its logged initial state, compared with all logged RK4 nodes; dynamic obstacles use actual t. GEOS rectangle distances/intersections include the joint."
+  },
+  "dense_global_path_corridor_diagnostic": {
+    "evaluation_rule": "Original nearest-global-path-vertex plus one, projected on that vertex heading normal; not a raster road-boundary proof.",
+    "left_halfwidth_m": 5.0,
+    "right_halfwidth_m": 5.0,
+    "front_center_max_violation_m": 0.0,
+    "rear_center_max_violation_m": 0.0,
+    "joint_extended_corner_max_violation_m": 0.0,
+    "front_center_violation_samples": 0,
+    "rear_center_violation_samples": 0,
+    "joint_extended_corner_violation_samples": 0,
+    "maximum_abs_corner_lateral_m": 2.4493634466711067,
+    "samples": 32401
+  },
+  "actual_state_and_input_max_violations": {
+    "articulation": 0.0,
+    "speed": 0.0,
+    "articulation_rate": 0.0,
+    "speed_command": 0.0,
+    "rate_command": 0.0,
+    "acceleration": 0.0,
+    "command_speed_slew": 3.552713678800501e-15
+  },
+  "qp_snapshot_checks": [
+    {
+      "name": "initial_qp",
+      "cycle": 0,
+      "time_s": 0.0,
+      "status": "solved",
+      "variables": 486,
+      "constraint_rows": 966,
+      "horizon_steps": 60,
+      "max_primal_constraint_violation": 7.650631902111904e-06,
+      "max_equality_residual": 2.6953350908826e-08,
+      "max_kkt_stationarity_residual": 3.087073939184046e-06,
+      "minimum_objective_hessian_eigenvalue": 0.0004,
+      "initial_measured_state_equality_error": 0.0,
+      "independent_world_jacobian_discretization_max_error": 7.370881682788877e-12,
+      "independent_DOP853_affine_defect_max_error": 4.228940753137067e-09,
+      "A_variation_within_horizon": 0.11590081337470279,
+      "passed": true,
+      "residual_interpretation": "QP residuals are reported in original stored coordinates; actual state/input engineering acceptance is separately enforced at its stricter 1e-5 tolerance."
+    },
+    {
+      "name": "turn_qp",
+      "cycle": 60,
+      "time_s": 3.0,
+      "status": "solved",
+      "variables": 486,
+      "constraint_rows": 966,
+      "horizon_steps": 60,
+      "max_primal_constraint_violation": 5.187458728184158e-06,
+      "max_equality_residual": 1.8339054774774155e-08,
+      "max_kkt_stationarity_residual": 6.72722029869139e-06,
+      "minimum_objective_hessian_eigenvalue": 0.0004,
+      "initial_measured_state_equality_error": 0.0,
+      "independent_world_jacobian_discretization_max_error": 3.77851916422145e-12,
+      "independent_DOP853_affine_defect_max_error": 1.7763568394002505e-14,
+      "A_variation_within_horizon": 0.0018573143171666945,
+      "passed": true,
+      "residual_interpretation": "QP residuals are reported in original stored coordinates; actual state/input engineering acceptance is separately enforced at its stricter 1e-5 tolerance."
+    }
+  ],
+  "controller_timing": {
+    "control_period_s": 0.05,
+    "cycles": 1296,
+    "controller_mean_s": 0.041302339351934704,
+    "controller_p95_s": 0.05141315000219038,
+    "controller_max_s": 0.2914491999836173,
+    "deadline_exceedance_cycles": 66,
+    "deadline_exceedance_fraction": 0.05092592592592592,
+    "qp_total_mean_s": 0.007334398302348599,
+    "qp_failures": 0,
+    "fallback_cycles": 0,
+    "max_command_projection": 6.724654080636494e-06,
+    "delay_policy": "Offline fixed physical clock; controller wall time is measured but not injected as an actuation delay. This is not a hard-real-time demonstration."
+  },
+  "goal_xy_m": [
+    80.0,
+    80.0
+  ],
+  "final_position_m": [
+    79.37334630832804,
+    79.82750585331068
+  ],
+  "final_goal_distance_m": 0.6499608295337294,
+  "final_actual_speed_mps": -6.243835040217508e-12,
+  "acceptance": {
+    "time_matched_precision": true,
+    "independent_spatial_precision": true,
+    "sampled_dense_safety_and_actual_limits": true,
+    "original_goal_arrival_and_stop": true,
+    "all_engineering_targets_met": true,
+    "hard_real_time_demonstrated": false
+  },
+  "source_reference_audit": {
+    "scope": "Original R-CILQR B201 reference only; baseline for the independent nominal LTV-MPC tracking follow-up.",
+    "map": "B201",
+    "source_unchanged": true,
+    "source_euler_state_chain_max_residual": 7.105427357601002e-15,
+    "state_samples": 401,
+    "control_intervals": 400,
+    "original_duration_s": 40.0,
+    "path_length_m": 96.07442905278275,
+    "goal_xy_m": [
+      80.0,
+      80.0
+    ],
+    "terminal_xy_m": [
+      79.37335669181591,
+      79.82748544397774
+    ],
+    "terminal_goal_distance_m": 0.649956235243154,
+    "terminal_reference_speed_mps": 0.012347886066284104,
+    "reference_goal_position_within_1p5m": true,
+    "reference_last_speed_at_most_0p5mps": true,
+    "geometry_parameters": {
+      "lf": 3.0,
+      "lr": 3.0,
+      "obs_length": 5.0,
+      "obs_width": 3.0,
+      "width": 3.0,
+      "box_length": 5.0
+    },
+    "dense_sample_dt_s": 0.002,
+    "dense_sampling_method": "Linear interpolation of x/y/gamma and unwrapped heading between the fixed archived states; no reference resimulation or smoothing.",
+    "obstacle_clock": "Obstacle positions advance from their archived initial states at absolute execution time t, independently of any retimed reference progress.",
+    "initial_obstacles": [
+      [
+        56.97145407444933,
+        65.86908379407203,
+        1.118075221470903,
+        1.0
+      ],
+      [
+        55.512117871277844,
+        59.906920996816986,
+        1.4568168311986618,
+        1.0
+      ]
+    ],
+    "original_rectangles": {
+      "sample_count": 20001,
+      "zero_clearance_or_collision_samples": 0,
+      "minimum_clearance_m": 4.205768063875767,
+      "minimum_clearance_time_s": 14.134,
+      "minimum_clearance_obstacle_index": 1,
+      "geometry": "original axle-centered length/width rectangles"
+    },
+    "joint_extended_rectangles": {
+      "sample_count": 20001,
+      "zero_clearance_or_collision_samples": 0,
+      "minimum_clearance_m": 4.205768063875767,
+      "minimum_clearance_time_s": 14.134,
+      "minimum_clearance_obstacle_index": 1,
+      "geometry": "rectangles extended to the articulation joint"
+    },
+    "configured_articulation_rate_limits_radps": [
+      -0.3,
+      0.3
+    ],
+    "effective_runtime_articulation_rate_limits_radps": [
+      -0.15684989808486893,
+      0.15684989808486893
+    ],
+    "reference_articulation_rate_max_abs_radps": 0.4976379998793127,
+    "reference_runtime_rate_violation_intervals": 67,
+    "reference_runtime_rate_max_excess_radps": 0.34078810179444374,
+    "effective_acceleration_limits_mps2": [
+      -4,
+      3
+    ],
+    "reference_first_control_acceleration_min_mps2": -3.318862600173609,
+    "reference_first_control_acceleration_max_mps2": 1.7953439037158159,
+    "reference_first_control_acceleration_violation_count": 0,
+    "reference_first_control_acceleration_max_excess_mps2": 0.0,
+    "interpretation": [
+      "Collision and clearance results apply only to this map and this original time profile; they must be recomputed against absolute obstacle time for a retimed execution.",
+      "Rate and acceleration feasibility are assessed separately above; geometric clearance alone does not establish feasibility for the 6-state lagged plant.",
+      "A new speed/progress profile must be archived separately and must not overwrite or re-anchor this reference to the actual state at each cycle.",
+      "The 0.1 m RMSE, 0.3 m maximum error and 0.05 m actual clearance criteria are engineering acceptance targets for this follow-up, not a paper or industry standard.",
+      "No continuous-time or real-vehicle safety claim follows from sampled polygon checks."
+    ],
+    "acceptance_targets": {
+      "front_spatial_lateral_rmse_m": 0.1,
+      "rear_spatial_lateral_rmse_m": 0.1,
+      "front_spatial_lateral_max_abs_m": 0.3,
+      "rear_spatial_lateral_max_abs_m": 0.3,
+      "joint_extended_body_sampled_min_clearance_m": 0.05,
+      "sampled_collision_count": 0,
+      "original_goal_distance_m": 1.5,
+      "terminal_abs_speed_mps": 0.5
+    },
+    "input_manifest": [
+      {
+        "path": "E:\\BIT\\01-lqr\\第1次返修\\A04_跟踪实验\\输入快照\\full\\B201\\cilqr\\trajectories.npz",
+        "sha256": "5fe0ffd7c29292e17e811d965d55890e86cc39b9bc731e595a464a0efe38afa7"
+      },
+      {
+        "path": "E:\\BIT\\01-lqr\\第1次返修\\A04_跟踪实验\\输入快照\\full\\B201\\cilqr\\effective_config.json",
+        "sha256": "cc371bd15a12116758aba7924062ba1d54dbeefe2c1ff1c792b5c4254dd3f769"
+      },
+      {
+        "path": "E:\\BIT\\01-lqr\\第1次返修\\A04_跟踪实验\\输入快照\\full\\B201\\cilqr\\metadata.json",
+        "sha256": "8852af8eb3e8bac3ca931a3fa8749368d952756ced79203772d873443437adeb"
+      },
+      {
+        "path": "E:\\BIT\\01-lqr\\第1次返修\\A04_跟踪实验\\输入快照\\full\\B201\\scene\\scene.json",
+        "sha256": "761f59423a24f1db422049ebc692ff56fd56d1324fa32f38e74745b412fd33b6"
+      }
+    ]
+  },
+  "input_hashes": [
+    {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\A04_跟踪实验\\原始数据\\LTV_MPC\\B201\\cilqr\\nominal.csv",
+      "sha256": "200c53715d8b58e9b04d55414e46c264a64a1c4a5d7cb6f6a22b1c36593bacfb"
+    },
+    {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\A04_跟踪实验\\原始数据\\LTV_MPC\\B201\\cilqr\\original_reference.csv",
+      "sha256": "3b67ccf1810d0bc8ec09ce852a3ec4f5e057d14b6710c3e6e8143ec345e87f67"
+    },
+    {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\A04_跟踪实验\\原始数据\\LTV_MPC\\B201\\cilqr\\retimed_reference.csv",
+      "sha256": "0de8e2e464f56feaadd785446782153f6b6f5fb09fbaa682bbeb979ac9f416ca"
+    },
+    {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\A04_跟踪实验\\原始数据\\LTV_MPC\\B201\\cilqr\\progress_profile.csv",
+      "sha256": "760b93ff236d071117cbd1419f5e346e1903bd8f8b2a281b2934a11561b370c4"
+    },
+    {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\A04_跟踪实验\\原始数据\\LTV_MPC\\B201\\cilqr\\mpc_cycles.csv",
+      "sha256": "1a1c2beac2ca8fb969496a1562a2a2ff87ae4b4ab419a47f360331ea058f0538"
+    },
+    {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\A04_跟踪实验\\原始数据\\LTV_MPC\\B201\\cilqr\\protocol.json",
+      "sha256": "c0abf8b85baaa412b51daaf3e6dc786a160aa4eefe363b93f3f6da5352ddc121"
+    },
+    {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\A04_跟踪实验\\代码\\ltv_acceptance_targets.json",
+      "sha256": "efdb5319733eff02aef523cd14f66a57056c05edd23d3b54985048e6936dbf5d"
+    },
+    {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\A04_跟踪实验\\代码\\audit_ltv_mpc.py",
+      "sha256": "694792993363f55a2a072265edd03d647c8e606c5e1ea4fa77d4653fcbf00d1a"
+    }
+  ]
+}

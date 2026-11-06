@@ -1,0 +1,48 @@
+[
+  {
+    "map": "B201",
+    "method": "r",
+    "expected_frames": 400,
+    "recorded_attempts": 400,
+    "executed_frames": 400,
+    "completed_fixed_window": true,
+    "stop_reason": "fixed_window_completed",
+    "all_attempts_retained": true,
+    "scipy_success_count": null,
+    "scipy_status_counts": {},
+    "mean_solver_wall_ms": 2.2681215,
+    "max_solver_wall_ms": 40.4086
+  },
+  {
+    "map": "B201",
+    "method": "al",
+    "expected_frames": 400,
+    "recorded_attempts": 400,
+    "executed_frames": 400,
+    "completed_fixed_window": true,
+    "stop_reason": "fixed_window_completed",
+    "all_attempts_retained": true,
+    "scipy_success_count": null,
+    "scipy_status_counts": {},
+    "mean_solver_wall_ms": 16.867689999999996,
+    "max_solver_wall_ms": 70.1065
+  },
+  {
+    "map": "B201",
+    "method": "sqp",
+    "expected_frames": 400,
+    "recorded_attempts": 400,
+    "executed_frames": 400,
+    "completed_fixed_window": true,
+    "stop_reason": "fixed_window_completed",
+    "all_attempts_retained": true,
+    "scipy_success_count": 395,
+    "scipy_status_counts": {
+      "0": 395,
+      "4": 4,
+      "8": 1
+    },
+    "mean_solver_wall_ms": 490.2805887501026,
+    "max_solver_wall_ms": 4093.0490000152295
+  }
+]

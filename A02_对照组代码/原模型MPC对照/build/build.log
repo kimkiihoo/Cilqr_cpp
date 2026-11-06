@@ -1,0 +1,5 @@
+[1/5] Building CXX object CMakeFiles/original_model_bridge.dir/bridge.cpp.obj
+[2/5] Building CXX object CMakeFiles/original_model_bridge.dir/generated/config_loader.cpp.obj
+[3/5] Building CXX object CMakeFiles/original_model_bridge.dir/generated/support.cpp.obj
+[4/5] Building CXX object CMakeFiles/original_model_bridge.dir/generated/ilqr.cpp.obj
+[5/5] Linking CXX shared library original_model_bridge.dll

@@ -1,0 +1,6 @@
+{
+  "baseline": "E:\\BIT\\01-lqr\\第1次返修\\03_实验数据\\原版算法三方法基准_20261104\\full",
+  "changes": "Only diagnostic timers/counters plus independent run output. Frozen baseline sources retained.",
+  "baseline_optimizer_sha256": "6fd2bac169ab20eed5854eff849c68b2c8a11be1f3969a38c1e024b741197fdc",
+  "profile_optimizer_sha256": "0eec5d4b5a2846ad3e8b8b65a7ac9e4e232b8bff90209f28eebd4e4c1ec97c55"
+}

@@ -1,0 +1,180 @@
+{
+  "scope": "Curve features from saved original-solver controls, without fitting historical figures",
+  "cycle_index": "zero-based",
+  "cases": [
+    {
+      "case": "B201_v5_N50",
+      "method": "cilqr",
+      "csv_sha256": "da9f248c23c86ce8db22579555b18f9bf52a4e7589a2d44b7ab3aedd8a2f6763",
+      "path_sha256": "fb8dafd60739f61ef12ac2f14767bc9800fc1ffe843536064b322c87b0d9df27",
+      "obstacles_sha256": "94e9946646f6bf1c4abda11fb4c1ed3f2e374f763b58a84c1d46dc23202f1047",
+      "first_input": [
+        4.880307972002629,
+        0.4631711882515657
+      ],
+      "velocity_peak": 5.243387870672254,
+      "velocity_peak_cycle": 45,
+      "velocity_minimum": -0.06855058936427147,
+      "velocity_minimum_cycle": 337,
+      "gamma_dot_peak": 0.5222527983635428,
+      "gamma_dot_peak_cycle": 138,
+      "gamma_dot_minimum": -0.4400133050588339,
+      "gamma_dot_minimum_cycle": 114,
+      "gamma_dot_abs_peak": 0.5222527983635428,
+      "gamma_dot_peak_to_peak": 0.9622661034223767,
+      "first_distance_lt10_post_execution_cycle": 175,
+      "last_input": [
+        0.0560155141820073,
+        -0.00025711649274319254
+      ],
+      "end_distance_m": 0.36820415296747694,
+      "minimum_distance_m": 0.36820415296747694,
+      "solve_above100ms": 0
+    },
+    {
+      "case": "B201_v5_N50",
+      "method": "alilqr",
+      "csv_sha256": "b2cb98ff9bd986e9e37c4045355ffd87045cb2e20ca8898afc13a0270a3f7597",
+      "path_sha256": "fb8dafd60739f61ef12ac2f14767bc9800fc1ffe843536064b322c87b0d9df27",
+      "obstacles_sha256": "94e9946646f6bf1c4abda11fb4c1ed3f2e374f763b58a84c1d46dc23202f1047",
+      "first_input": [
+        4.994543735780903,
+        0.15684989808486893
+      ],
+      "velocity_peak": 5.5847142222203106,
+      "velocity_peak_cycle": 274,
+      "velocity_minimum": 0.10790840444635409,
+      "velocity_minimum_cycle": 201,
+      "gamma_dot_peak": 0.15684989808486893,
+      "gamma_dot_peak_cycle": 0,
+      "gamma_dot_minimum": -0.15684989808486893,
+      "gamma_dot_minimum_cycle": 19,
+      "gamma_dot_abs_peak": 0.15684989808486893,
+      "gamma_dot_peak_to_peak": 0.31369979616973787,
+      "first_distance_lt10_post_execution_cycle": 334,
+      "last_input": [
+        1.020805456687246,
+        0.15684989808486893
+      ],
+      "end_distance_m": 0.38342595992152323,
+      "minimum_distance_m": 0.3508887966827084,
+      "solve_above100ms": 0
+    },
+    {
+      "case": "B201_v5_N80",
+      "method": "cilqr",
+      "csv_sha256": "fe8da805d7154da6183dc9590494cd7b6a7a84e3562bcd39b7f4bf8c20f9494a",
+      "path_sha256": "fb8dafd60739f61ef12ac2f14767bc9800fc1ffe843536064b322c87b0d9df27",
+      "obstacles_sha256": "94e9946646f6bf1c4abda11fb4c1ed3f2e374f763b58a84c1d46dc23202f1047",
+      "first_input": [
+        4.925213161410923,
+        0.45780737561807344
+      ],
+      "velocity_peak": 5.5873452473555165,
+      "velocity_peak_cycle": 118,
+      "velocity_minimum": -0.011592298577319398,
+      "velocity_minimum_cycle": 368,
+      "gamma_dot_peak": 0.49763799987931573,
+      "gamma_dot_peak_cycle": 132,
+      "gamma_dot_minimum": -0.46681390955437113,
+      "gamma_dot_minimum_cycle": 107,
+      "gamma_dot_abs_peak": 0.49763799987931573,
+      "gamma_dot_peak_to_peak": 0.9644519094336869,
+      "first_distance_lt10_post_execution_cycle": 179,
+      "last_input": [
+        0.012347886066283776,
+        -0.005903918235384402
+      ],
+      "end_distance_m": 0.6499562352431677,
+      "minimum_distance_m": 0.6499562352431677,
+      "solve_above100ms": 0
+    },
+    {
+      "case": "B201_v5_N80",
+      "method": "alilqr",
+      "csv_sha256": "806ee0c0a6f9744aac9f6e5232da524caaa8afc543bbd4249451dd22cd0badf2",
+      "path_sha256": "fb8dafd60739f61ef12ac2f14767bc9800fc1ffe843536064b322c87b0d9df27",
+      "obstacles_sha256": "94e9946646f6bf1c4abda11fb4c1ed3f2e374f763b58a84c1d46dc23202f1047",
+      "first_input": [
+        5.004332272423465,
+        0.15684989808486893
+      ],
+      "velocity_peak": 5.344793367584314,
+      "velocity_peak_cycle": 68,
+      "velocity_minimum": 0.17281445827096148,
+      "velocity_minimum_cycle": 208,
+      "gamma_dot_peak": 0.15684989808486893,
+      "gamma_dot_peak_cycle": 0,
+      "gamma_dot_minimum": -0.15684989808486893,
+      "gamma_dot_minimum_cycle": 21,
+      "gamma_dot_abs_peak": 0.15684989808486893,
+      "gamma_dot_peak_to_peak": 0.31369979616973787,
+      "first_distance_lt10_post_execution_cycle": 342,
+      "last_input": [
+        0.656354147443835,
+        0.15684989808486893
+      ],
+      "end_distance_m": 2.6210966364120356,
+      "minimum_distance_m": 2.6210966364120356,
+      "solve_above100ms": 0
+    },
+    {
+      "case": "B207_v6_N80",
+      "method": "cilqr",
+      "csv_sha256": "26ff672c13ca6f8491dc386b4e4f755dfcd119140b7b30653ab7c31535001830",
+      "path_sha256": "f5315b7b373cd05431d2b1002b0a016fa8c2d107cd99472f52cf905ffa272ee3",
+      "obstacles_sha256": "d4739b54de54e9b0b3ad9ab12b506c42b9d2bbc6ac18bce086c894bffac0f496",
+      "first_input": [
+        6.138211495528286,
+        -0.19926877553270245
+      ],
+      "velocity_peak": 7.445343691766355,
+      "velocity_peak_cycle": 24,
+      "velocity_minimum": 0.17815999489750933,
+      "velocity_minimum_cycle": 298,
+      "gamma_dot_peak": 0.3395556524752977,
+      "gamma_dot_peak_cycle": 126,
+      "gamma_dot_minimum": -0.43621326019043877,
+      "gamma_dot_minimum_cycle": 33,
+      "gamma_dot_abs_peak": 0.43621326019043877,
+      "gamma_dot_peak_to_peak": 0.7757689126657364,
+      "first_distance_lt10_post_execution_cycle": 158,
+      "last_input": [
+        0.237451772139249,
+        0.007003869528661956
+      ],
+      "end_distance_m": 0.334395719800973,
+      "minimum_distance_m": 0.025246496892746037,
+      "solve_above100ms": 0
+    },
+    {
+      "case": "B207_v6_N80",
+      "method": "alilqr",
+      "csv_sha256": "0cac235bd57384db800e74999de309d9a0ef79efb6f57f360b62a4e0d3ecd673",
+      "path_sha256": "f5315b7b373cd05431d2b1002b0a016fa8c2d107cd99472f52cf905ffa272ee3",
+      "obstacles_sha256": "d4739b54de54e9b0b3ad9ab12b506c42b9d2bbc6ac18bce086c894bffac0f496",
+      "first_input": [
+        6.049942663497825,
+        0.1882198777018427
+      ],
+      "velocity_peak": 25.0,
+      "velocity_peak_cycle": 16,
+      "velocity_minimum": 0.0,
+      "velocity_minimum_cycle": 11,
+      "gamma_dot_peak": 0.1882198777018427,
+      "gamma_dot_peak_cycle": 0,
+      "gamma_dot_minimum": -0.1882198777018427,
+      "gamma_dot_minimum_cycle": 3,
+      "gamma_dot_abs_peak": 0.1882198777018427,
+      "gamma_dot_peak_to_peak": 0.3764397554036854,
+      "first_distance_lt10_post_execution_cycle": null,
+      "last_input": [
+        0.0,
+        -0.03756555934376791
+      ],
+      "end_distance_m": 23.864486319394658,
+      "minimum_distance_m": 23.864486319394658,
+      "solve_above100ms": 33
+    }
+  ]
+}

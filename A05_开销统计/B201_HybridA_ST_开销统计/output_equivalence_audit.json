@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "attempts": [
+    {
+      "passed": true,
+      "arrays": {
+        "times": {
+          "bitwise_equal": true,
+          "max_abs_error": 0.0
+        },
+        "path": {
+          "bitwise_equal": true,
+          "max_abs_error": 0.0
+        },
+        "planned_s": {
+          "bitwise_equal": true,
+          "max_abs_error": 0.0
+        },
+        "planned_positions": {
+          "bitwise_equal": true,
+          "max_abs_error": 0.0
+        },
+        "planned_speeds": {
+          "bitwise_equal": true,
+          "max_abs_error": 0.0
+        },
+        "actual_states": {
+          "bitwise_equal": true,
+          "max_abs_error": 0.0
+        },
+        "controls": {
+          "bitwise_equal": true,
+          "max_abs_error": 0.0
+        },
+        "initial_obstacles": {
+          "bitwise_equal": true,
+          "max_abs_error": 0.0
+        }
+      },
+      "attempt": 1
+    }
+  ]
+}

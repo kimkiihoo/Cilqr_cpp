@@ -1,0 +1,115 @@
+Configuration loaded from config/main.json, config/ilqr.json, config/hybrid_astar.json
+Computed articulated limits: kappa_max=0.06274, R_min=15.9388
+Derived gamma_dot limits: [-0.4, 0.4]
+代价分析日志文件已创建: C:\Temp\original_mpc_s4lm9_5l\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_103922.csv
+Configuration loaded from config/main.json, config/ilqr.json, config/hybrid_astar.json
+Computed articulated limits: kappa_max=0.06274, R_min=15.9388
+Derived gamma_dot limits: [-0.4, 0.4]
+代价分析日志文件已创建: C:\Temp\original_mpc_8auiwhfh\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_103922.csv
+Configuration loaded from config/main.json, config/ilqr.json, config/hybrid_astar.json
+Computed articulated limits: kappa_max=0.06274, R_min=15.9388
+Derived gamma_dot limits: [-0.4, 0.4]
+代价分析日志文件已创建: C:\Temp\original_mpc_hudo2ria\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_103922.csv
+Configuration loaded from config/main.json, config/ilqr.json, config/hybrid_astar.json
+Computed articulated limits: kappa_max=0.06274, R_min=15.9388
+Derived gamma_dot limits: [-0.4, 0.4]
+代价分析日志文件已创建: C:\Temp\original_mpc_cyij5bnd\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_103922.csv
+Configuration loaded from config/main.json, config/ilqr.json, config/hybrid_astar.json
+Computed articulated limits: kappa_max=0.06274, R_min=15.9388
+Derived gamma_dot limits: [-0.4, 0.4]
+代价分析日志文件已创建: C:\Temp\original_mpc_sl7d9iw0\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_103922.csv
+  迭代 0: alpha=0.500000, J_new=6878588.132807, delta_cost=-24123184963723.562500, delta_V=-142429.891129, ratio=169368836.642780
+========================
+  迭代 0: alpha=0.500000, J_new=4200767.913504, delta_cost=-2677820.219303, delta_V=-1331974.945800, ratio=2.010413
+========================
+  迭代 0: alpha=0.500000, J_new=2562087.429324, delta_cost=-1638680.484180, delta_V=-1589347.413149, ratio=1.031040
+========================
+  迭代 0: alpha=0.500000, J_new=1575318.231043, delta_cost=-986769.198281, delta_V=-969359.287390, ratio=1.017960
+========================
+  迭代 0: alpha=0.500000, J_new=960445.035651, delta_cost=-614873.195392, delta_V=-594123.416341, ratio=1.034925
+========================
+  迭代 0: alpha=0.500000, J_new=589286.673860, delta_cost=-371158.361792, delta_V=-360157.794409, ratio=1.030544
+========================
+  迭代 0: alpha=0.500000, J_new=362824.170470, delta_cost=-226462.503390, delta_V=-219062.981292, ratio=1.033778
+========================
+  迭代 0: alpha=0.500000, J_new=225387.765845, delta_cost=-137436.404624, delta_V=-133150.598148, ratio=1.032188
+========================
+  迭代 0: alpha=0.500000, J_new=140133.385857, delta_cost=-85254.379989, delta_V=-81193.542823, ratio=1.050014
+========================
+  迭代 0: alpha=0.500000, J_new=89051.712108, delta_cost=-51081.673749, delta_V=-49203.709092, ratio=1.038167
+========================
+  迭代 0: alpha=0.500000, J_new=57313.734329, delta_cost=-31737.977779, delta_V=-30121.331053, ratio=1.053671
+========================
+  迭代 0: alpha=0.500000, J_new=38102.397524, delta_cost=-19211.336805, delta_V=-18411.661111, ratio=1.043433
+========================
+  迭代 0: alpha=0.500000, J_new=26213.228355, delta_cost=-11889.169169, delta_V=-11363.290320, ratio=1.046279
+========================
+  迭代 0: alpha=0.500000, J_new=18818.221922, delta_cost=-7395.006432, delta_V=-7060.930668, ratio=1.047313
+========================
+  迭代 0: alpha=0.500000, J_new=14142.441607, delta_cost=-4675.780315, delta_V=-4451.834390, ratio=1.050304
+========================
+  迭代 0: alpha=0.500000, J_new=11115.607300, delta_cost=-3026.834307, delta_V=-2895.570417, ratio=1.045333
+========================
+  迭代 0: alpha=0.500000, J_new=9074.189118, delta_cost=-2041.418183, delta_V=-1938.398292, ratio=1.053147
+========================
+  迭代 0: alpha=0.500000, J_new=7654.595041, delta_cost=-1419.594076, delta_V=-1335.771019, ratio=1.062753
+========================
+  迭代 0: alpha=0.500000, J_new=6678.877031, delta_cost=-975.718011, delta_V=-911.691337, ratio=1.070228
+========================
+  迭代 0: alpha=0.500000, J_new=5937.710215, delta_cost=-741.166816, delta_V=-676.787785, ratio=1.095124
+========================
+  迭代 0: alpha=0.500000, J_new=5393.918088, delta_cost=-543.792127, delta_V=-523.451513, ratio=1.038859
+========================
+  迭代 0: alpha=0.500000, J_new=4874.857417, delta_cost=-519.060671, delta_V=-483.393490, ratio=1.073785
+========================
+  迭代 0: alpha=0.500000, J_new=4356.060155, delta_cost=-518.797262, delta_V=-489.685427, ratio=1.059450
+========================
+  迭代 0: alpha=0.500000, J_new=3969.364782, delta_cost=-386.695373, delta_V=-375.026754, ratio=1.031114
+========================
+  迭代 0: alpha=0.500000, J_new=3810.319072, delta_cost=-159.045710, delta_V=-154.781944, ratio=1.027547
+========================
+  迭代 0: alpha=0.500000, J_new=3729.824042, delta_cost=-80.495030, delta_V=-76.895537, ratio=1.046810
+========================
+  迭代 0: alpha=0.500000, J_new=3676.134544, delta_cost=-53.689497, delta_V=-52.612782, ratio=1.020465
+========================
+  迭代 0: alpha=0.500000, J_new=3926.372671, delta_cost=250.238127, delta_V=-41.648129, ratio=-6.008388
+  迭代 1: alpha=0.250000, J_new=3936.831102, delta_cost=260.696558, delta_V=-24.294578, ratio=-10.730648
+  迭代 2: alpha=0.125000, J_new=3664.247478, delta_cost=-11.887066, delta_V=-13.014917, ratio=0.913342
+========================
+  迭代 0: alpha=0.500000, J_new=3923.757577, delta_cost=259.510099, delta_V=-38.659745, ratio=-6.712670
+  迭代 1: alpha=0.250000, J_new=3932.172151, delta_cost=267.924673, delta_V=-22.551364, ratio=-11.880641
+  迭代 2: alpha=0.125000, J_new=3936.827432, delta_cost=272.579954, delta_V=-12.081055, ratio=-22.562595
+  迭代 3: alpha=0.062500, J_new=3937.224776, delta_cost=272.977298, delta_V=-6.241871, ratio=-43.733250
+  迭代 4: alpha=0.015625, J_new=3939.894305, delta_cost=275.646827, delta_V=-1.598220, ratio=-172.471188
+  迭代 5: alpha=0.003906, J_new=3663.897484, delta_cost=-0.349994, delta_V=-0.401914, ratio=0.870816
+========================
+Converged | iteration: 29 J_total :3663.897484
+代价分析日志已保存到: C:\Temp\original_mpc_sl7d9iw0\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_103922.csv
+Configuration loaded from config/main.json, config/ilqr.json, config/hybrid_astar.json
+Computed articulated limits: kappa_max=0.062740, R_min=15.938805
+Derived gamma_dot limits: [-0.400000, 0.400000]
+代价分析日志文件已创建: C:\Temp\original_mpc_1yivqfu5\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_103922.csv
+Outer Iter 0: Max Violation = 9.998768
+Outer Iter 1: Max Violation = 9.998768
+Outer Iter 2: Max Violation = 9.998768
+Outer Iter 3: Max Violation = 11.778316
+Outer Iter 4: Max Violation = 18.961110
+Outer Iter 5: Max Violation = 7.666493
+Outer Iter 6: Max Violation = 0.660224
+Outer Iter 7: Max Violation = 0.660224
+Outer Iter 8: Max Violation = 0.660224
+Outer Iter 9: Max Violation = 0.660224
+Outer Iter 10: Max Violation = 0.660224
+Outer Iter 11: Max Violation = 0.660224
+Outer Iter 12: Max Violation = 0.660224
+Outer Iter 13: Max Violation = 12.361587
+Outer Iter 14: Max Violation = 12.361587
+Outer Iter 15: Max Violation = 13.624568
+Outer Iter 16: Max Violation = 11.626571
+Outer Iter 17: Max Violation = 0.000000
+代价分析日志已保存到: C:\Temp\original_mpc_1yivqfu5\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_103922.csv
+Configuration loaded from config/main.json, config/ilqr.json, config/hybrid_astar.json
+Computed articulated limits: kappa_max=0.062740, R_min=15.938805
+Derived gamma_dot limits: [-0.400000, 0.400000]
+代价分析日志文件已创建: C:\Temp\original_mpc_7pzwmclx\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_103922.csv
+PASS: E:\BIT\01-lqr\��1�η���\02_���������\ԭģ��MPC����\verification\consistency_report.json

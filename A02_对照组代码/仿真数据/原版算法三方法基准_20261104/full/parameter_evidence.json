@@ -1,0 +1,275 @@
+{
+  "created_at": "2026-11-04T10:30:20.601002+08:00",
+  "purpose": "原版R-CILQR/AL-iLQR基准重建前的参数取证；不包含新仿真结果。",
+  "historical_parameters_confirmed": false,
+  "candidate_interpretation": "5/6/15 m/s是依据原图、正文与现存代码派生机制提出的候选，不是已恢复或已确证的历史参考速度；不得将候选试验冒充原投稿逐帧数据。",
+  "sources": {
+    "cached_manuscript_docx": {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\.codex_work\\section243\\revised_source.docx",
+      "sha256": "cc3dc23f970599e3606c1575db648450b26b1468fdbbcca24546287ce731a07b"
+    },
+    "submitted_original_text": {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\.codex_work\\reviewer16724\\submitted_original.txt",
+      "sha256": "851d3e3bbe6a1c7b5908da1d7deb223c35e2d817aecb361a3b5b7b2db03390d1"
+    },
+    "original_submitted_doc": {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\04_论文与审稿材料\\投稿原件\\第1次投稿版本.doc",
+      "sha256": "b8644f96dbfdceb41223629604f0b1b47c9aaf9146a83b05ba27e28e6dda5234"
+    },
+    "handoff_main_config": {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\05_原始交接代码\\Cilqr_cpp-CAV\\Cilqr_cpp-CAV\\config\\main.json",
+      "sha256": "8834b5d8d0d8da1fe3ea738517cf2e8037edcf784c806344a6dfe92fc350b4ce"
+    },
+    "handoff_ilqr_config": {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\05_原始交接代码\\Cilqr_cpp-CAV\\Cilqr_cpp-CAV\\config\\ilqr.json",
+      "sha256": "96767f4c73b4e22ebb54810bc180d484f36c34a04ca3cffbfe1e9dbacdbcd41e"
+    },
+    "handoff_main_source": {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\05_原始交接代码\\Cilqr_cpp-CAV\\Cilqr_cpp-CAV\\src\\main.cpp",
+      "sha256": "54753d4edc911570fee84d687e4b7ea796d043927ac790c335510d7c7b1d35ed"
+    },
+    "handoff_utils_source": {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\05_原始交接代码\\Cilqr_cpp-CAV\\Cilqr_cpp-CAV\\src\\utils.cpp",
+      "sha256": "1dc7f3409aefed25a0c2244933b869d0273cc2b7aad02ff6eee60c89326cdd12"
+    },
+    "handoff_model_header": {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\05_原始交接代码\\Cilqr_cpp-CAV\\Cilqr_cpp-CAV\\include\\ilqr.h",
+      "sha256": "580818fd0e46968780d0204129ecb5ba4245f94b3cc1b222f9e14040a29458e8"
+    },
+    "handoff_comparison_plotter": {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\05_原始交接代码\\Cilqr_cpp-CAV\\Cilqr_cpp-CAV\\compare_control.py",
+      "sha256": "11769e9d544403417047f2f91aeed253e0b0fd0c3b160a623085ff2d39f0ff4f"
+    }
+  },
+  "image_provenance": {
+    "archive_source_key": "cached_manuscript_docx",
+    "inspection": "直接读取缓存DOCX中三个控制PNG；在内存中将五个WMF数学对象渲染为PNG，逐一目视核对。原稿未修改。",
+    "cache_scope": "图片及数学对象来自现存修订稿DOCX缓存；对应叙述同时核对了submitted_original.txt。原提交DOC列为来源背景，未在本次重新转换。",
+    "member_paths_are_inside_docx": true
+  },
+  "common_evidence": {
+    "paper_table_1": {
+      "original_text_lines": [
+        328,
+        367
+      ],
+      "N": 80,
+      "dt_s": 0.1,
+      "max_iter": 50,
+      "lambda_init": 7.0,
+      "Q_diag": [
+        0.2,
+        0.2,
+        0.1,
+        1.5
+      ],
+      "R_diag": [
+        1.0,
+        1.0
+      ]
+    },
+    "handoff_config": {
+      "N": 50,
+      "dt_s": 0.1,
+      "reference_speed_mps_all_maps": 15.0,
+      "json_gamma_dot_max_radps": 0.3,
+      "json_gamma_dot_min_radps": -0.3,
+      "ITER_each_map": 200
+    },
+    "config_conflicts": [
+      "原稿N=80，现存交接JSON N=50。",
+      "原图横轴分别到400/300/200，交接配置三个地图ITER均200。",
+      "现存入口覆盖JSON的gamma_dot阈值，JSON中的±0.3不能当作最终生效值。"
+    ],
+    "pose_scope": "起终点来自现存main.json，theta单位rad、x/y单位m；main.cpp:176明确初始gamma=0；不能自动确认为原图运行配置。",
+    "window_scope": "400/300/200是可直接确认的图轴终点；不能据图轴恢复精确历史记录数、停止条件或丢帧情况。"
+  },
+  "derived_rate_rule": {
+    "main_source_lines": [
+      91,
+      101
+    ],
+    "utils_source_lines": [
+      1416,
+      1427
+    ],
+    "model_header_lines": [
+      151,
+      152
+    ],
+    "lf_m": 3.0,
+    "lr_m": 3.0,
+    "gamma_mechanical_rad": 0.35,
+    "kappa_formula": "abs(tan(0.35) / (3 + 3*cos(0.35)))",
+    "kappa_max_per_m": 0.06273995923394757,
+    "bound_formula": "min(0.4, max(0.1, 0.5 * reference_speed_mps * kappa_max))",
+    "candidates": [
+      {
+        "reference_speed_mps": 5,
+        "derived_abs_rate_bound_radps": 0.15684989808486893
+      },
+      {
+        "reference_speed_mps": 6,
+        "derived_abs_rate_bound_radps": 0.1882198777018427
+      },
+      {
+        "reference_speed_mps": 15,
+        "derived_abs_rate_bound_radps": 0.4
+      }
+    ],
+    "other_proposed_values": [
+      {
+        "reference_speed_mps": 4,
+        "derived_abs_rate_bound_radps": 0.12547991846789514
+      },
+      {
+        "reference_speed_mps": 10,
+        "derived_abs_rate_bound_radps": 0.31369979616973787
+      }
+    ],
+    "inference_limit": "派生边界与图中AL平台相符属于机制一致性证据，不能用输出平台反向确证历史参数。"
+  },
+  "scenes": [
+    {
+      "map": "B201",
+      "section": "4.2.1",
+      "scene_figure": 6,
+      "control_figure": 7,
+      "scene_image_member": "word/media/image265.png",
+      "control_image_member": "word/media/image269.png",
+      "original_text_lines": [
+        376,
+        377
+      ],
+      "text_math_objects": [
+        {
+          "member": "word/media/image266.wmf",
+          "visually_verified_text": "3 m/s"
+        },
+        {
+          "member": "word/media/image267.wmf",
+          "visually_verified_text": "6 m/s"
+        },
+        {
+          "member": "word/media/image268.wmf",
+          "visually_verified_text": "1 m/s"
+        }
+      ],
+      "original_text_description": "约第25步由3 m/s升至6 m/s；第150步开始减速，最低约1 m/s。上述数字描述输出，未明确声明参考速度。",
+      "figure_observations": {
+        "x_axis_endpoint": 400,
+        "rcilqr_peak_velocity_mps_approx": 5.5,
+        "alilqr_articulation_rate_plateau_radps_approx": 0.156,
+        "precision": "肉眼读图近似值，不是原始CSV或参数文件"
+      },
+      "handoff_start_x_y_theta": [
+        10,
+        20,
+        1.2
+      ],
+      "handoff_goal_x_y_theta": [
+        80,
+        80,
+        1.0
+      ],
+      "handoff_initial_gamma_rad": 0,
+      "candidate_reference_speed_mps": 5,
+      "candidate_derived_rate_bound_radps": 0.15684989808486893,
+      "candidate_status": "仅候选：与原图速度量级和AL平台及现存派生机制相容，历史配置未确证。"
+    },
+    {
+      "map": "B207",
+      "section": "4.2.2",
+      "scene_figure": 9,
+      "control_figure": 10,
+      "scene_image_member": "word/media/image271.png",
+      "control_image_member": "word/media/image273.png",
+      "original_text_lines": [
+        400
+      ],
+      "text_math_objects": [
+        {
+          "member": "word/media/image272.wmf",
+          "visually_verified_text": "4 m/s"
+        }
+      ],
+      "original_text_description": "正文称速度基本维持在约4 m/s，但这是输出概括，不是明确的参考速度设定。",
+      "figure_observations": {
+        "x_axis_endpoint": 300,
+        "initial_velocity_mps_approx": 6,
+        "rcilqr_peak_velocity_mps_approx": 7.5,
+        "alilqr_peak_velocity_mps_approx": 10,
+        "alilqr_articulation_rate_plateau_radps_approx": 0.188,
+        "precision": "肉眼读图近似值，不是原始CSV或参数文件"
+      },
+      "text_figure_discrepancy": "原图速度起伏显著，不能据正文约4 m/s认定v_ref=4 m/s；正文概括与图形不一致。",
+      "handoff_start_x_y_theta": [
+        70,
+        8,
+        1.57
+      ],
+      "handoff_goal_x_y_theta": [
+        60,
+        100,
+        2.0
+      ],
+      "handoff_initial_gamma_rad": 0,
+      "candidate_reference_speed_mps": 6,
+      "candidate_derived_rate_bound_radps": 0.1882198777018427,
+      "candidate_status": "仅候选：与原图初始速度量级和AL平台及现存派生机制相容，历史配置未确证。"
+    },
+    {
+      "map": "B301",
+      "section": "4.2.3",
+      "scene_figure": 11,
+      "control_figure": 12,
+      "scene_image_member": "word/media/image275.png",
+      "control_image_member": "word/media/image276.png",
+      "original_text_lines": [
+        420
+      ],
+      "text_math_objects": [
+        {
+          "member": "word/media/image274.wmf",
+          "visually_verified_text": "15 m/s"
+        }
+      ],
+      "original_text_description": "正文明确写approaching 15 m/s，未写10 m/s；该表述仍是运行速度说明，未直接命名v_ref。",
+      "figure_observations": {
+        "x_axis_endpoint": 200,
+        "initial_velocity_mps_approx": 15,
+        "rcilqr_peak_velocity_mps_approx": 15.5,
+        "alilqr_articulation_rate_plateau_radps_approx": 0.4,
+        "rcilqr_rate_locally_exceeds_0_4_visually": true,
+        "precision": "肉眼读图近似值，不是原始CSV或参数文件"
+      },
+      "handoff_start_x_y_theta": [
+        100,
+        70,
+        0
+      ],
+      "handoff_goal_x_y_theta": [
+        180,
+        127,
+        1.8
+      ],
+      "handoff_initial_gamma_rad": 0,
+      "candidate_reference_speed_mps": 15,
+      "candidate_derived_rate_bound_radps": 0.4,
+      "candidate_status": "图文和现存配置均支持15 m/s量级，作为重建候选证据最强；仍没有原图运行日志证明逐点历史配置。"
+    }
+  ],
+  "historical_data_search": {
+    "searched_directories": [
+      "05_原始交接代码",
+      "04_论文与审稿材料"
+    ],
+    "findings": [
+      "05交接目录没有outputs目录。",
+      "含隐藏/忽略文件检索未发现原图对应控制CSV、*_data_*.json、控制成图或备份配置。",
+      "04仅有投稿DOC、审稿DOCX、中文翻译DOCX，无独立原图逐帧数据。"
+    ],
+    "plotter_semantics": "compare_control.py:52-54按文件编号排序后原样取control_sequence.velocity[0]与gamma[0]，无平滑、限幅或400帧/5m/s/±0.15参数设置。"
+  },
+  "changes_made": "仅新建本JSON与同目录简短TXT证据说明；未修改原稿、算法、配置和原始数据；未运行实验。"
+}

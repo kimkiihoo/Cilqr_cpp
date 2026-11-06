@@ -1,0 +1,39 @@
+{
+  "map": "B201",
+  "method": "existing Hybrid A* + existing QP path smoothing",
+  "mode": "regenerate_and_verify",
+  "stage_wall_ms": 1559.2440000000352,
+  "timing_scope": "Executable startup, map/config loading, Hybrid A* search, QP smoothing, scene initialization and path/obstacle export; excludes Python file staging and verification. Not a per-cycle solve time.",
+  "scene_source": "E:\\BIT\\01-lqr\\第1次返修\\03_实验数据\\原版算法三方法基准_20261104\\full\\B201\\scene\\scene.json",
+  "scene_sha256": "761f59423a24f1db422049ebc692ff56fd56d1324fa32f38e74745b412fd33b6",
+  "config_source": "E:\\BIT\\01-lqr\\第1次返修\\03_实验数据\\原版算法三方法基准_20261104\\full\\B201\\cilqr\\effective_config.json",
+  "config_sha256": "cc371bd15a12116758aba7924062ba1d54dbeefe2c1ff1c792b5c4254dd3f769",
+  "path_rows": 199,
+  "obstacle_rows": 2,
+  "frozen_path_sha256": "fb8dafd60739f61ef12ac2f14767bc9800fc1ffe843536064b322c87b0d9df27",
+  "frozen_obstacles_sha256": "94e9946646f6bf1c4abda11fb4c1ed3f2e374f763b58a84c1d46dc23202f1047",
+  "comparison_path": "Frozen B201 path; regeneration must match before it is used.",
+  "validation": {
+    "regeneration_performed": true,
+    "hybrid_astar_success_logged": true,
+    "qp_smoothing_logged": true,
+    "path_matches_frozen": true,
+    "obstacles_match_frozen": true,
+    "absolute_tolerance": 1e-10,
+    "path_max_abs_error": 0.0,
+    "obstacle_max_abs_error": 0.0
+  },
+  "executable_source": "E:\\BIT\\01-lqr\\第1次返修\\02_对照组代码\\原论文场景复现\\build\\paper_replay.exe",
+  "executable_sha256": "8f51a1ea77a16e5baf3f1faaa8a7c8d17a0f319fef78b9afa9e305fdecbf8e78",
+  "map_source": "E:\\BIT\\01-lqr\\第1次返修\\05_原始交接代码\\Cilqr_cpp-CAV\\Cilqr_cpp-CAV\\Maps\\bitmap\\B201_global_map.json",
+  "map_sha256": "ee7da4184e7be8b5200f95649274ba2a6566c98eb516ef9703ccb7fa03ddc120",
+  "generated_config_sha256": {
+    "main": "aadd8da4d597ba5e6e85c66ffb4a3c1aa2352bfac6b689d93c83d003a9bb415e",
+    "ilqr": "a3fcbf91bd56f33538790c822c1dc25e03f032344ee6bb29ce4d02af5128c7a8",
+    "hybrid_astar": "db72244c6659b69ac6006b6092295baa0d1c1c48a848e14d21557d199e6aa506"
+  },
+  "returncode": 0,
+  "generated_path_sha256": "fb8dafd60739f61ef12ac2f14767bc9800fc1ffe843536064b322c87b0d9df27",
+  "generated_obstacles_sha256": "94e9946646f6bf1c4abda11fb4c1ed3f2e374f763b58a84c1d46dc23202f1047",
+  "log_sha256": "085f2d8ed6e3afc636ca8ea6f9d01e6726a21b701f559efc32c47759860d596c"
+}

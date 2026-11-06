@@ -1,0 +1,14 @@
+{
+  "map": "B207",
+  "method": "r",
+  "expected_frames": 300,
+  "recorded_attempts": 300,
+  "executed_frames": 300,
+  "completed_fixed_window": true,
+  "stop_reason": "fixed_window_completed",
+  "all_attempts_retained": true,
+  "scipy_success_count": null,
+  "scipy_status_counts": {},
+  "mean_solver_wall_ms": 2.832812333333333,
+  "max_solver_wall_ms": 29.4514
+}

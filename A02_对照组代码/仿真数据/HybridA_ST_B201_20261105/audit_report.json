@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "executed_frames": 400,
+  "model_max_abs_error": 5.551115123125783e-16,
+  "dense_check_dt_s": 0.01,
+  "dense_speed_limit_max_violation_mps": 0.0,
+  "dense_planned_obstacle_max_residual": -13.305405088946944,
+  "dense_executed_obstacle_max_residual": -13.25747879072875,
+  "graph_goal_reached": false,
+  "terminal_time_s": 40.0,
+  "all_source_snapshot_hashes_match": true
+}

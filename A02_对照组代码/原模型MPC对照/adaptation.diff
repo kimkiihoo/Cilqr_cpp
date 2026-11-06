@@ -1,0 +1,30 @@
+--- original/include/ilqr.h
++++ generated/include/ilqr.h
+@@ -105,9 +105,9 @@
+ 
+ 
+ //计算两点之间距离
+-inline double distance(const Point& p1, const Point& p2);
++double distance(const Point& p1, const Point& p2);
+ //找到路径中离自车最短距离的点
+-inline size_t find_closest_point(const std::vector<Point>& path,const State& state);
++size_t find_closest_point(const std::vector<Point>& path,const State& state);
+ //角度归一化到[-π, π]
+ inline double angle_wrap(double theta) {
+     theta = fmod(theta + M_PI, 2.0*M_PI); 
+@@ -281,6 +281,7 @@
+ 
+ 
+ class CILQRSolver{
++    friend struct OriginalBridgeAccess;
+     private:
+         // double J_total = 0;
+         double lamb ;
+@@ -374,6 +375,7 @@
+ };
+ 
+ class ALILQRSolver{
++    friend struct OriginalBridgeAccess;
+     private:
+         double lamb;
+         double average_gradient = 0.0;

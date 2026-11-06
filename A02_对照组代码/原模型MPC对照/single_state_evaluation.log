@@ -1,0 +1,5 @@
+Configuration loaded from config/main.json, config/ilqr.json, config/hybrid_astar.json
+Computed articulated limits: kappa_max=0.06274, R_min=15.9388
+Derived gamma_dot limits: [-0.15685, 0.15685]
+代价分析日志文件已创建: C:\Temp\original_mpc_7yhkw5zi\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_104206.csv
+E:\BIT\01-lqr\��1�η���\02_���������\ԭģ��MPC����\verification\B201_v5_N80_single_evaluation.json

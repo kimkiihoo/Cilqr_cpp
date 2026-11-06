@@ -1,0 +1,5 @@
+[1/5] Building CXX object CMakeFiles/paper_replay.dir/source/src/main.cpp.obj
+[2/5] Building CXX object CMakeFiles/paper_replay.dir/source/src/utils.cpp.obj
+[3/5] Building CXX object CMakeFiles/paper_replay.dir/source/src/config_loader.cpp.obj
+[4/5] Building CXX object CMakeFiles/paper_replay.dir/source/src/ilqr.cpp.obj
+[5/5] Linking CXX executable paper_replay.exe

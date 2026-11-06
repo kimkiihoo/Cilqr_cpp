@@ -1,0 +1,5 @@
+﻿map,method,planning_mode,planning_calls,planning_total_ms,planning_mean_call_ms,geometry_preparation_ms,executed_frames,final_goal_distance_m,max_abs_lateral_error_m,max_obstacle_residual,obstacle_violation_samples,max_lane_violation_m,max_articulation_violation_rad,max_rate_violation_radps,max_internal_acceleration_violation_mps2
+B201,R-CILQR,receding_horizon_8s,400,965.2377,2.41309425,,400,0.649956235243154,0.7553654454412304,-1.2717145667626348,0,0.0,0.0,0.34078810179444374,0.0
+B201,AL-iLQR,receding_horizon_8s,400,7399.941799999999,18.499854499999998,,400,2.6210966364120356,1.2483191006279202,-6.97004440275323,0,0.0,0.0,0.0,1.5998036347020008
+B201,SQP-NMPC (original R penalty),receding_horizon_8s,400,205384.86309972993,513.4621577493249,,400,3.3904096597040025,0.6775498612812387,-1.5067790311605582,0,0.0,0.0,0.33814705452945715,0.0
+B201,Hybrid A* + ST*,global_speed_graph_40s,1,8701.274799999737,,1641.0898000003726,400,2.649436846250509,0.18285284903290658,-13.257478790728744,0,0.0,0.0,0.0,4.376943252282217e-12

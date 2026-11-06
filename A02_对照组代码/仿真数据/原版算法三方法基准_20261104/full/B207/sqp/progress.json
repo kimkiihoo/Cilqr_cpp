@@ -1,0 +1,7 @@
+{
+  "recorded_attempts": 300,
+  "executed_frames": 300,
+  "expected_frames": 300,
+  "last_status": 0,
+  "stop_reason": "fixed_window_completed"
+}

@@ -1,0 +1,18 @@
+{
+  "map": "B301",
+  "method": "sqp",
+  "expected_frames": 200,
+  "recorded_attempts": 200,
+  "executed_frames": 200,
+  "completed_fixed_window": true,
+  "stop_reason": "fixed_window_completed",
+  "all_attempts_retained": true,
+  "scipy_success_count": 196,
+  "scipy_status_counts": {
+    "0": 196,
+    "4": 3,
+    "9": 1
+  },
+  "mean_solver_wall_ms": 986.3930519998211,
+  "max_solver_wall_ms": 4184.839999998837
+}

@@ -1,0 +1,353 @@
+Configuration loaded from config/main.json, config/ilqr.json, config/hybrid_astar.json
+Computed articulated limits: kappa_max=0.06274, R_min=15.9388
+Derived gamma_dot limits: [-0.15685, 0.15685]
+代价分析日志文件已创建: C:\Temp\original_mpc_gs0e99ig\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_104902.csv
+  迭代 0: alpha=0.500000, J_new=1274.077358, delta_cost=-97.181802, delta_V=-106.668566, ratio=0.911063
+========================
+  迭代 0: alpha=0.500000, J_new=1245.778340, delta_cost=-28.299019, delta_V=-30.188384, ratio=0.937414
+========================
+  迭代 0: alpha=0.500000, J_new=1237.616787, delta_cost=-8.161553, delta_V=-8.474425, ratio=0.963080
+========================
+  迭代 0: alpha=0.500000, J_new=1237.521662, delta_cost=-0.095125, delta_V=-2.474698, ratio=0.038439
+  迭代 1: alpha=0.250000, J_new=1236.213024, delta_cost=-1.403763, delta_V=-1.432830, ratio=0.979713
+========================
+  迭代 0: alpha=0.500000, J_new=1237.661384, delta_cost=1.448359, delta_V=-1.512226, ratio=-0.957767
+  迭代 1: alpha=0.250000, J_new=1237.614300, delta_cost=1.401275, delta_V=-0.876892, ratio=-1.598002
+  迭代 2: alpha=0.125000, J_new=1235.750960, delta_cost=-0.462065, delta_V=-0.468641, ratio=0.985967
+========================
+Converged | iteration: 5 J_total :1235.750960
+B201 r: 1/10, executed=True, wall_ms=7.4138, status=None, residual=0.3009574775332046
+  迭代 0: alpha=0.500000, J_new=1231.141242, delta_cost=2.086476, delta_V=-1.191070, ratio=-1.751766
+  迭代 1: alpha=0.250000, J_new=1231.484366, delta_cost=2.429600, delta_V=-0.680047, ratio=-3.572697
+  迭代 2: alpha=0.125000, J_new=1230.899679, delta_cost=1.844913, delta_V=-0.361151, ratio=-5.108423
+  迭代 3: alpha=0.062500, J_new=1229.923387, delta_cost=0.868621, delta_V=-0.185858, ratio=-4.673584
+  迭代 4: alpha=0.015625, J_new=1229.011082, delta_cost=-0.043684, delta_V=-0.047455, ratio=0.920545
+========================
+Converged | iteration: 1 J_total :1229.011082
+B201 r: 2/10, executed=True, wall_ms=2.8888, status=None, residual=0.2392141431432656
+  迭代 0: alpha=0.500000, J_new=1226.281593, delta_cost=2.186540, delta_V=-1.188343, ratio=-1.839990
+  迭代 1: alpha=0.250000, J_new=1226.648916, delta_cost=2.553863, delta_V=-0.678169, ratio=-3.765824
+  迭代 2: alpha=0.125000, J_new=1226.181061, delta_cost=2.086008, delta_V=-0.360084, ratio=-5.793122
+  迭代 3: alpha=0.062500, J_new=1225.690762, delta_cost=1.595709, delta_V=-0.185292, ratio=-8.611881
+  迭代 4: alpha=0.015625, J_new=1224.051404, delta_cost=-0.043649, delta_V=-0.047307, ratio=0.922670
+========================
+Converged | iteration: 1 J_total :1224.051404
+B201 r: 3/10, executed=True, wall_ms=2.768, status=None, residual=0.17790311415449878
+  迭代 0: alpha=0.500000, J_new=1222.767276, delta_cost=2.071398, delta_V=-1.259367, ratio=-1.644792
+  迭代 1: alpha=0.250000, J_new=1223.183808, delta_cost=2.487929, delta_V=-0.718184, ratio=-3.464196
+  迭代 2: alpha=0.125000, J_new=1222.991360, delta_cost=2.295482, delta_V=-0.381217, ratio=-6.021460
+  迭代 3: alpha=0.062500, J_new=1222.637312, delta_cost=1.941434, delta_V=-0.196140, ratio=-9.898222
+  迭代 4: alpha=0.015625, J_new=1221.068040, delta_cost=0.372162, delta_V=-0.050072, ratio=-7.432529
+  迭代 5: alpha=0.003906, J_new=1220.684238, delta_cost=-0.011640, delta_V=-0.012583, ratio=0.925088
+========================
+Converged | iteration: 1 J_total :1220.684238
+B201 r: 4/10, executed=True, wall_ms=3.1358, status=None, residual=0.11756893804878393
+  迭代 0: alpha=0.500000, J_new=1220.355785, delta_cost=1.968004, delta_V=-1.344326, ratio=-1.463934
+  迭代 1: alpha=0.250000, J_new=1220.961732, delta_cost=2.573951, delta_V=-0.766253, ratio=-3.359139
+  迭代 2: alpha=0.125000, J_new=1220.889851, delta_cost=2.502069, delta_V=-0.406649, ratio=-6.152895
+  迭代 3: alpha=0.062500, J_new=1220.411946, delta_cost=2.024165, delta_V=-0.209205, ratio=-9.675499
+  迭代 4: alpha=0.015625, J_new=1218.966426, delta_cost=0.578644, delta_V=-0.053404, ratio=-10.835243
+  迭代 5: alpha=0.003906, J_new=1218.584928, delta_cost=0.197147, delta_V=-0.013420, ratio=-14.690649
+  迭代 6: alpha=0.000977, J_new=1218.384667, delta_cost=-0.003114, delta_V=-0.003359, ratio=0.927074
+========================
+Converged | iteration: 1 J_total :1218.384667
+B201 r: 5/10, executed=True, wall_ms=3.3886, status=None, residual=0.05956387267690061
+  迭代 0: alpha=0.500000, J_new=1218.769426, delta_cost=1.936310, delta_V=-1.371603, ratio=-1.411713
+  迭代 1: alpha=0.250000, J_new=1219.389487, delta_cost=2.556372, delta_V=-0.781406, ratio=-3.271501
+  迭代 2: alpha=0.125000, J_new=1219.325838, delta_cost=2.492722, delta_V=-0.414604, ratio=-6.012291
+  迭代 3: alpha=0.062500, J_new=1218.852377, delta_cost=2.019262, delta_V=-0.213277, ratio=-9.467769
+  迭代 4: alpha=0.015625, J_new=1217.410567, delta_cost=0.577452, delta_V=-0.054440, ratio=-10.607173
+  迭代 5: alpha=0.003906, J_new=1217.029958, delta_cost=0.196842, delta_V=-0.013680, ratio=-14.389083
+  迭代 6: alpha=0.000977, J_new=1216.935899, delta_cost=0.102783, delta_V=-0.003424, ratio=-30.015280
+  迭代 7: alpha=0.000244, J_new=1216.832321, delta_cost=-0.000795, delta_V=-0.000856, ratio=0.928154
+========================
+Converged | iteration: 1 J_total :1216.832321
+B201 r: 6/10, executed=True, wall_ms=3.7082, status=None, residual=0.0049661328180381215
+  迭代 0: alpha=0.500000, J_new=1217.789269, delta_cost=2.013945, delta_V=-1.295714, ratio=-1.554313
+  迭代 1: alpha=0.250000, J_new=1218.376069, delta_cost=2.600745, delta_V=-0.737616, ratio=-3.525878
+  迭代 2: alpha=0.125000, J_new=1218.291209, delta_cost=2.515884, delta_V=-0.391248, ratio=-6.430408
+  迭代 3: alpha=0.062500, J_new=1217.806017, delta_cost=2.030693, delta_V=-0.201234, ratio=-10.091203
+  迭代 4: alpha=0.015625, J_new=1216.355588, delta_cost=0.580264, delta_V=-0.051360, ratio=-11.297888
+  迭代 5: alpha=0.003906, J_new=1216.080827, delta_cost=0.305503, delta_V=-0.012906, ratio=-23.671696
+  迭代 6: alpha=0.000977, J_new=1215.878280, delta_cost=0.102956, delta_V=-0.003231, ratio=-31.869323
+  迭代 7: alpha=0.000244, J_new=1215.774574, delta_cost=-0.000750, delta_V=-0.000808, ratio=0.928619
+========================
+Converged | iteration: 1 J_total :1215.774574
+B201 r: 7/10, executed=True, wall_ms=3.5526, status=None, residual=0.0
+  迭代 0: alpha=0.500000, J_new=1217.255758, delta_cost=2.201002, delta_V=-1.111599, ratio=-1.980033
+  迭代 1: alpha=0.250000, J_new=1217.761947, delta_cost=2.707191, delta_V=-0.631995, ratio=-4.283562
+  迭代 2: alpha=0.125000, J_new=1217.626370, delta_cost=2.571614, delta_V=-0.335047, ratio=-7.675390
+  迭代 3: alpha=0.062500, J_new=1217.113283, delta_cost=2.058527, delta_V=-0.172286, ratio=-11.948343
+  迭代 4: alpha=0.015625, J_new=1215.641880, delta_cost=0.587124, delta_V=-0.043964, ratio=-13.354563
+  迭代 5: alpha=0.003906, J_new=1215.361968, delta_cost=0.307212, delta_V=-0.011047, ratio=-27.809815
+  迭代 6: alpha=0.000977, J_new=1215.261844, delta_cost=0.207088, delta_V=-0.002765, ratio=-74.890606
+  迭代 7: alpha=0.000244, J_new=1215.160081, delta_cost=0.105325, delta_V=-0.000692, ratio=-152.309584
+  迭代 8: alpha=0.000061, J_new=1215.054595, delta_cost=-0.000161, delta_V=-0.000173, ratio=0.929277
+========================
+Converged | iteration: 1 J_total :1215.054595
+B201 r: 8/10, executed=True, wall_ms=4.1482, status=None, residual=0.0
+  迭代 0: alpha=0.500000, J_new=1217.070494, delta_cost=2.438661, delta_V=-0.878532, ratio=-2.775837
+  迭代 1: alpha=0.250000, J_new=1217.329531, delta_cost=2.697698, delta_V=-0.498503, ratio=-5.411601
+  迭代 2: alpha=0.125000, J_new=1217.141757, delta_cost=2.509923, delta_V=-0.264061, ratio=-9.505107
+  迭代 3: alpha=0.062500, J_new=1216.725609, delta_cost=2.093775, delta_V=-0.135733, ratio=-15.425740
+  迭代 4: alpha=0.015625, J_new=1215.227614, delta_cost=0.595781, delta_V=-0.034627, ratio=-17.205509
+  迭代 5: alpha=0.003906, J_new=1214.941208, delta_cost=0.309375, delta_V=-0.008700, ratio=-35.559438
+  迭代 6: alpha=0.000977, J_new=1214.839460, delta_cost=0.207627, delta_V=-0.002178, ratio=-95.339401
+  迭代 7: alpha=0.000244, J_new=1214.737292, delta_cost=0.105459, delta_V=-0.000545, ratio=-193.640903
+  迭代 8: alpha=0.000061, J_new=1214.737677, delta_cost=0.105844, delta_V=-0.000136, ratio=-777.329461
+  迭代 9: alpha=0.000015, J_new=1214.737773, delta_cost=0.105940, delta_V=-0.000034, ratio=-3112.083637
+========================
+  迭代 0: alpha=0.500000, J_new=1217.200142, delta_cost=2.568309, delta_V=-0.844567, ratio=-3.040978
+  迭代 1: alpha=0.250000, J_new=1217.400556, delta_cost=2.768722, delta_V=-0.471721, ratio=-5.869412
+  迭代 2: alpha=0.125000, J_new=1217.071117, delta_cost=2.439284, delta_V=-0.248220, ratio=-9.827122
+  迭代 3: alpha=0.062500, J_new=1216.644674, delta_cost=2.012841, delta_V=-0.127200, ratio=-15.824271
+  迭代 4: alpha=0.015625, J_new=1215.231464, delta_cost=0.599630, delta_V=-0.032379, ratio=-18.518973
+  迭代 5: alpha=0.003906, J_new=1214.834175, delta_cost=0.202341, delta_V=-0.008131, ratio=-24.885116
+  迭代 6: alpha=0.000977, J_new=1214.735983, delta_cost=0.104149, delta_V=-0.002035, ratio=-51.178481
+  迭代 7: alpha=0.000244, J_new=1214.737350, delta_cost=0.105516, delta_V=-0.000509, ratio=-207.343392
+  迭代 8: alpha=0.000061, J_new=1214.737692, delta_cost=0.105858, delta_V=-0.000127, ratio=-832.002865
+  迭代 9: alpha=0.000015, J_new=1214.737777, delta_cost=0.105944, delta_V=-0.000032, ratio=-3330.640715
+========================
+  迭代 0: alpha=0.500000, J_new=1217.228952, delta_cost=2.597119, delta_V=-0.769482, ratio=-3.375153
+  迭代 1: alpha=0.250000, J_new=1217.503190, delta_cost=2.871356, delta_V=-0.422242, ratio=-6.800267
+  迭代 2: alpha=0.125000, J_new=1216.876524, delta_cost=2.244691, delta_V=-0.220496, ratio=-10.180187
+  迭代 3: alpha=0.062500, J_new=1216.516665, delta_cost=1.884831, delta_V=-0.112592, ratio=-16.740391
+  迭代 4: alpha=0.015625, J_new=1215.026731, delta_cost=0.394898, delta_V=-0.028587, ratio=-13.813694
+  迭代 5: alpha=0.003906, J_new=1214.835505, delta_cost=0.203671, delta_V=-0.007174, ratio=-28.388930
+  迭代 6: alpha=0.000977, J_new=1214.736312, delta_cost=0.104478, delta_V=-0.001795, ratio=-58.195552
+  迭代 7: alpha=0.000244, J_new=1214.737432, delta_cost=0.105599, delta_V=-0.000449, ratio=-235.221925
+  迭代 8: alpha=0.000061, J_new=1214.737712, delta_cost=0.105879, delta_V=-0.000112, ratio=-943.327295
+  迭代 9: alpha=0.000015, J_new=1214.737782, delta_cost=0.105949, delta_V=-0.000028, ratio=-3775.748744
+========================
+  迭代 0: alpha=0.500000, J_new=1217.307276, delta_cost=2.675443, delta_V=-0.652446, ratio=-4.100633
+  迭代 1: alpha=0.250000, J_new=1217.019020, delta_cost=2.387186, delta_V=-0.352163, ratio=-6.778641
+  迭代 2: alpha=0.125000, J_new=1216.716063, delta_cost=2.084229, delta_V=-0.182566, ratio=-11.416279
+  迭代 3: alpha=0.062500, J_new=1215.810401, delta_cost=1.178568, delta_V=-0.092904, ratio=-12.685807
+  迭代 4: alpha=0.015625, J_new=1215.033000, delta_cost=0.401166, delta_V=-0.023530, ratio=-17.049067
+  迭代 5: alpha=0.003906, J_new=1214.837045, delta_cost=0.205211, delta_V=-0.005902, ratio=-34.772613
+  迭代 6: alpha=0.000977, J_new=1214.736693, delta_cost=0.104860, delta_V=-0.001477, ratio=-71.015711
+  迭代 7: alpha=0.000244, J_new=1214.737527, delta_cost=0.105694, delta_V=-0.000369, ratio=-286.265460
+  迭代 8: alpha=0.000061, J_new=1214.737736, delta_cost=0.105902, delta_V=-0.000092, ratio=-1147.264378
+  迭代 9: alpha=0.000015, J_new=1214.737788, delta_cost=0.105955, delta_V=-0.000023, ratio=-4591.260026
+========================
+  迭代 0: alpha=0.500000, J_new=1217.512887, delta_cost=2.881054, delta_V=-0.522693, ratio=-5.511946
+  迭代 1: alpha=0.250000, J_new=1216.659441, delta_cost=2.027607, delta_V=-0.278376, ratio=-7.283701
+  迭代 2: alpha=0.125000, J_new=1216.303912, delta_cost=1.672079, delta_V=-0.143445, ratio=-11.656554
+  迭代 3: alpha=0.062500, J_new=1215.624464, delta_cost=0.992631, delta_V=-0.072787, ratio=-13.637466
+  迭代 4: alpha=0.015625, J_new=1214.937087, delta_cost=0.305254, delta_V=-0.018396, ratio=-16.593187
+  迭代 5: alpha=0.003906, J_new=1214.838431, delta_cost=0.206598, delta_V=-0.004612, ratio=-44.799995
+  迭代 6: alpha=0.000977, J_new=1214.737036, delta_cost=0.105203, delta_V=-0.001154, ratio=-91.189788
+  迭代 7: alpha=0.000244, J_new=1214.737613, delta_cost=0.105780, delta_V=-0.000288, ratio=-366.697604
+  迭代 8: alpha=0.000061, J_new=1214.737757, delta_cost=0.105924, delta_V=-0.000072, ratio=-1468.728850
+  迭代 9: alpha=0.000015, J_new=1214.737793, delta_cost=0.105960, delta_V=-0.000018, ratio=-5876.853829
+========================
+  迭代 0: alpha=0.500000, J_new=1216.958691, delta_cost=2.326857, delta_V=-0.415683, ratio=-5.597671
+  迭代 1: alpha=0.250000, J_new=1216.634065, delta_cost=2.002232, delta_V=-0.219193, ratio=-9.134561
+  迭代 2: alpha=0.125000, J_new=1215.607336, delta_cost=0.975502, delta_V=-0.112434, ratio=-8.676193
+  迭代 3: alpha=0.062500, J_new=1215.126793, delta_cost=0.494959, delta_V=-0.056927, ratio=-8.694681
+  迭代 4: alpha=0.015625, J_new=1214.833142, delta_cost=0.201308, delta_V=-0.014365, ratio=-14.014091
+  迭代 5: alpha=0.003906, J_new=1214.735718, delta_cost=0.103885, delta_V=-0.003599, ratio=-28.861067
+  迭代 6: alpha=0.000977, J_new=1214.737283, delta_cost=0.105450, delta_V=-0.000900, ratio=-117.115676
+  迭代 7: alpha=0.000244, J_new=1214.737675, delta_cost=0.105841, delta_V=-0.000225, ratio=-470.134385
+  迭代 8: alpha=0.000061, J_new=1214.737773, delta_cost=0.105939, delta_V=-0.000056, ratio=-1882.209287
+  迭代 9: alpha=0.000015, J_new=1214.737797, delta_cost=0.105964, delta_V=-0.000014, ratio=-7530.508915
+========================
+  迭代 0: alpha=0.500000, J_new=1216.690377, delta_cost=2.058544, delta_V=-0.340374, ratio=-6.047892
+  迭代 1: alpha=0.250000, J_new=1215.793697, delta_cost=1.161863, delta_V=-0.178183, ratio=-6.520612
+  迭代 2: alpha=0.125000, J_new=1215.215215, delta_cost=0.583381, delta_V=-0.091091, ratio=-6.404399
+  迭代 3: alpha=0.062500, J_new=1215.027776, delta_cost=0.395943, delta_V=-0.046045, ratio=-8.599017
+  迭代 4: alpha=0.015625, J_new=1214.835676, delta_cost=0.203843, delta_V=-0.011605, ratio=-17.565109
+  迭代 5: alpha=0.003906, J_new=1214.736347, delta_cost=0.104513, delta_V=-0.002907, ratio=-35.950996
+  迭代 6: alpha=0.000977, J_new=1214.737441, delta_cost=0.105607, delta_V=-0.000727, ratio=-145.235862
+  迭代 7: alpha=0.000244, J_new=1214.737714, delta_cost=0.105881, delta_V=-0.000182, ratio=-582.375901
+  迭代 8: alpha=0.000061, J_new=1214.737783, delta_cost=0.105949, delta_V=-0.000045, ratio=-2330.936199
+  迭代 9: alpha=0.000015, J_new=1214.737800, delta_cost=0.105966, delta_V=-0.000011, ratio=-9325.177426
+========================
+  迭代 0: alpha=0.500000, J_new=1215.974102, delta_cost=1.342268, delta_V=-0.281010, ratio=-4.776578
+  迭代 1: alpha=0.250000, J_new=1215.401349, delta_cost=0.769516, delta_V=-0.146278, ratio=-5.260637
+  迭代 2: alpha=0.125000, J_new=1215.018067, delta_cost=0.386233, delta_V=-0.074582, ratio=-5.178623
+  迭代 3: alpha=0.062500, J_new=1214.932772, delta_cost=0.300939, delta_V=-0.037652, ratio=-7.992654
+  迭代 4: alpha=0.015625, J_new=1214.837299, delta_cost=0.205465, delta_V=-0.009481, ratio=-21.672115
+  迭代 5: alpha=0.003906, J_new=1214.736749, delta_cost=0.104916, delta_V=-0.002374, ratio=-44.186471
+  迭代 6: alpha=0.000977, J_new=1214.737541, delta_cost=0.105708, delta_V=-0.000594, ratio=-178.000916
+  迭代 7: alpha=0.000244, J_new=1214.737739, delta_cost=0.105906, delta_V=-0.000148, ratio=-713.259449
+  迭代 8: alpha=0.000061, J_new=1214.737789, delta_cost=0.105956, delta_V=-0.000037, ratio=-2854.293768
+  迭代 9: alpha=0.000015, J_new=1214.737801, delta_cost=0.105968, delta_V=-0.000009, ratio=-11418.431092
+========================
+  迭代 0: alpha=0.500000, J_new=1215.589862, delta_cost=0.958028, delta_V=-0.220576, ratio=-4.343306
+  迭代 1: alpha=0.250000, J_new=1215.005169, delta_cost=0.373335, delta_V=-0.114246, ratio=-3.267811
+  迭代 2: alpha=0.125000, J_new=1214.925705, delta_cost=0.293872, delta_V=-0.058113, ratio=-5.056923
+  迭代 3: alpha=0.062500, J_new=1214.829417, delta_cost=0.197584, delta_V=-0.029304, ratio=-6.742608
+  迭代 4: alpha=0.015625, J_new=1214.734746, delta_cost=0.102912, delta_V=-0.007372, ratio=-13.959248
+  迭代 5: alpha=0.003906, J_new=1214.737038, delta_cost=0.105204, delta_V=-0.001846, ratio=-56.990968
+  迭代 6: alpha=0.000977, J_new=1214.737613, delta_cost=0.105780, delta_V=-0.000462, ratio=-229.121226
+  迭代 7: alpha=0.000244, J_new=1214.737757, delta_cost=0.105924, delta_V=-0.000115, ratio=-917.643101
+  迭代 8: alpha=0.000061, J_new=1214.737794, delta_cost=0.105960, delta_V=-0.000029, ratio=-3671.730812
+  迭代 9: alpha=0.000015, J_new=1214.737803, delta_cost=0.105969, delta_V=-0.000007, ratio=-14688.081709
+========================
+  迭代 0: alpha=0.500000, J_new=1215.101795, delta_cost=0.469962, delta_V=-0.156472, ratio=-3.003492
+  迭代 1: alpha=0.250000, J_new=1214.917615, delta_cost=0.285782, delta_V=-0.080645, ratio=-3.543699
+  迭代 2: alpha=0.125000, J_new=1214.824935, delta_cost=0.193102, delta_V=-0.040925, ratio=-4.718455
+  迭代 3: alpha=0.062500, J_new=1214.833067, delta_cost=0.201233, delta_V=-0.020613, ratio=-9.762461
+  迭代 4: alpha=0.015625, J_new=1214.735664, delta_cost=0.103831, delta_V=-0.005181, ratio=-20.038874
+  迭代 5: alpha=0.003906, J_new=1214.737268, delta_cost=0.105435, delta_V=-0.001297, ratio=-81.283016
+  迭代 6: alpha=0.000977, J_new=1214.737671, delta_cost=0.105838, delta_V=-0.000324, ratio=-326.263348
+  迭代 7: alpha=0.000244, J_new=1214.737772, delta_cost=0.105938, delta_V=-0.000081, ratio=-1306.185615
+  迭代 8: alpha=0.000061, J_new=1214.737797, delta_cost=0.105964, delta_V=-0.000020, ratio=-5225.874916
+  迭代 9: alpha=0.000015, J_new=1214.737803, delta_cost=0.105970, delta_V=-0.000005, ratio=-20904.632177
+========================
+Converged | iteration: 10 J_total :1214.631833
+B201 r: 9/10, executed=True, wall_ms=40.1993, status=None, residual=0.0
+  迭代 0: alpha=0.500000, J_new=1217.190664, delta_cost=2.592168, delta_V=-0.739137, ratio=-3.507019
+  迭代 1: alpha=0.250000, J_new=1217.380960, delta_cost=2.782464, delta_V=-0.418852, ratio=-6.643079
+  迭代 2: alpha=0.125000, J_new=1217.045004, delta_cost=2.446508, delta_V=-0.221747, ratio=-11.032901
+  迭代 3: alpha=0.062500, J_new=1216.713609, delta_cost=2.115114, delta_V=-0.113953, ratio=-18.561202
+  迭代 4: alpha=0.015625, J_new=1215.199321, delta_cost=0.600825, delta_V=-0.029066, ratio=-20.671143
+  迭代 5: alpha=0.003906, J_new=1214.801161, delta_cost=0.202665, delta_V=-0.007303, ratio=-27.752574
+  迭代 6: alpha=0.000977, J_new=1214.806435, delta_cost=0.207940, delta_V=-0.001828, ratio=-113.758750
+  迭代 7: alpha=0.000244, J_new=1214.704032, delta_cost=0.105537, delta_V=-0.000457, ratio=-230.875514
+  迭代 8: alpha=0.000061, J_new=1214.704359, delta_cost=0.105863, delta_V=-0.000114, ratio=-926.286705
+  迭代 9: alpha=0.000015, J_new=1214.704440, delta_cost=0.105945, delta_V=-0.000029, ratio=-3707.931404
+========================
+  迭代 0: alpha=0.500000, J_new=1217.316296, delta_cost=2.717800, delta_V=-0.696328, ratio=-3.903048
+  迭代 1: alpha=0.250000, J_new=1217.449220, delta_cost=2.850725, delta_V=-0.388137, ratio=-7.344628
+  迭代 2: alpha=0.125000, J_new=1216.976917, delta_cost=2.378422, delta_V=-0.204062, ratio=-11.655385
+  迭代 3: alpha=0.062500, J_new=1216.631686, delta_cost=2.033191, delta_V=-0.104529, ratio=-19.450904
+  迭代 4: alpha=0.015625, J_new=1215.102053, delta_cost=0.503558, delta_V=-0.026601, ratio=-18.930173
+  迭代 5: alpha=0.003906, J_new=1214.802025, delta_cost=0.203530, delta_V=-0.006679, ratio=-30.470898
+  迭代 6: alpha=0.000977, J_new=1214.702941, delta_cost=0.104445, delta_V=-0.001672, ratio=-62.478621
+  迭代 7: alpha=0.000244, J_new=1214.704086, delta_cost=0.105590, delta_V=-0.000418, ratio=-252.584825
+  迭代 8: alpha=0.000061, J_new=1214.704372, delta_cost=0.105877, delta_V=-0.000105, ratio=-1013.009439
+  迭代 9: alpha=0.000015, J_new=1214.704444, delta_cost=0.105948, delta_V=-0.000026, ratio=-4054.707846
+========================
+  迭代 0: alpha=0.500000, J_new=1217.336480, delta_cost=2.737984, delta_V=-0.611819, ratio=-4.475156
+  迭代 1: alpha=0.250000, J_new=1217.546600, delta_cost=2.948104, delta_V=-0.334805, ratio=-8.805424
+  迭代 2: alpha=0.125000, J_new=1216.780553, delta_cost=2.182058, delta_V=-0.174627, ratio=-12.495552
+  迭代 3: alpha=0.062500, J_new=1216.289054, delta_cost=1.690559, delta_V=-0.089119, ratio=-18.969598
+  迭代 4: alpha=0.015625, J_new=1214.997737, delta_cost=0.399241, delta_V=-0.022618, ratio=-17.651108
+  迭代 5: alpha=0.003906, J_new=1214.803249, delta_cost=0.204753, delta_V=-0.005676, ratio=-36.074876
+  迭代 6: alpha=0.000977, J_new=1214.703243, delta_cost=0.104748, delta_V=-0.001420, ratio=-73.752263
+  迭代 7: alpha=0.000244, J_new=1214.704161, delta_cost=0.105666, delta_V=-0.000355, ratio=-297.525100
+  迭代 8: alpha=0.000061, J_new=1214.704391, delta_cost=0.105896, delta_V=-0.000089, ratio=-1192.616290
+  迭代 9: alpha=0.000015, J_new=1214.704448, delta_cost=0.105953, delta_V=-0.000022, ratio=-4772.981011
+========================
+  迭代 0: alpha=0.500000, J_new=1217.400371, delta_cost=2.801876, delta_V=-0.489328, ratio=-5.725969
+  迭代 1: alpha=0.250000, J_new=1217.049824, delta_cost=2.451329, delta_V=-0.263259, ratio=-9.311470
+  迭代 2: alpha=0.125000, J_new=1216.616042, delta_cost=2.017546, delta_V=-0.136278, ratio=-14.804599
+  迭代 3: alpha=0.062500, J_new=1215.682643, delta_cost=1.084148, delta_V=-0.069301, ratio=-15.643963
+  迭代 4: alpha=0.015625, J_new=1214.901869, delta_cost=0.303374, delta_V=-0.017543, ratio=-17.292910
+  迭代 5: alpha=0.003906, J_new=1214.804633, delta_cost=0.206138, delta_V=-0.004399, ratio=-46.855579
+  迭代 6: alpha=0.000977, J_new=1214.703586, delta_cost=0.105091, delta_V=-0.001101, ratio=-95.475275
+  迭代 7: alpha=0.000244, J_new=1214.704247, delta_cost=0.105752, delta_V=-0.000275, ratio=-384.229205
+  迭代 8: alpha=0.000061, J_new=1214.704412, delta_cost=0.105917, delta_V=-0.000069, ratio=-1539.244810
+  迭代 9: alpha=0.000015, J_new=1214.704454, delta_cost=0.105958, delta_V=-0.000017, ratio=-6159.307197
+========================
+  迭代 0: alpha=0.500000, J_new=1217.456539, delta_cost=2.858044, delta_V=-0.360495, ratio=-7.928101
+  迭代 1: alpha=0.250000, J_new=1216.676553, delta_cost=2.078057, delta_V=-0.191361, ratio=-10.859368
+  迭代 2: alpha=0.125000, J_new=1215.983323, delta_cost=1.384828, delta_V=-0.098459, ratio=-14.065064
+  迭代 3: alpha=0.062500, J_new=1215.393701, delta_cost=0.795206, delta_V=-0.049924, ratio=-15.928360
+  迭代 4: alpha=0.015625, J_new=1214.906769, delta_cost=0.308273, delta_V=-0.012611, ratio=-24.444394
+  迭代 5: alpha=0.003906, J_new=1214.805848, delta_cost=0.207352, delta_V=-0.003161, ratio=-65.598317
+  迭代 6: alpha=0.000977, J_new=1214.703886, delta_cost=0.105391, delta_V=-0.000791, ratio=-133.280750
+  迭代 7: alpha=0.000244, J_new=1214.704322, delta_cost=0.105827, delta_V=-0.000198, ratio=-535.241338
+  迭代 8: alpha=0.000061, J_new=1214.704431, delta_cost=0.105936, delta_V=-0.000049, ratio=-2143.083618
+  迭代 9: alpha=0.000015, J_new=1214.704458, delta_cost=0.105963, delta_V=-0.000012, ratio=-8574.452720
+========================
+  迭代 0: alpha=0.500000, J_new=1216.859743, delta_cost=2.261248, delta_V=-0.257672, ratio=-8.775681
+  迭代 1: alpha=0.250000, J_new=1216.487143, delta_cost=1.888647, delta_V=-0.135529, ratio=-13.935361
+  迭代 2: alpha=0.125000, J_new=1215.593243, delta_cost=0.994747, delta_V=-0.069438, ratio=-14.325725
+  迭代 3: alpha=0.062500, J_new=1214.993849, delta_cost=0.395354, delta_V=-0.035137, ratio=-11.251697
+  迭代 4: alpha=0.015625, J_new=1214.802254, delta_cost=0.203759, delta_V=-0.008863, ratio=-22.990456
+  迭代 5: alpha=0.003906, J_new=1214.702994, delta_cost=0.104499, delta_V=-0.002221, ratio=-47.058939
+  迭代 6: alpha=0.000977, J_new=1214.704099, delta_cost=0.105603, delta_V=-0.000555, ratio=-190.121211
+  迭代 7: alpha=0.000244, J_new=1214.704375, delta_cost=0.105880, delta_V=-0.000139, ratio=-762.370264
+  迭代 8: alpha=0.000061, J_new=1214.704444, delta_cost=0.105949, delta_V=-0.000035, ratio=-3051.366469
+  迭代 9: alpha=0.000015, J_new=1214.704462, delta_cost=0.105966, delta_V=-0.000009, ratio=-12207.351287
+========================
+  迭代 0: alpha=0.500000, J_new=1216.619740, delta_cost=2.021245, delta_V=-0.189947, ratio=-10.641115
+  迭代 1: alpha=0.250000, J_new=1215.681295, delta_cost=1.082800, delta_V=-0.099362, ratio=-10.897536
+  迭代 2: alpha=0.125000, J_new=1215.096773, delta_cost=0.498277, delta_V=-0.050778, ratio=-9.812844
+  迭代 3: alpha=0.062500, J_new=1214.901002, delta_cost=0.302507, delta_V=-0.025663, ratio=-11.787524
+  迭代 4: alpha=0.015625, J_new=1214.804392, delta_cost=0.205897, delta_V=-0.006467, ratio=-31.836828
+  迭代 5: alpha=0.003906, J_new=1214.703524, delta_cost=0.105028, delta_V=-0.001620, ratio=-64.831109
+  迭代 6: alpha=0.000977, J_new=1214.704231, delta_cost=0.105736, delta_V=-0.000405, ratio=-260.942351
+  迭代 7: alpha=0.000244, J_new=1214.704408, delta_cost=0.105913, delta_V=-0.000101, ratio=-1045.387525
+  迭代 8: alpha=0.000061, J_new=1214.704453, delta_cost=0.105957, delta_V=-0.000025, ratio=-4183.168273
+  迭代 9: alpha=0.000015, J_new=1214.704464, delta_cost=0.105968, delta_V=-0.000006, ratio=-16734.291280
+========================
+  迭代 0: alpha=0.500000, J_new=1215.774758, delta_cost=1.176263, delta_V=-0.149401, ratio=-7.873207
+  迭代 1: alpha=0.250000, J_new=1215.188663, delta_cost=0.590168, delta_V=-0.077904, ratio=-7.575530
+  迭代 2: alpha=0.125000, J_new=1214.997732, delta_cost=0.399237, delta_V=-0.039753, ratio=-10.042877
+  迭代 3: alpha=0.062500, J_new=1214.798167, delta_cost=0.199671, delta_V=-0.020077, ratio=-9.945346
+  迭代 4: alpha=0.015625, J_new=1214.805664, delta_cost=0.207168, delta_V=-0.005057, ratio=-40.968504
+  迭代 5: alpha=0.003906, J_new=1214.703839, delta_cost=0.105343, delta_V=-0.001267, ratio=-83.174180
+  迭代 6: alpha=0.000977, J_new=1214.704310, delta_cost=0.105815, delta_V=-0.000317, ratio=-334.030967
+  迭代 7: alpha=0.000244, J_new=1214.704428, delta_cost=0.105933, delta_V=-0.000079, ratio=-1337.458476
+  迭代 8: alpha=0.000061, J_new=1214.704458, delta_cost=0.105962, delta_V=-0.000020, ratio=-5351.168604
+  迭代 9: alpha=0.000015, J_new=1214.704465, delta_cost=0.105970, delta_V=-0.000005, ratio=-21406.009138
+========================
+  迭代 0: alpha=0.500000, J_new=1215.379984, delta_cost=0.781488, delta_V=-0.125713, ratio=-6.216424
+  迭代 1: alpha=0.250000, J_new=1214.990445, delta_cost=0.391950, delta_V=-0.065389, ratio=-5.994155
+  迭代 2: alpha=0.125000, J_new=1214.902222, delta_cost=0.303727, delta_V=-0.033327, ratio=-9.113441
+  迭代 3: alpha=0.062500, J_new=1214.801161, delta_cost=0.202666, delta_V=-0.016822, ratio=-12.047707
+  迭代 4: alpha=0.015625, J_new=1214.702706, delta_cost=0.104210, delta_V=-0.004235, ratio=-24.606000
+  迭代 5: alpha=0.003906, J_new=1214.704026, delta_cost=0.105530, delta_V=-0.001061, ratio=-99.496682
+  迭代 6: alpha=0.000977, J_new=1214.704357, delta_cost=0.105862, delta_V=-0.000265, ratio=-399.061152
+  迭代 7: alpha=0.000244, J_new=1214.704440, delta_cost=0.105944, delta_V=-0.000066, ratio=-1597.319467
+  迭代 8: alpha=0.000061, J_new=1214.704461, delta_cost=0.105965, delta_V=-0.000017, ratio=-6390.352837
+  迭代 9: alpha=0.000015, J_new=1214.704466, delta_cost=0.105970, delta_V=-0.000004, ratio=-25562.486342
+========================
+  迭代 0: alpha=0.500000, J_new=1215.189799, delta_cost=0.591304, delta_V=-0.112471, ratio=-5.257396
+  迭代 1: alpha=0.250000, J_new=1214.896022, delta_cost=0.297526, delta_V=-0.058336, ratio=-5.100185
+  迭代 2: alpha=0.125000, J_new=1214.797883, delta_cost=0.199387, delta_V=-0.029693, ratio=-6.714868
+  迭代 3: alpha=0.062500, J_new=1214.802961, delta_cost=0.204465, delta_V=-0.014978, ratio=-13.651036
+  迭代 4: alpha=0.015625, J_new=1214.703155, delta_cost=0.104660, delta_V=-0.003769, ratio=-27.767604
+  迭代 5: alpha=0.003906, J_new=1214.704138, delta_cost=0.105643, delta_V=-0.000944, ratio=-111.931302
+  迭代 6: alpha=0.000977, J_new=1214.704385, delta_cost=0.105890, delta_V=-0.000236, ratio=-448.587974
+  迭代 7: alpha=0.000244, J_new=1214.704447, delta_cost=0.105951, delta_V=-0.000059, ratio=-1795.215135
+  迭代 8: alpha=0.000061, J_new=1214.704462, delta_cost=0.105967, delta_V=-0.000015, ratio=-7181.723895
+  迭代 9: alpha=0.000015, J_new=1214.704466, delta_cost=0.105971, delta_V=-0.000004, ratio=-28727.758962
+========================
+Unconverged | Maxmum lamb | iteration: 10
+B201 r: 10/10, executed=True, wall_ms=40.1423, status=None, residual=0.0
+代价分析日志已保存到: C:\Temp\original_mpc_gs0e99ig\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_104902.csv
+Configuration loaded from config/main.json, config/ilqr.json, config/hybrid_astar.json
+Computed articulated limits: kappa_max=0.062740, R_min=15.938805
+Derived gamma_dot limits: [-0.156850, 0.156850]
+代价分析日志文件已创建: C:\Temp\original_mpc_gh32ic8r\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_104903.csv
+Outer Iter 0: Max Violation = 0.000000
+B201 al: 1/10, executed=True, wall_ms=7.742, status=None, residual=0.0
+Outer Iter 0: Max Violation = 0.000000
+B201 al: 2/10, executed=True, wall_ms=3.1884, status=None, residual=0.0
+Outer Iter 0: Max Violation = 0.000000
+B201 al: 3/10, executed=True, wall_ms=3.2672, status=None, residual=0.0
+Outer Iter 0: Max Violation = 0.000000
+B201 al: 4/10, executed=True, wall_ms=3.2723, status=None, residual=0.0
+Outer Iter 0: Max Violation = 0.000000
+B201 al: 5/10, executed=True, wall_ms=3.5142, status=None, residual=0.0
+Outer Iter 0: Max Violation = 0.000000
+B201 al: 6/10, executed=True, wall_ms=3.1866, status=None, residual=0.0
+Outer Iter 0: Max Violation = 0.000000
+B201 al: 7/10, executed=True, wall_ms=3.1824, status=None, residual=0.0
+Outer Iter 0: Max Violation = 0.000000
+B201 al: 8/10, executed=True, wall_ms=4.8708, status=None, residual=0.0
+Outer Iter 0: Max Violation = 0.000000
+B201 al: 9/10, executed=True, wall_ms=3.5686, status=None, residual=0.0
+Outer Iter 0: Max Violation = 0.000000
+B201 al: 10/10, executed=True, wall_ms=4.2393, status=None, residual=0.0
+代价分析日志已保存到: C:\Temp\original_mpc_gh32ic8r\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_104903.csv
+Configuration loaded from config/main.json, config/ilqr.json, config/hybrid_astar.json
+Computed articulated limits: kappa_max=0.062740, R_min=15.938805
+Derived gamma_dot limits: [-0.156850, 0.156850]
+代价分析日志文件已创建: C:\Temp\original_mpc_6l1aj8i6\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_104903.csv
+B201 sqp: 1/10, executed=True, wall_ms=1578.095000013278, status=0, residual=0.33814705452945715
+B201 sqp: 2/10, executed=True, wall_ms=105.39389998471961, status=0, residual=0.24956847040898134
+B201 sqp: 3/10, executed=True, wall_ms=59.583399995675684, status=0, residual=0.24956845134479766
+B201 sqp: 4/10, executed=True, wall_ms=59.19659999368377, status=0, residual=0.14572100506725538
+B201 sqp: 5/10, executed=True, wall_ms=55.55020000788569, status=0, residual=0.016119774148389387
+B201 sqp: 6/10, executed=True, wall_ms=57.11960001314916, status=0, residual=0.016119774361784522
+B201 sqp: 7/10, executed=True, wall_ms=1253.9591999989484, status=0, residual=0.0011666025624843257
+B201 sqp: 8/10, executed=True, wall_ms=52.435599992201475, status=0, residual=0.0011666009044678238
+B201 sqp: 9/10, executed=True, wall_ms=52.632100010245665, status=0, residual=0.0011665998304103697
+B201 sqp: 10/10, executed=True, wall_ms=1244.7864000034397, status=0, residual=0.0027155968740141534
+FINISHED E:\BIT\01-lqr\��1�η���\03_ʵ������\ԭ���㷨��������׼_20261104\pilot_B201

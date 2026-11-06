@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "all_six_directories_present": true,
+  "relocated_b201_complete_rerun_arrays_equal": {
+    "times": true,
+    "path": true,
+    "planned_s": true,
+    "planned_positions": true,
+    "planned_speeds": true,
+    "actual_states": true,
+    "controls": true,
+    "initial_obstacles": true
+  },
+  "seven_st_regression_tests": "passed",
+  "original_files_preserved_during_move": true,
+  "moved_file_inventory_count": 5717,
+  "revised_manuscript_preserved_at_root": true,
+  "review_document_reopened_at_new_location": true
+}

@@ -1,0 +1,8 @@
+{
+  "geometric_articulation_feasible": true,
+  "max_articulation_violation_rad": 0.0,
+  "minimum_speed_limit_mps": 0.7225397916959675,
+  "rate_only_travel_time_lower_bound_s": 34.729006631514444,
+  "wall_ms": 832.3565999999119,
+  "definition": "Original-model spatial articulation ODE; original effective rate bounds; no safety factor"
+}

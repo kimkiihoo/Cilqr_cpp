@@ -1,0 +1,81 @@
+{
+  "scope": "Single-state differential verification and a two-iteration SQP interface smoke test; no map rollout.",
+  "small_test_N_override": 12,
+  "cases": [
+    {
+      "name": "ordinary",
+      "errors": {
+        "states": 0.0,
+        "matched_references": 0.0,
+        "residuals": 1.4210854715202004e-14,
+        "r_base_cost": 0.0,
+        "al_base_cost": 4.547473508864641e-13,
+        "r_exact_cost": 0.0,
+        "al_augmented_cost": 4.547473508864641e-13,
+        "native_al_residual": 0.0
+      },
+      "candidate_reference_change": true
+    },
+    {
+      "name": "near_obstacle",
+      "errors": {
+        "states": 0.0,
+        "matched_references": 0.0,
+        "residuals": 1.1102230246251565e-16,
+        "r_base_cost": 4.547473508864641e-13,
+        "al_base_cost": 2.2737367544323206e-12,
+        "r_exact_cost": 9.094947017729282e-13,
+        "al_augmented_cost": 2.2737367544323206e-12,
+        "native_al_residual": 0.0
+      },
+      "candidate_reference_change": true
+    },
+    {
+      "name": "yaw_wrap_and_gamma_limit",
+      "errors": {
+        "states": 0.0,
+        "matched_references": 0.0,
+        "residuals": 2.842170943040401e-14,
+        "r_base_cost": 0.0,
+        "al_base_cost": 1.8189894035458565e-12,
+        "r_exact_cost": 0.0,
+        "al_augmented_cost": 1.8189894035458565e-12,
+        "native_al_residual": 0.0
+      },
+      "candidate_reference_change": true
+    }
+  ],
+  "source_sha256_before": "6fd2bac169ab20eed5854eff849c68b2c8a11be1f3969a38c1e024b741197fdc",
+  "terminal_targets": {
+    "r_first": 6,
+    "r_second": 2.4,
+    "al": 15
+  },
+  "baseline_single_state": [
+    {
+      "method": "r",
+      "N": 80,
+      "control_max_abs_error": 3.567990347619343e-11,
+      "state_max_abs_error": 9.410427992406767e-11,
+      "archived_source": "E:\\BIT\\01-lqr\\第1次返修\\03_实验数据\\原算法原地图复跑_20261103\\B201\\cilqr"
+    },
+    {
+      "method": "al",
+      "N": 80,
+      "control_max_abs_error": 0.0,
+      "state_max_abs_error": 0.0,
+      "archived_source": "E:\\BIT\\01-lqr\\第1次返修\\03_实验数据\\原算法原地图复跑_20261103\\B201\\alilqr"
+    }
+  ],
+  "sqp_smoke": {
+    "status": 9,
+    "message": "Iteration limit reached",
+    "iterations": 2,
+    "objective_calls": 77,
+    "hard_control_max_residual": 0.0,
+    "max_residual": 0.20606468872039452,
+    "r_exact_cost": 167.33799234960577
+  },
+  "source_sha256_after": "6fd2bac169ab20eed5854eff849c68b2c8a11be1f3969a38c1e024b741197fdc",
+  "all_checks_passed": true
+}

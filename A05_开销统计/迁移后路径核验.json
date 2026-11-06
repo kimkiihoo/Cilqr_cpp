@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "project_root": "E:\\BIT\\01-lqr\\第1次返修",
+  "baseline_directory": "E:\\BIT\\01-lqr\\第1次返修\\A02_对照组代码\\仿真数据\\原版算法三方法基准_20261104\\full",
+  "reference_run_directory": "E:\\BIT\\01-lqr\\第1次返修\\A02_对照组代码\\仿真数据\\HybridA_ST_B201_20261105",
+  "four_method_active_sources": [
+    {
+      "method": "R-CILQR",
+      "active_source": "E:\\BIT\\01-lqr\\第1次返修\\A05_开销统计\\B201_正式统计\\B201\\cilqr",
+      "exists": true
+    },
+    {
+      "method": "AL-iLQR",
+      "active_source": "E:\\BIT\\01-lqr\\第1次返修\\A05_开销统计\\B201_正式统计\\B201\\alilqr",
+      "exists": true
+    },
+    {
+      "method": "SQP-NMPC",
+      "active_source": "E:\\BIT\\01-lqr\\第1次返修\\A05_开销统计\\B201_正式统计\\B201\\sqp",
+      "exists": true
+    },
+    {
+      "method": "Hybrid A* + ST*",
+      "active_source": "E:\\BIT\\01-lqr\\第1次返修\\A05_开销统计\\B201_HybridA_ST_开销统计\\summary.json",
+      "exists": true
+    }
+  ],
+  "required_files": [
+    {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\A02_对照组代码\\仿真数据\\原版算法三方法基准_20261104\\full\\reproduction\\run_hybrid_astar_st.py",
+      "exists": true
+    },
+    {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\A02_对照组代码\\仿真数据\\原版算法三方法基准_20261104\\full\\reproduction\\build\\original_model_bridge.dll",
+      "exists": true
+    },
+    {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\A02_对照组代码\\仿真数据\\HybridA_ST_B201_20261105\\summary.json",
+      "exists": true
+    },
+    {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\A02_对照组代码\\仿真数据\\HybridA_ST_B201_20261105\\st_search.json",
+      "exists": true
+    },
+    {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\A02_对照组代码\\仿真数据\\HybridA_ST_B201_20261105\\trajectories.npz",
+      "exists": true
+    },
+    {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\A02_对照组代码\\公共依赖\\eigen3\\Eigen\\Core",
+      "exists": true
+    },
+    {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\A01_原始论文与原始代码\\原始代码\\Cilqr_cpp-CAV\\Cilqr_cpp-CAV\\config\\main.json",
+      "exists": true
+    }
+  ],
+  "refreshed": [
+    "B201_结果汇总: original three-method summary/plots via summarize_profile.py",
+    "B201_结果汇总: new four-method index/stage table/notes via export_combined_summary"
+  ],
+  "timing_or_simulation_rerun": false,
+  "historical_protocol_provenance_and_recorded_measurements_unchanged": true,
+  "preserved_sha256": {
+    "B201_HybridA_ST_开销统计\\summary.json": "8b504a6ebaa259de8fe57700d13971f0315eaede0295c141a30015ce3a399055",
+    "B201_HybridA_ST_开销统计\\protocol.json": "d463508534f0aa0a9adb6d13aaa3e981f83ded90e23ea03c6e66f681a4fe2255",
+    "B201_HybridA_ST_开销统计\\measurements.csv": "5f49a6e849628e4c58c9063c482d9e2986710092556662a0c2defb3337f05866",
+    "source_provenance.json": "56034d16e0d7edcaa6f6a78cdfdf9ec5d4194b97887d8b9a52901a9ac1f24f4c"
+  }
+}

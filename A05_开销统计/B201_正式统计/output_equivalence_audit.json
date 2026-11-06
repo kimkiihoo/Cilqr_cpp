@@ -1,0 +1,49 @@
+{
+  "comparisons": [
+    {
+      "scene": "B201",
+      "method": "cilqr",
+      "cycles": 400,
+      "all_executed": true,
+      "max_abs_differences": {
+        "state_before": 0.0,
+        "state_after": 0.0,
+        "planned_states": 0.0,
+        "controls": 0.0,
+        "obstacles_current": 0.0
+      },
+      "bitwise_equal": true
+    },
+    {
+      "scene": "B201",
+      "method": "alilqr",
+      "cycles": 400,
+      "all_executed": true,
+      "max_abs_differences": {
+        "state_before": 0.0,
+        "state_after": 0.0,
+        "planned_states": 0.0,
+        "controls": 0.0,
+        "obstacles_current": 0.0
+      },
+      "bitwise_equal": true
+    },
+    {
+      "scene": "B201",
+      "method": "sqp",
+      "cycles": 400,
+      "all_executed": true,
+      "max_abs_differences": {
+        "state_before": 0.0,
+        "state_after": 0.0,
+        "planned_states": 0.0,
+        "controls": 0.0,
+        "obstacles_current": 0.0
+      },
+      "bitwise_equal": true
+    }
+  ],
+  "sqp_count_status_mismatches": [],
+  "all_bitwise_equal": true,
+  "timing_partition_checks": "passed"
+}

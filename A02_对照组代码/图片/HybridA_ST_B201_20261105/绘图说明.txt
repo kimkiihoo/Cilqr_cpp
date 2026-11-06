@@ -1,0 +1,6 @@
+B201四方法对照图（按原三方法图版式，2026-11-05）
+
+B201_Control_Output_Comparison：上下两幅分别为速度与铰接角速率，四方法全部400帧直接绘制；竖排图例、Frame Index横轴、Times New Roman字体，未平滑或删选数据。
+B201_Solve_Time_Comparison：沿用对数纵轴。R-CILQR、AL-iLQR、SQP-NMPC为每周期局部求解耗时；Hybrid A* + ST*为覆盖40秒窗口的一次全局规划，仅在第0帧绘制一个方形标记，并标注两阶段总耗时10.342秒。后续帧没有全局规划计时点。
+两图均导出600 dpi PNG及PDF/SVG。对应原始数值、来源哈希和计时含义保存在同目录CSV及B201_four_method_figure_provenance.json。
+重绘入口：A02_对照组代码/仅重绘B201四方法.ps1。

@@ -1,0 +1,30 @@
+﻿原版R-CILQR/AL-iLQR基准重建：参数证据（2026-11-04）
+
+结论：5/6/15 m/s是候选参考速度，不是已确证的历史参数。5/4/10不得标成原始参数；B301正文明确为15 m/s。
+
+原图来源：E:\BIT\01-lqr\第1次返修\.codex_work\section243\revised_source.docx
+图像位于该DOCX压缩包内部，未改原稿：
+B201：Fig6场景 word/media/image265.png；Fig7控制 word/media/image269.png。
+B207：Fig9场景 word/media/image271.png；Fig10控制 word/media/image273.png。
+B301：Fig11场景 word/media/image275.png；Fig12控制 word/media/image276.png。
+正文另核对：E:\BIT\01-lqr\第1次返修\.codex_work\reviewer16724\submitted_original.txt
+本次图片及数学对象从现存修订稿缓存读取；原投稿DOC未重新转换。
+
+逐场景证据：
+B201：正文WMF image266/267/268分别为3/6/1 m/s。原图R速度峰约5.5，AL角速率平台约±0.156，横轴至400。现存交接起点(10,20,1.2)、终点(80,80,1.0)。v_ref=5仅为有机制支持的候选。
+B207：正文WMF image272为4 m/s；原图初始约6，R峰约7.5、AL峰近10，AL平台约±0.188，横轴至300。正文“约4”与图形概括不一致，不能当作v_ref。现存起点(70,8,1.57)、终点(60,100,2.0)。v_ref=6仅为候选。
+B301：正文WMF image274为15 m/s；原图初始约15、峰约15.5，AL平台±0.4，R局部略越±0.4，横轴至200。现存起点(100,70,0)、终点(180,127,1.8)。15比10有更强证据，但仍无原图运行日志。
+上述图上数值均为目视近似，不是精确原始数据。位置单位m，航向单位rad；初始铰接角0由main.cpp:176可证。起终点仅能确认为现存交接配置。
+
+共同设置：原稿表1 N=80、dt=0.1s、max_iter=50、lambda_init=7、Q=diag(0.2,0.2,0.1,1.5)、R=diag(1,1)。交接JSON却是N=50、v_ref=15、gamma_dot=±0.3，三地图ITER均200。入口会覆盖gamma_dot。
+
+派生边界：main.cpp:91-101 + utils.cpp:1416-1427；SystemModel默认lf=lr=3。
+kappa=tan(0.35)/(3+3*cos(0.35)) = 0.062739959233948
+omega_bound=min(0.4,max(0.1,0.5*v_ref*kappa))。
+v_ref=5 -> ±0.156849898084869 rad/s；v_ref=6 -> ±0.188219877701843 rad/s；v_ref=15 -> ±0.4 rad/s。
+对比：v_ref=4 -> ±0.125479918467895；v_ref=10 -> ±0.313699796169738，不对应B207/B301图中AL平台。
+5/6/15与原图平台相容，仅构成机制一致性证据，不能由输出平台倒推确证历史设置。
+
+历史数据缺口：05目录无outputs，未找到原图对应CSV、*_data_*.json、控制成图或备份配置；04只有投稿/审稿/翻译文档。compare_control.py只是读取每帧首控制，无平滑或幅值修改。
+本次仅写本TXT和parameter_evidence.json；未修改原稿、算法、配置、原始数据，未运行实验。
+JSON保存完整路径、文件SHA256、数学对象、候选界限和证据限制。

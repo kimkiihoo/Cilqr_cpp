@@ -1,0 +1,38 @@
+=== Program Starting ===
+Initializing variables...
+Configuration loaded from config/main.json, config/ilqr.json, config/hybrid_astar.json
+Computed articulated limits: kappa_max=0.06274, R_min=15.9388
+Derived gamma_dot limits: [-0.15685, 0.15685]
+======================== solver_type: cilqr ========================
+Start: (10, 20, 1.2) | Goal: (80, 80, 1)
+Loading map file: Maps/bitmap/B201_global_map.json (Selected: B201)
+Bitmap map loaded: 1223 x 1078, resolution: 0.1, max_elevation: 8
+Bitmap map loaded: 1223 x 1078
+Map data size: 1078
+Map resolution: 0.1
+Map max_elevation: 8
+First row size: 1223
+Attempting Hybrid A* planning...
+Hybrid A* planning started with params: grid_res=0.1, heading_res=5, turning_radius=5
+Grid statistics: obstacles=525215, free=793179
+Start distance to obstacle: 1e+06
+Goal distance to obstacle: 1e+06
+Inflation radius: 2
+Computing Dijkstra distance map from goal...
+Dijkstra computation completed. Processed 526435 nodes.
+Dijkstra distance map computed successfully
+Hybrid A* iteration 1000, open list size: 1245
+Hybrid A* iteration 2000, open list size: 1457
+Hybrid A* iteration 3000, open list size: 1811
+Analytic RS connect succeeded at iter 3150, path points: 50
+Raw analytic path (with prefix) found with 198 points
+Hybrid A* planning succeeded with 199 points
+Hybrid A* planning succeeded! Raw path points: 199
+[QP SMOOTHING] 对混合A*路径进行QP平滑处理...
+Grid statistics: obstacles=525215, free=793179
+[QP] 优化完成，点数=199
+QP平滑完成，平滑后路径点数: 199
+Global path planned. m_map_info points: 199
+Global path planned. m_map_info points: 199
+m_map_info saved to: outputs/B201/cilqr/data/cilqr_m_map_info.json
+Grid statistics: obstacles=525215, free=793179

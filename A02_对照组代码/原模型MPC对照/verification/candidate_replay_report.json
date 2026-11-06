@@ -1,0 +1,663 @@
+{
+  "scope": "Three real baseline candidates, one state per method except B201_v5_N80 with 3 consecutive cycles per method; no map MPC.",
+  "comparison_tolerance": {
+    "absolute": 1e-08,
+    "relative": 1e-09
+  },
+  "cases": [
+    {
+      "candidate": "B201_v5_N80",
+      "map": "B201",
+      "method": "r",
+      "cycles": [
+        {
+          "cycle": 0,
+          "archive_sha256": "a51a1aa4c41fe1afe6190a73f80086ce8ff3d00c62c607d0f3c3370c6ede8111",
+          "control_max_abs_error": 3.2682190287403046e-15,
+          "prediction_max_abs_error": 7.105427357601002e-15,
+          "actual_state_max_abs_error": 1.3877787807814457e-17,
+          "obstacle_state_max_abs_error": 0.0,
+          "effective_target_speed": 5,
+          "recomputed_native_cost": 1235.750959697865,
+          "original_geometry_max_residual": 0.3009574775332046
+        },
+        {
+          "cycle": 1,
+          "archive_sha256": "9780bf13e6ae65eb7a2e5759c104d2636f91a4c0cfae17b38ecadf7843b0bf11",
+          "control_max_abs_error": 2.588207426157396e-15,
+          "prediction_max_abs_error": 7.105427357601002e-15,
+          "actual_state_max_abs_error": 4.163336342344337e-17,
+          "obstacle_state_max_abs_error": 0.0,
+          "effective_target_speed": 5,
+          "recomputed_native_cost": 1229.011081746786,
+          "original_geometry_max_residual": 0.2392141431432656
+        },
+        {
+          "cycle": 2,
+          "archive_sha256": "e5c1238cdbd80cc9b545f2a014bc38a8db8ccf3005ca0482a3c709e30f655f95",
+          "control_max_abs_error": 2.9837243786801082e-15,
+          "prediction_max_abs_error": 7.105427357601002e-15,
+          "actual_state_max_abs_error": 5.551115123125783e-17,
+          "obstacle_state_max_abs_error": 0.0,
+          "effective_target_speed": 5,
+          "recomputed_native_cost": 1224.0514041983884,
+          "original_geometry_max_residual": 0.17790311415449878
+        }
+      ],
+      "scene_sha256": "761f59423a24f1db422049ebc692ff56fd56d1324fa32f38e74745b412fd33b6",
+      "effective_config_sha256": "945c8eac13c5a7170dc88f9c5ac58f03d027d72dcf9c68d4827823cbab37756a",
+      "runtime": {
+        "N": 80,
+        "dt": 0.1,
+        "lf": 3,
+        "lr": 3,
+        "ego_rad": 7,
+        "configured_speed": 5,
+        "r_effective_speed": 5,
+        "al_effective_speed": 5,
+        "gamma_min": -1,
+        "gamma_max": 1,
+        "gamma_dot_min": -0.15684989808486893,
+        "gamma_dot_max": 0.15684989808486893,
+        "acc_min": -4,
+        "acc_max": 3,
+        "trace_safe_width_left": 5,
+        "trace_safe_width_right": 5,
+        "obs_length": 5,
+        "obs_width": 3,
+        "safe_a_buffer": 0.5,
+        "safe_b_buffer": 0.5,
+        "ref_weight": 8,
+        "v_rate_weight": 5,
+        "if_cal_speed_rate_cost": 1,
+        "if_cal_lane_cost": 1,
+        "if_cal_obs_cost": 1,
+        "if_cal_gamma_barrier": 1,
+        "if_cal_gamma_dot_barrier": 1,
+        "lane_q1": 5,
+        "lane_q2": 3,
+        "obs_q1": 4.25,
+        "obs_q2": 3.4,
+        "gamma_max_q1": 1,
+        "gamma_max_q2": 3,
+        "gamma_min_q1": 1,
+        "gamma_min_q2": 3,
+        "gamma_dot_max_q1": 10,
+        "gamma_dot_max_q2": 2,
+        "gamma_dot_min_q1": 10,
+        "gamma_dot_min_q2": 2,
+        "Q": [
+          [
+            0.2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0.2,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0.1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1.5
+          ]
+        ],
+        "R": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "obstacle_prediction_count": 80,
+        "usage": 0,
+        "profile": 0
+      }
+    },
+    {
+      "candidate": "B201_v5_N80",
+      "map": "B201",
+      "method": "al",
+      "cycles": [
+        {
+          "cycle": 0,
+          "archive_sha256": "80a9b27713e5a169b760bca252ac284a17a4b1468d2d8a6259101b3311d8db9b",
+          "control_max_abs_error": 0.0,
+          "prediction_max_abs_error": 0.0,
+          "actual_state_max_abs_error": 0.0,
+          "obstacle_state_max_abs_error": 0.0,
+          "effective_target_speed": 5,
+          "recomputed_native_cost": 88.9664371632306,
+          "original_geometry_max_residual": 0.0
+        },
+        {
+          "cycle": 1,
+          "archive_sha256": "8e695b8b8f1377a78fb69c6a3517d3ca820c7c6ee4d1fb6cfbbc7926698fd6c0",
+          "control_max_abs_error": 0.0,
+          "prediction_max_abs_error": 0.0,
+          "actual_state_max_abs_error": 0.0,
+          "obstacle_state_max_abs_error": 0.0,
+          "effective_target_speed": 5,
+          "recomputed_native_cost": 88.96794746723079,
+          "original_geometry_max_residual": 0.0
+        },
+        {
+          "cycle": 2,
+          "archive_sha256": "6615f1c520acf72117cf0e96db9bc9c23619330ba141f5bacfff35c827c638cc",
+          "control_max_abs_error": 0.0,
+          "prediction_max_abs_error": 0.0,
+          "actual_state_max_abs_error": 0.0,
+          "obstacle_state_max_abs_error": 0.0,
+          "effective_target_speed": 5,
+          "recomputed_native_cost": 88.94825235067688,
+          "original_geometry_max_residual": 0.0
+        }
+      ],
+      "scene_sha256": "761f59423a24f1db422049ebc692ff56fd56d1324fa32f38e74745b412fd33b6",
+      "effective_config_sha256": "835814003750fb024520376f48e90b1e3f02d918c47548b2a654b14e5c1181a8",
+      "runtime": {
+        "N": 80,
+        "dt": 0.1,
+        "lf": 3,
+        "lr": 3,
+        "ego_rad": 7,
+        "configured_speed": 5,
+        "r_effective_speed": 5,
+        "al_effective_speed": 5,
+        "gamma_min": -1,
+        "gamma_max": 1,
+        "gamma_dot_min": -0.15684989808486893,
+        "gamma_dot_max": 0.15684989808486893,
+        "acc_min": -4,
+        "acc_max": 3,
+        "trace_safe_width_left": 5,
+        "trace_safe_width_right": 5,
+        "obs_length": 5,
+        "obs_width": 3,
+        "safe_a_buffer": 0.5,
+        "safe_b_buffer": 0.5,
+        "ref_weight": 8,
+        "v_rate_weight": 5,
+        "if_cal_speed_rate_cost": 1,
+        "if_cal_lane_cost": 1,
+        "if_cal_obs_cost": 1,
+        "if_cal_gamma_barrier": 1,
+        "if_cal_gamma_dot_barrier": 1,
+        "lane_q1": 5,
+        "lane_q2": 3,
+        "obs_q1": 4.25,
+        "obs_q2": 3.4,
+        "gamma_max_q1": 1,
+        "gamma_max_q2": 3,
+        "gamma_min_q1": 1,
+        "gamma_min_q2": 3,
+        "gamma_dot_max_q1": 10,
+        "gamma_dot_max_q2": 2,
+        "gamma_dot_min_q1": 10,
+        "gamma_dot_min_q2": 2,
+        "Q": [
+          [
+            0.2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0.2,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0.1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1.5
+          ]
+        ],
+        "R": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "obstacle_prediction_count": 80,
+        "usage": 0,
+        "profile": 0
+      }
+    },
+    {
+      "candidate": "B201_v5_N50",
+      "map": "B201",
+      "method": "r",
+      "cycles": [
+        {
+          "cycle": 0,
+          "archive_sha256": "7d9b67fe526fb90d463ce28d23b949b0235966291e96837186385fcd466b6f5c",
+          "control_max_abs_error": 4.496403249731884e-15,
+          "prediction_max_abs_error": 7.105427357601002e-15,
+          "actual_state_max_abs_error": 8.326672684688674e-17,
+          "obstacle_state_max_abs_error": 0.0,
+          "effective_target_speed": 5,
+          "recomputed_native_cost": 780.1834104386423,
+          "original_geometry_max_residual": 0.30632129016669757
+        }
+      ],
+      "scene_sha256": "761f59423a24f1db422049ebc692ff56fd56d1324fa32f38e74745b412fd33b6",
+      "effective_config_sha256": "4ce1db28932cc01c79f65ee691eb36a0370b70aad5b1bdea8b5a41b545aa0ede",
+      "runtime": {
+        "N": 50,
+        "dt": 0.1,
+        "lf": 3,
+        "lr": 3,
+        "ego_rad": 7,
+        "configured_speed": 5,
+        "r_effective_speed": 5,
+        "al_effective_speed": 5,
+        "gamma_min": -1,
+        "gamma_max": 1,
+        "gamma_dot_min": -0.15684989808486893,
+        "gamma_dot_max": 0.15684989808486893,
+        "acc_min": -4,
+        "acc_max": 3,
+        "trace_safe_width_left": 5,
+        "trace_safe_width_right": 5,
+        "obs_length": 5,
+        "obs_width": 3,
+        "safe_a_buffer": 0.5,
+        "safe_b_buffer": 0.5,
+        "ref_weight": 8,
+        "v_rate_weight": 5,
+        "if_cal_speed_rate_cost": 1,
+        "if_cal_lane_cost": 1,
+        "if_cal_obs_cost": 1,
+        "if_cal_gamma_barrier": 1,
+        "if_cal_gamma_dot_barrier": 1,
+        "lane_q1": 5,
+        "lane_q2": 3,
+        "obs_q1": 4.25,
+        "obs_q2": 3.4,
+        "gamma_max_q1": 1,
+        "gamma_max_q2": 3,
+        "gamma_min_q1": 1,
+        "gamma_min_q2": 3,
+        "gamma_dot_max_q1": 10,
+        "gamma_dot_max_q2": 2,
+        "gamma_dot_min_q1": 10,
+        "gamma_dot_min_q2": 2,
+        "Q": [
+          [
+            0.2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0.2,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0.1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1.5
+          ]
+        ],
+        "R": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "obstacle_prediction_count": 50,
+        "usage": 0,
+        "profile": 0
+      }
+    },
+    {
+      "candidate": "B201_v5_N50",
+      "map": "B201",
+      "method": "al",
+      "cycles": [
+        {
+          "cycle": 0,
+          "archive_sha256": "514595f275e6dd2da6b8e11247a17339ade9dfbb848914cb9c03e0d42b80cdf7",
+          "control_max_abs_error": 0.0,
+          "prediction_max_abs_error": 0.0,
+          "actual_state_max_abs_error": 0.0,
+          "obstacle_state_max_abs_error": 0.0,
+          "effective_target_speed": 5,
+          "recomputed_native_cost": 74.63430484271021,
+          "original_geometry_max_residual": 0.0
+        }
+      ],
+      "scene_sha256": "761f59423a24f1db422049ebc692ff56fd56d1324fa32f38e74745b412fd33b6",
+      "effective_config_sha256": "ba2a173064f8109de0ffe70773e7274879d66096ba3fc40cea4588756d7664cf",
+      "runtime": {
+        "N": 50,
+        "dt": 0.1,
+        "lf": 3,
+        "lr": 3,
+        "ego_rad": 7,
+        "configured_speed": 5,
+        "r_effective_speed": 5,
+        "al_effective_speed": 5,
+        "gamma_min": -1,
+        "gamma_max": 1,
+        "gamma_dot_min": -0.15684989808486893,
+        "gamma_dot_max": 0.15684989808486893,
+        "acc_min": -4,
+        "acc_max": 3,
+        "trace_safe_width_left": 5,
+        "trace_safe_width_right": 5,
+        "obs_length": 5,
+        "obs_width": 3,
+        "safe_a_buffer": 0.5,
+        "safe_b_buffer": 0.5,
+        "ref_weight": 8,
+        "v_rate_weight": 5,
+        "if_cal_speed_rate_cost": 1,
+        "if_cal_lane_cost": 1,
+        "if_cal_obs_cost": 1,
+        "if_cal_gamma_barrier": 1,
+        "if_cal_gamma_dot_barrier": 1,
+        "lane_q1": 5,
+        "lane_q2": 3,
+        "obs_q1": 4.25,
+        "obs_q2": 3.4,
+        "gamma_max_q1": 1,
+        "gamma_max_q2": 3,
+        "gamma_min_q1": 1,
+        "gamma_min_q2": 3,
+        "gamma_dot_max_q1": 10,
+        "gamma_dot_max_q2": 2,
+        "gamma_dot_min_q1": 10,
+        "gamma_dot_min_q2": 2,
+        "Q": [
+          [
+            0.2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0.2,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0.1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1.5
+          ]
+        ],
+        "R": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "obstacle_prediction_count": 50,
+        "usage": 0,
+        "profile": 0
+      }
+    },
+    {
+      "candidate": "B207_v6_N80",
+      "map": "B207",
+      "method": "r",
+      "cycles": [
+        {
+          "cycle": 0,
+          "archive_sha256": "0ac86f6d3e4a25a244b40369e244684e497c15cd2d95ab7ae2deaa0e9334979f",
+          "control_max_abs_error": 1.454392162258955e-14,
+          "prediction_max_abs_error": 2.842170943040401e-14,
+          "actual_state_max_abs_error": 1.0408340855860843e-17,
+          "obstacle_state_max_abs_error": 0.0,
+          "effective_target_speed": 6,
+          "recomputed_native_cost": 1692.5654459613272,
+          "original_geometry_max_residual": 0.4697161124572107
+        }
+      ],
+      "scene_sha256": "0f33c0080ec2b94e89d406157802a9bee74af278a8277b7449b93cc8401a2b88",
+      "effective_config_sha256": "f94031ec65541cba68f89b5d09982731b2c48f937b37963d34648e30f8e3dee0",
+      "runtime": {
+        "N": 80,
+        "dt": 0.1,
+        "lf": 3,
+        "lr": 3,
+        "ego_rad": 7,
+        "configured_speed": 6,
+        "r_effective_speed": 6,
+        "al_effective_speed": 6,
+        "gamma_min": -1,
+        "gamma_max": 1,
+        "gamma_dot_min": -0.1882198777018427,
+        "gamma_dot_max": 0.1882198777018427,
+        "acc_min": -4,
+        "acc_max": 3,
+        "trace_safe_width_left": 5,
+        "trace_safe_width_right": 5,
+        "obs_length": 5,
+        "obs_width": 3,
+        "safe_a_buffer": 0.5,
+        "safe_b_buffer": 0.5,
+        "ref_weight": 8,
+        "v_rate_weight": 5,
+        "if_cal_speed_rate_cost": 1,
+        "if_cal_lane_cost": 1,
+        "if_cal_obs_cost": 1,
+        "if_cal_gamma_barrier": 1,
+        "if_cal_gamma_dot_barrier": 1,
+        "lane_q1": 5,
+        "lane_q2": 3,
+        "obs_q1": 4.25,
+        "obs_q2": 3.4,
+        "gamma_max_q1": 1,
+        "gamma_max_q2": 3,
+        "gamma_min_q1": 1,
+        "gamma_min_q2": 3,
+        "gamma_dot_max_q1": 10,
+        "gamma_dot_max_q2": 2,
+        "gamma_dot_min_q1": 10,
+        "gamma_dot_min_q2": 2,
+        "Q": [
+          [
+            0.2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0.2,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0.1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1.5
+          ]
+        ],
+        "R": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "obstacle_prediction_count": 80,
+        "usage": 0,
+        "profile": 0
+      }
+    },
+    {
+      "candidate": "B207_v6_N80",
+      "map": "B207",
+      "method": "al",
+      "cycles": [
+        {
+          "cycle": 0,
+          "archive_sha256": "646b956892558aeb850f04f5fb54c60dcad9b5521dd02575e69d304b6f3e73ca",
+          "control_max_abs_error": 0.0,
+          "prediction_max_abs_error": 0.0,
+          "actual_state_max_abs_error": 0.0,
+          "obstacle_state_max_abs_error": 0.0,
+          "effective_target_speed": 6,
+          "recomputed_native_cost": 5158486452.654942,
+          "original_geometry_max_residual": 6.836770799047967
+        }
+      ],
+      "scene_sha256": "0f33c0080ec2b94e89d406157802a9bee74af278a8277b7449b93cc8401a2b88",
+      "effective_config_sha256": "c681a9811f0e0d89b2ee4093affcd613a7a683a7c5f2cc4be2c7951ea5fcf3ba",
+      "runtime": {
+        "N": 80,
+        "dt": 0.1,
+        "lf": 3,
+        "lr": 3,
+        "ego_rad": 7,
+        "configured_speed": 6,
+        "r_effective_speed": 6,
+        "al_effective_speed": 6,
+        "gamma_min": -1,
+        "gamma_max": 1,
+        "gamma_dot_min": -0.1882198777018427,
+        "gamma_dot_max": 0.1882198777018427,
+        "acc_min": -4,
+        "acc_max": 3,
+        "trace_safe_width_left": 5,
+        "trace_safe_width_right": 5,
+        "obs_length": 5,
+        "obs_width": 3,
+        "safe_a_buffer": 0.5,
+        "safe_b_buffer": 0.5,
+        "ref_weight": 8,
+        "v_rate_weight": 5,
+        "if_cal_speed_rate_cost": 1,
+        "if_cal_lane_cost": 1,
+        "if_cal_obs_cost": 1,
+        "if_cal_gamma_barrier": 1,
+        "if_cal_gamma_dot_barrier": 1,
+        "lane_q1": 5,
+        "lane_q2": 3,
+        "obs_q1": 4.25,
+        "obs_q2": 3.4,
+        "gamma_max_q1": 1,
+        "gamma_max_q2": 3,
+        "gamma_min_q1": 1,
+        "gamma_min_q2": 3,
+        "gamma_dot_max_q1": 10,
+        "gamma_dot_max_q2": 2,
+        "gamma_dot_min_q1": 10,
+        "gamma_dot_min_q2": 2,
+        "Q": [
+          [
+            0.2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0.2,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0.1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1.5
+          ]
+        ],
+        "R": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "obstacle_prediction_count": 80,
+        "usage": 0,
+        "profile": 0
+      }
+    }
+  ],
+  "original_hashes_before": {
+    "src\\ilqr.cpp": "6fd2bac169ab20eed5854eff849c68b2c8a11be1f3969a38c1e024b741197fdc",
+    "src\\config_loader.cpp": "355a497d750e0ae50303cfeab3433cd827644a68aa7f072044ed01994b4279c6"
+  },
+  "derived_rate_note": "The old README draft decimal 0.1568499014 was a hand-written inaccurate approximation; it was never a parameter. All values below come from the unchanged original finalize_parameters function.",
+  "original_hashes_after": {
+    "src\\ilqr.cpp": "6fd2bac169ab20eed5854eff849c68b2c8a11be1f3969a38c1e024b741197fdc",
+    "src\\config_loader.cpp": "355a497d750e0ae50303cfeab3433cd827644a68aa7f072044ed01994b4279c6"
+  },
+  "all_checks_passed": true
+}

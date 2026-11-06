@@ -1,0 +1,121 @@
+{
+  "map": "B201",
+  "method": "Hybrid A* + ST*",
+  "method_definition": "Hybrid A* and existing path smoothing, followed by independent space-time graph speed search",
+  "baseline_directory": "E:\\BIT\\01-lqr\\第1次返修\\03_实验数据\\原版算法三方法基准_20261104\\full",
+  "episode_s": 40.0,
+  "execution_dt_s": 0.1,
+  "planning_mode": "one global ST search with constant-velocity obstacle predictions over 40 s",
+  "stage_timing": "Path preparation includes process startup and exports; ST timing includes graph preparation/search. Follower and diagnostics are separate.",
+  "comparison_timing": "Do not compare one global search directly with one 8 s horizon MPC call. Existing methods are read from their archived runs.",
+  "geometry": "Original reference-point inflated ellipse and nearest+1 lane residual; not a whole-body collision claim",
+  "initial_speed_mps": 0.0,
+  "initial_speed_note": "Original four-state model has no velocity state; ST adds an explicit zero initial graph speed.",
+  "path_speed_limits": "Original-model spatial articulation ODE; speed limited by effective articulation-rate bounds",
+  "follower": {
+    "type": "path curvature feedforward, heading/lateral feedback, original yaw equation inversion",
+    "heading_gain": 1.0,
+    "lateral_gain": 0.05,
+    "rate_limits": "original effective rate limits and next-step articulation bound; zero rate when stopped"
+  },
+  "python": "3.11.3",
+  "numpy": "2.2.3",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "sources": {
+    "run_hybrid_astar_st.py": "01296a4f208a0fff23f0885fa3b466a40b638247709a9fadce1db760aa4037a7",
+    "hybrid_path_stage.py": "bd3e339d7c3d5b6cb62d80d8ba1f9489efa49e84513a8c52a596887bf76d5fb7",
+    "st_speed_search.py": "16d5cfa446a1ef6c73313ef2facd0958a89980a5b2c92b49e89d4788c044f64d",
+    "geometric_speed_limits.py": "918f227808f2f7468b858f54a6de1093a6e677c0e6c6aeaa23daa9e54989a7f7",
+    "original_backend.py": "adeef0f0cafaeb5df28fe16f0f26a705cc2e81395d92299627ac824acfe1e86a",
+    "project_paths.py": "78770ec43621e0ab15f5d145fe28658a1959124772a61d4f08154ab77e022b10",
+    "test_st_speed_search.py": "39a0f38dce22ac9602305b7dab4fd0a9678d914c9f53f7fec9422bc54ace92dd",
+    "audit_hybrid_st_b201.py": "b984e4fa644f8e5edd06928d7820022514bea9dee8b50e88acc204be8f36491c",
+    "plot_hybrid_st_b201.py": "8db4e42c56b430b7f80aa515f43fffc108c797aacd6ff888961fe70ca2a2f67f"
+  },
+  "input_hashes": {
+    "scene": "761f59423a24f1db422049ebc692ff56fd56d1324fa32f38e74745b412fd33b6",
+    "config": "cc371bd15a12116758aba7924062ba1d54dbeefe2c1ff1c792b5c4254dd3f769",
+    "original_model_dll": "e33302a51a94649663d5340c5be18d59476f7c3477ed8a2f3d6eba8eee1f123e"
+  },
+  "model_parameters": {
+    "N": 80,
+    "dt": 0.1,
+    "lf": 3,
+    "lr": 3,
+    "ego_rad": 7,
+    "configured_speed": 5,
+    "r_effective_speed": 5,
+    "al_effective_speed": 5,
+    "prepare_wall_ms": 0,
+    "gamma_min": -1,
+    "gamma_max": 1,
+    "gamma_dot_min": -0.15684989808486893,
+    "gamma_dot_max": 0.15684989808486893,
+    "acc_min": -4,
+    "acc_max": 3,
+    "trace_safe_width_left": 5,
+    "trace_safe_width_right": 5,
+    "obs_length": 5,
+    "obs_width": 3,
+    "safe_a_buffer": 0.5,
+    "safe_b_buffer": 0.5,
+    "ref_weight": 8,
+    "v_rate_weight": 5,
+    "if_cal_speed_rate_cost": 1,
+    "if_cal_lane_cost": 1,
+    "if_cal_obs_cost": 1,
+    "if_cal_gamma_barrier": 1,
+    "if_cal_gamma_dot_barrier": 1,
+    "lane_q1": 5,
+    "lane_q2": 3,
+    "obs_q1": 4.25,
+    "obs_q2": 3.4,
+    "gamma_max_q1": 1,
+    "gamma_max_q2": 3,
+    "gamma_min_q1": 1,
+    "gamma_min_q2": 3,
+    "gamma_dot_max_q1": 10,
+    "gamma_dot_max_q2": 2,
+    "gamma_dot_min_q1": 10,
+    "gamma_dot_min_q2": 2,
+    "Q": [
+      [
+        0.2,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0.2,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0.1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1.5
+      ]
+    ],
+    "R": [
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "obstacle_prediction_count": 80,
+    "usage": 0,
+    "profile": 0
+  }
+}

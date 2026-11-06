@@ -1,0 +1,56 @@
+{
+  "map": "B201",
+  "method": "Hybrid A* + ST*",
+  "repetitions": 1,
+  "output_equivalence_passed": true,
+  "path_preparation_mean_ms": 1559.2440000000352,
+  "st_search_mean_ms": 9082.980000000134,
+  "two_stage_mean_ms": 10642.22400000017,
+  "expanded_nodes_mean": 517814.0,
+  "measurements": [
+    {
+      "attempt": 1,
+      "path_preparation_ms": 1559.2440000000352,
+      "st_search_ms": 9082.980000000134,
+      "two_stage_total_ms": 10642.22400000017,
+      "expanded_nodes": 517814,
+      "generated_nodes": 528921,
+      "arrival_time_s": null,
+      "success": true,
+      "output_equivalence_passed": true,
+      "geometric_speed_limit_wall_ms": 757.035999999971,
+      "graph_search_wall_ms": 8296.821300000374,
+      "reason": "safe_partial_plan",
+      "reached_graph_goal": false,
+      "planned_remaining_distance_m": 2.717600368169286
+    }
+  ],
+  "protocol": {
+    "map": "B201",
+    "method": "Hybrid A* + ST*",
+    "reference_run": "E:\\BIT\\01-lqr\\第1次返修\\03_实验数据\\HybridA_ST_B201_20261105_final",
+    "reference_summary_sha256": "8ba415de8ddae9b29baf81b0e89b0a399768c6a9427e64f311b09b718185c161",
+    "reference_plan_sha256": "6a565e24bc67c97976a3397012ce5651efe6cb045161da658590c160526ef666",
+    "baseline_directory": "E:\\BIT\\01-lqr\\第1次返修\\03_实验数据\\原版算法三方法基准_20261104\\full",
+    "repetitions": 1,
+    "warmup_calls": 0,
+    "all_attempts_retained": true,
+    "runner": "E:\\BIT\\01-lqr\\第1次返修\\03_实验数据\\原版算法三方法基准_20261104\\full\\reproduction\\run_hybrid_astar_st.py",
+    "source_sha256": {
+      "run_hybrid_astar_st.py": "01296a4f208a0fff23f0885fa3b466a40b638247709a9fadce1db760aa4037a7",
+      "hybrid_path_stage.py": "bd3e339d7c3d5b6cb62d80d8ba1f9489efa49e84513a8c52a596887bf76d5fb7",
+      "st_speed_search.py": "16d5cfa446a1ef6c73313ef2facd0958a89980a5b2c92b49e89d4788c044f64d",
+      "original_backend.py": "adeef0f0cafaeb5df28fe16f0f26a705cc2e81395d92299627ac824acfe1e86a",
+      "geometric_speed_limits.py": "918f227808f2f7468b858f54a6de1093a6e677c0e6c6aeaa23daa9e54989a7f7"
+    },
+    "python": "3.11.3",
+    "numpy": "2.2.3",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "timing_mode": "Independent complete 40-second global plans. Path preparation and ST search measured separately.",
+    "not_mpc_cycle_time": true
+  },
+  "speed_limit_preparation_mean_ms": 757.035999999971,
+  "graph_search_mean_ms": 8296.821300000374,
+  "other_st_initialization_mean_ms": 29.122699999788892,
+  "summary_note": "Graph completion status and nested ST phase accounting added from the saved run; recorded timing values and trajectories unchanged."
+}

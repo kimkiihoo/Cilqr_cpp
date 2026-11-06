@@ -1,0 +1,67 @@
+{
+  "scope": "Only original R-CILQR B201 spatial path, offline retiming, nominal initial pose/speed, independent LTV-MPC tracking",
+  "parameters": {
+    "lf": 3.0,
+    "lr": 3.0,
+    "gamma_min": -1.0,
+    "gamma_max": 1.0,
+    "gamma_dot_min": -0.15684989808486893,
+    "gamma_dot_max": 0.15684989808486893,
+    "acc_min": -4.0,
+    "acc_max": 3.0,
+    "trace_safe_width_left": 5.0,
+    "trace_safe_width_right": 5.0,
+    "obs_length": 5.0,
+    "obs_width": 3.0,
+    "v_min": -5.0,
+    "v_max": 30.0,
+    "width": 3.0,
+    "box_length": 5.0,
+    "initial_speed": 5.0,
+    "initial_gamma_dot": 0.0
+  },
+  "controller_dt_s": 0.05,
+  "plant_dt_s": 0.01,
+  "tau_v_s": 0.2,
+  "tau_gamma_dot_s": 0.15,
+  "horizon_steps": 60,
+  "horizon_s": 3.0,
+  "cruise_profile_cap_mps": 3.0,
+  "rate_profile_fraction": 0.72,
+  "progress_rule": "Offline arc-length monotonic schedule from unchanged original x/y/theta/gamma vertices. Forward/backward speed feasibility passes; actual initial speed remains 5 m/s, with an explicit initial braking transition. Tiny reverse segments are retained with signed reference speed and zero progress speed at direction changes. No nearest-point reset, measurement-based phase alignment, spatial replan, original-point deletion, or endpoint extension.",
+  "direction_switch_original_indices": [
+    366,
+    383
+  ],
+  "terminal": "Final original R spatial point held with zero speed/rate reference for 4 s (rounded to controller grid); original scene goal (80,80), distance<=1.5m and |speed|<=0.5m/s additionally required.",
+  "obstacle_clock": "All obstacle centers use scene initial pose + speed*actual_simulation_time. MPC horizon uses t_actual+k*0.05 and nonlinear checks use actual .01 times, never original-reference progress time.",
+  "qp": "6-state Cartesian LTV model, 2 lagged actuator commands, finite horizon, OSQP. Full affine defect retained. Hard nominal articulation/rate, speed numeric envelope, actual acceleration and commanded-speed-slew bounds. Linearized separating halfplanes for two joint-extended body rectangles and all nearby obstacles. Nonlinear horizon rollout and dense first-command check; at failure no unverified candidate is executed.",
+  "weights": {
+    "longitudinal_position": 60.0,
+    "lateral_position": 1200.0,
+    "heading": 100.0,
+    "gamma": 15.0,
+    "v": 4.0,
+    "gamma_dot": 2.0,
+    "command": [
+      0.2,
+      0.5
+    ],
+    "terminal_multiplier": 8.0
+  },
+  "qp_numerics": "All variables are deviations from the time-varying reference. Objective multiplied uniformly by0.001; OSQP internal scaling20, scaled termination, adaptive rho interval25, polishing, abs/rel tolerance1e-5, maxiter30000. Hard physical/numeric bounds are unchanged.",
+  "safety_geometry": "Front local longitudinal [-lf,+box_length/2], rear [-box_length/2,+lr], width=3m, rear heading=theta+gamma. Both rectangles include the joint. Obstacles 5x3m rectangles at constant-speed predictions in actual time. Linearized margin0.075m; issued-command nonlinear .01s check requires0.05m. No continuous guarantee is implied by .01s logs.",
+  "error_definition": "Time-matched actual minus separately saved retimed reference; front/rear lateral use respective retimed reference heading normals. All .01s samples, including initial transition and terminal settling, enter errors.",
+  "not_claimed": [
+    "Original 5m/s timing is preserved",
+    "Tire/multibody dynamics or real-vehicle validation",
+    "Online planner or solver-time delay is included",
+    "QP status alone establishes safety"
+  ],
+  "script_sha256": "d4c1a4d3ab0a6744dfdcf6bce5c6e26bf1811fb3cf377fb26d0711509d0b0709",
+  "shared_parameters_script_sha256": "581d8f2676b521e07e137d892adf7f6061fe6a27fdfdfac0fb5126c4b10041d0",
+  "python": "3.11.3 (tags/v3.11.3:f3909b8, Apr  4 2023, 23:49:59) [MSC v.1934 64 bit (AMD64)]",
+  "numpy": "2.2.3",
+  "scipy": "1.16.3",
+  "osqp": "1.0.5"
+}

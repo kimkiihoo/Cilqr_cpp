@@ -1,0 +1,161 @@
+{
+  "main": {
+    "selected_map": "B201",
+    "run_configs": {
+      "B201": {
+        "start_x": 10.0,
+        "start_y": 20.0,
+        "start_theta": 1.2,
+        "goal_x": 80.0,
+        "goal_y": 80.0,
+        "goal_theta": 1,
+        "ITER": 400,
+        "solver_type": "cilqr",
+        "obstacle_speed": 1.0,
+        "obstacle_count": 2,
+        "obstacle_distance": 3.5
+      },
+      "B207": {
+        "start_x": 70.0,
+        "start_y": 8.0,
+        "start_theta": 1.57,
+        "goal_x": 60.0,
+        "goal_y": 100.0,
+        "goal_theta": 2,
+        "ITER": 200,
+        "solver_type": "cilqr",
+        "obstacle_speed": 0,
+        "obstacle_count": 4,
+        "obstacle_distance": 4
+      },
+      "B301": {
+        "start_x": 100.0,
+        "start_y": 70.0,
+        "start_theta": 0,
+        "goal_x": 180.0,
+        "goal_y": 127.0,
+        "goal_theta": 1.8,
+        "ITER": 200,
+        "solver_type": "cilqr",
+        "obstacle_speed": 0,
+        "obstacle_count": 0,
+        "obstacle_distance": 3.5
+      },
+      "default": {
+        "start_x": 0.0,
+        "start_y": 0.0,
+        "start_theta": 0,
+        "goal_x": 10.0,
+        "goal_y": 10.0,
+        "goal_theta": 0,
+        "ITER": 200,
+        "solver_type": "cilqr",
+        "obstacle_speed": 1.0,
+        "obstacle_count": 4,
+        "obstacle_distance": 3.5
+      }
+    },
+    "simulation": {
+      "tf": 1000.0,
+      "dt": 0.1
+    },
+    "vehicle": {
+      "ego_rad": 7.0,
+      "lf": 3.0,
+      "lr": 3.0,
+      "width": 3.0,
+      "box_length": 5.0
+    }
+  },
+  "ilqr": {
+    "cilqr": {
+      "N": 80,
+      "tol": 1.0,
+      "rel_tol": 1e-05,
+      "max_iter": 50,
+      "lamb_init": 7.0,
+      "lamb_factor": 2.0,
+      "lamb_max": 6000.0
+    },
+    "pure_pursuit": {
+      "kv": 0.3,
+      "kp": 0.8,
+      "ld0": 3.0,
+      "ld_min": 3.0,
+      "ld_max": 20.0
+    },
+    "cost_weights": {
+      "desire_speed": 5.0,
+      "desire_heading": 0.0,
+      "v_rate_weight": 5.0,
+      "ref_weight": 8.0,
+      "Q": [
+        0.2,
+        0.2,
+        0.1,
+        1.5
+      ],
+      "R": [
+        1.0,
+        1.0
+      ]
+    },
+    "constraints": {
+      "if_cal_obs_cost": true,
+      "if_cal_lane_cost": true,
+      "if_cal_speed_rate_cost": true,
+      "if_cal_gamma_barrier": true,
+      "if_cal_gamma_dot_barrier": true,
+      "gamma_max": 1.0,
+      "gamma_max_q1": 1.0,
+      "gamma_max_q2": 3.0,
+      "gamma_min": -1.0,
+      "gamma_min_q1": 1.0,
+      "gamma_min_q2": 3.0,
+      "gamma_dot_max": 0.3,
+      "gamma_dot_max_q1": 10.0,
+      "gamma_dot_max_q2": 2.0,
+      "gamma_dot_min": -0.3,
+      "gamma_dot_min_q1": 10.0,
+      "gamma_dot_min_q2": 2.0,
+      "acc_max": 3.0,
+      "acc_min": -4.0,
+      "acc_q1": 1.0,
+      "acc_q2": 2.0,
+      "trace_safe_width_left": 5.0,
+      "trace_safe_width_right": 5.0,
+      "lane_q1": 5.0,
+      "lane_q2": 3.0,
+      "obs_q1": 4.25,
+      "obs_q2": 3.4,
+      "obs_length": 5.0,
+      "obs_width": 3.0,
+      "safe_a_buffer": 0.5,
+      "safe_b_buffer": 0.5
+    }
+  },
+  "hybrid_astar": {
+    "hybrid_astar": {
+      "grid_resolution": 0.05,
+      "heading_resolution": 5.0,
+      "turning_radius": 5.0,
+      "move_step": 0.5,
+      "move_step_backwards": 0.4,
+      "allow_reverse": false,
+      "num_gamma_angles": 7,
+      "steering_penalty": 0.4,
+      "direction_change_penalty": 3.0,
+      "backwards_penalty": 1.2,
+      "heuristic_weight": 2.0,
+      "max_iterations": 200000,
+      "num_nodes_to_keep": 60000,
+      "inflation_radius": 2.0,
+      "goal_tolerance_xy": 0.8,
+      "goal_tolerance_heading": 15.0,
+      "clearance_weight": 1.0,
+      "desired_clearance": 3.0,
+      "max_clearance": 12.0,
+      "min_rs_clearance": 3.0
+    }
+  }
+}

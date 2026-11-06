@@ -1,0 +1,2 @@
+﻿attempt,path_preparation_ms,st_search_ms,two_stage_total_ms,expanded_nodes,generated_nodes,arrival_time_s,success,output_equivalence_passed,geometric_speed_limit_wall_ms,graph_search_wall_ms,reason,reached_graph_goal,planned_remaining_distance_m
+1,1559.2440000000352,9082.980000000134,10642.22400000017,517814,528921,,True,True,757.035999999971,8296.821300000374,safe_partial_plan,False,2.717600368169286

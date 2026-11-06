@@ -1,0 +1,10 @@
+{
+  "scope": "Cleanup validation: three B201 cycles per method, using retained code, binaries and local frozen inputs.",
+  "all_9_cycles_reproduced_exactly": true,
+  "compared_arrays": [
+    "controls",
+    "planned_states",
+    "state_after"
+  ],
+  "formal_experiment_results_preserved": true
+}

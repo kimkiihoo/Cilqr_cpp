@@ -1,0 +1,32 @@
+{
+  "map": "B201",
+  "method": "Hybrid A* + ST*",
+  "planning_success": true,
+  "reason": "safe_partial_plan",
+  "reached_graph_goal": false,
+  "arrival_time_s": null,
+  "terminal_time_s": 40.0,
+  "planned_remaining_distance_m": 2.717600368169286,
+  "planned_max_obstacle_residual_10ms": -13.305405088946952,
+  "planned_obstacle_violation_samples_10ms": 0,
+  "path_stage_wall_ms": 1641.0898000003726,
+  "st_search_wall_ms": 8701.274799999737,
+  "geometric_speed_limit_wall_ms": 832.3565999999119,
+  "graph_search_wall_ms": 7838.83220000007,
+  "follower_total_wall_ms": 16.55930000833905,
+  "execution": {
+    "executed_frames": 400,
+    "final_goal_distance_m": 2.649436846250509,
+    "max_abs_lateral_error_m": 0.18285284903290658,
+    "max_obstacle_residual": -13.257478790728744,
+    "obstacle_violation_samples": 0,
+    "max_lane_violation_m": 0.0,
+    "max_articulation_violation_rad": 0.0,
+    "max_rate_violation_radps": 0.0,
+    "max_internal_acceleration_violation_mps2": 4.376943252282217e-12,
+    "initial_acceleration_mps2": 1.5000000000000002,
+    "dense_obstacle_max_residual": -13.257478790728744,
+    "dense_obstacle_violation_samples": 0,
+    "dense_collision_check_dt_s": 0.01
+  }
+}

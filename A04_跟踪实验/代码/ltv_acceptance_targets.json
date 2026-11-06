@@ -1,0 +1,16 @@
+{
+  "scope": "B201, R-CILQR spatial reference, nominal initial pose, LTV-MPC tracking with dynamic obstacles at actual simulation time",
+  "purpose": "Engineering acceptance targets fixed before evaluating final tracking, not universal safety guarantees or a literature standard.",
+  "front_lateral_rmse_max_m": 0.1,
+  "rear_lateral_rmse_max_m": 0.1,
+  "front_lateral_absolute_error_max_m": 0.3,
+  "rear_lateral_absolute_error_max_m": 0.3,
+  "minimum_body_obstacle_clearance_m": 0.05,
+  "body_collision_samples_max": 0,
+  "goal_distance_max_m": 1.5,
+  "terminal_speed_absolute_max_mps": 0.5,
+  "dense_geometry_dt_s": 0.002,
+  "state_and_input_bound_tolerance": 0.00001,
+  "reference_policy": "Keep the original spatial reference and terminal point. Any speed/time reparameterization must be recorded and described, without resetting the reference to measured vehicle state.",
+  "timing_policy": "Report all controller computation times and deadline exceedances. A no-delay offline simulation is not evidence of real-time execution when computation exceeds the control period."
+}

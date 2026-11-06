@@ -1,0 +1,872 @@
+{
+  "scope": "Targeted explanation of original AL prediction clipping and the sole SQP hard-control residual above 1e-6; records unchanged",
+  "parent_record_audit_sha256": "b2ca97e4801f4368e101b4eaa6dcaea29c85c3f2e996fcf9a95fd794ac66e9b7",
+  "AL_clipping": [
+    {
+      "cycle": 109,
+      "frame_sha256": "e51bc7f0c213e9c407ef60f2ed83a72e2cfae68c74cd9d445c47df1dbb9fc585",
+      "other_component_max_error": 4.440892098500626e-16,
+      "clips": [
+        {
+          "prediction_step": 56,
+          "unclipped_gamma": 1.119134554501787,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 58,
+          "unclipped_gamma": 1.1324668173030126,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 63,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 64,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 65,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 66,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 67,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 68,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 69,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        }
+      ]
+    },
+    {
+      "cycle": 131,
+      "frame_sha256": "e6143d1f8c411bae1c0184a715a8eaa9ae1cbe183dda92f76cf83a5293161e34",
+      "other_component_max_error": 4.440892098500626e-16,
+      "clips": [
+        {
+          "prediction_step": 35,
+          "unclipped_gamma": 1.1105041346681144,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 36,
+          "unclipped_gamma": 1.1212631484090403,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 37,
+          "unclipped_gamma": 1.11900954079386,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 71,
+          "unclipped_gamma": 1.1118750677578382,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 72,
+          "unclipped_gamma": 1.1118753173196143,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 73,
+          "unclipped_gamma": 1.1118753212126218,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 74,
+          "unclipped_gamma": 1.1118753278837108,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 75,
+          "unclipped_gamma": 1.111875338288642,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 76,
+          "unclipped_gamma": 1.1118753535944401,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 77,
+          "unclipped_gamma": 1.111875375829716,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 78,
+          "unclipped_gamma": 1.1118755380679495,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        }
+      ]
+    },
+    {
+      "cycle": 132,
+      "frame_sha256": "e26d4d1dd0b71728a1e4e5f5b81bd0c77e5e7b9aead79b3a7fb0da202dc6304a",
+      "other_component_max_error": 4.440892098500626e-16,
+      "clips": [
+        {
+          "prediction_step": 28,
+          "unclipped_gamma": -1.138448708963974,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 29,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 30,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 33,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 46,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 47,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 48,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 49,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 50,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 51,
+          "unclipped_gamma": -1.1186798630374466,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 52,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 55,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 56,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 57,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 58,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 59,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 60,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 61,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 62,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 63,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 64,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 65,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 66,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 67,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 68,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 69,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 70,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 71,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 72,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 77,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 78,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 79,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        }
+      ]
+    },
+    {
+      "cycle": 138,
+      "frame_sha256": "7c3d7e0ce27bac9fe23ce6323a2c53dec3cf3d261e4614700de774cfe1ef64d3",
+      "other_component_max_error": 4.440892098500626e-16,
+      "clips": [
+        {
+          "prediction_step": 77,
+          "unclipped_gamma": 1.1326226855711783,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 78,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 79,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 80,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        }
+      ]
+    },
+    {
+      "cycle": 139,
+      "frame_sha256": "a173ceb2f4261a0daed2a1cbdc07569a88d84237ddb26bed4f2bfe0f8649cf65",
+      "other_component_max_error": 4.440892098500626e-16,
+      "clips": [
+        {
+          "prediction_step": 64,
+          "unclipped_gamma": 1.1235411974699987,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 65,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 66,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 67,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 68,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 69,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 70,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 71,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 72,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 73,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 74,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 75,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 76,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        }
+      ]
+    },
+    {
+      "cycle": 142,
+      "frame_sha256": "e514fbf7bf113281d07d0ef9b848c81129a0c06ff014ec91005e6ed5405f1512",
+      "other_component_max_error": 4.440892098500626e-16,
+      "clips": [
+        {
+          "prediction_step": 66,
+          "unclipped_gamma": 1.1053404609522515,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 67,
+          "unclipped_gamma": 1.1197160720674124,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 68,
+          "unclipped_gamma": 1.1340924264323615,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 69,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 70,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 71,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 72,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 75,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 76,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 77,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 78,
+          "unclipped_gamma": 1.1355298318393354,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 79,
+          "unclipped_gamma": 1.1144720829481385,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        }
+      ]
+    },
+    {
+      "cycle": 154,
+      "frame_sha256": "34f7647fb3a1763043d0b788c4e809ca11e7d5267d17c5f6a9126da5438d171e",
+      "other_component_max_error": 4.440892098500626e-16,
+      "clips": [
+        {
+          "prediction_step": 31,
+          "unclipped_gamma": 1.134740546680425,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 32,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 33,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 34,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 35,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 36,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 37,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 38,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 39,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 40,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 41,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 42,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 43,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        }
+      ]
+    },
+    {
+      "cycle": 155,
+      "frame_sha256": "ef06f907829947ce7e97f53aa1b443f503ddc2ffd6a5af96fc2611409aa75a33",
+      "other_component_max_error": 8.881784197001252e-16,
+      "clips": [
+        {
+          "prediction_step": 20,
+          "unclipped_gamma": 1.1286716033028819,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 21,
+          "unclipped_gamma": 1.133972723735817,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 22,
+          "unclipped_gamma": 1.1339927196758177,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 23,
+          "unclipped_gamma": 1.1340218313494779,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 24,
+          "unclipped_gamma": 1.134061893656853,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 25,
+          "unclipped_gamma": 1.1341164161022497,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 26,
+          "unclipped_gamma": 1.1341920211118934,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 27,
+          "unclipped_gamma": 1.1342998048339836,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 28,
+          "unclipped_gamma": 1.1344770012297112,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 29,
+          "unclipped_gamma": 1.1348400654262059,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 30,
+          "unclipped_gamma": 1.1358141769528904,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 31,
+          "unclipped_gamma": 1.131563193199693,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 35,
+          "unclipped_gamma": 1.102881851448147,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 36,
+          "unclipped_gamma": 1.108468078999099,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 37,
+          "unclipped_gamma": 1.111561855297365,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 38,
+          "unclipped_gamma": 1.112628747722404,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 39,
+          "unclipped_gamma": 1.1123149489307684,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 40,
+          "unclipped_gamma": 1.1029135646206005,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 43,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 44,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        }
+      ]
+    },
+    {
+      "cycle": 166,
+      "frame_sha256": "16567622f29561ab5db932e67333f647eb3b277f0ae644c8f101a5e64607de8d",
+      "other_component_max_error": 4.440892098500626e-16,
+      "clips": [
+        {
+          "prediction_step": 73,
+          "unclipped_gamma": -1.1155388546008167,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 74,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 75,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 76,
+          "unclipped_gamma": -1.1400000000000001,
+          "recorded_gamma": -1.1,
+          "matching_original_rule": "AL_forward"
+        }
+      ]
+    },
+    {
+      "cycle": 179,
+      "frame_sha256": "894b7b540a342972dc01ce7ebc3f53cb7b1fc642ff32dd603bf2b0833f9114be",
+      "other_component_max_error": 4.440892098500626e-16,
+      "clips": [
+        {
+          "prediction_step": 28,
+          "unclipped_gamma": 1.134740546680425,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 29,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 30,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 31,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 44,
+          "unclipped_gamma": 1.1342149077597057,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 49,
+          "unclipped_gamma": 1.1309932529666242,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 50,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 51,
+          "unclipped_gamma": 1.1317611273877761,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 72,
+          "unclipped_gamma": 1.1361694520595416,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 73,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 77,
+          "unclipped_gamma": 1.1145877944745304,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 78,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        },
+        {
+          "prediction_step": 79,
+          "unclipped_gamma": 1.1400000000000001,
+          "recorded_gamma": 1.1,
+          "matching_original_rule": "AL_forward"
+        }
+      ]
+    }
+  ],
+  "SQP_tiny_acceleration_residual": {
+    "map": "B301",
+    "cycle": 143,
+    "frame_sha256": "5a4924675244cc7cdef44802aaa831c9d1c4f7fa512e708f604676ca3019701f",
+    "scipy_success": true,
+    "max_acceleration_mps2": 3.0000014242806117,
+    "bound_mps2": 3.0,
+    "excess_mps2": 1.424280611672657e-06,
+    "interpretation": "Very small numeric residual at the declared tolerance, retained as measured."
+  }
+}

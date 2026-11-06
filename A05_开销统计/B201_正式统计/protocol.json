@@ -1,0 +1,101 @@
+{
+  "mode": "full",
+  "maps": [
+    "B201"
+  ],
+  "methods": [
+    "r",
+    "al",
+    "sqp"
+  ],
+  "steps": {
+    "B201": 400
+  },
+  "N": 80,
+  "dt_s": 0.1,
+  "candidate_reference_speeds": {
+    "B201": 5.0
+  },
+  "scope": "New benchmark using the only handed-over code; candidate speed labels retained; not exact historical-figure restoration.",
+  "sqp_options": {
+    "maxiter": 100,
+    "ftol": 1e-06
+  },
+  "optimizer_attempts_per_cycle": 1,
+  "execution": "Apply returned first control iff finite, even when SLSQP reports failure; no clipping or safety override. Finite entire SQP sequences are committed for original warm-start shifting. Nonfinite first control or exception is retained and stops that run.",
+  "obstacle_clock": "Each cycle obstacles are recomputed from frozen initial states and absolute plan_time_s; no cumulative obstacle integration drift.",
+  "target_speed": "Each SQP cycle calls the original R preparation once; its member desired speed accumulates the original near-goal decay. AL retains original behavior.",
+  "timing": {
+    "solver_wall_ms": "Original R/AL: steady_clock around full native solve, including local preparation, nominal initialization, optimization, and native logging. SQP: sum of steady_clock original-R preparation plus perf_counter nominal/constraint initialization and minimize. Both exclude obstacle prediction, supplementary cost/residual evaluation, execution, commit and serialization.",
+    "solve_time_ms": "Exact alias of solver_wall_ms for plot compatibility.",
+    "native_clock_ms": "Original returned Solution internal clock field; not the comparison timer, AL placeholder zero."
+  },
+  "constraints": "Original R and AL preserve different hard/soft constraint enforcement; SQP uses exact R penalty objective and original geometric residual definitions, R fixed control envelope and predicted internal acceleration bounds; it does not emulate the R iteration-dependent first-speed trust interval.",
+  "threading": "Methods run sequentially; native AL std::async preserved. OMP/BLAS environment limits do not imply AL single-thread execution.",
+  "environment": {
+    "python": "3.11.3",
+    "numpy": "2.2.3",
+    "scipy": "1.16.3",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12700H",
+    "profiling": "Measurement-only timers; native AL asynchronous workers and native R logging retained; per-iteration costs measured over actual inner-loop bodies. SQP core includes QP, BFGS and line-search bookkeeping.",
+    "thread_limits": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    }
+  },
+  "reproduction_sha256": {
+    "adaptation.diff": "ab5b3bab85847338e0e141b475384d8fd2e9c885d00a14a36dad56af8a71ad7a",
+    "bridge.cpp": "7f92daff10830beaad576f76f12987241da55d72a30b03ca854a89f4e282f473",
+    "build/libgcc_s_seh-1.dll": "2de4355648441db0230a9aba1a149fc829b094f83c14c37ea3f775356d33d8b1",
+    "build/libstdc++-6.dll": "428d22a8a4d25e39edad36851122701b3460c2bcf628884cdd2664530d2dd634",
+    "build/libwinpthread-1.dll": "e271f374468d584905afcdf7da96a6adeb5ee15702b39869e2003b0f102f20c4",
+    "build/original_model_bridge.dll": "5592dd8ddd25cdc800f65cfc7b02e1040854b14b58a8c85ca8c9dfa209ce116a",
+    "build_bridge.py": "3eea300d1142b14e25537041b9f775e975f96aad544ba86eb4f27d1d05ccb712",
+    "CMakeLists.txt": "cfb8cfe1e15af9f735adcf6c3073cd68bf66bb2b6057ae2031601333ef8b81ea",
+    "generated/config_loader.cpp": "355a497d750e0ae50303cfeab3433cd827644a68aa7f072044ed01994b4279c6",
+    "generated/ilqr.cpp": "0eec5d4b5a2846ad3e8b8b65a7ac9e4e232b8bff90209f28eebd4e4c1ec97c55",
+    "generated/include/common_types.h": "366f74a91d0a04c55ab82eeea3969bce2ad09b8d2a73b0165634b3fcfe2dcdac",
+    "generated/include/config_loader.h": "52f17c2295f44611ca985eaa6fc4c3de88ad3c672c5e620fbaf56655da71c9d3",
+    "generated/include/hybrid_astar.h": "9976321ba3ba20435bb2a85926c90901fc98945c8a1c5dfe91c02c3b9c418d88",
+    "generated/include/ilqr.h": "e808ee18d45611a6821cb33779c541d159a310b3e2b4fdbac8cc5d0511713ae4",
+    "generated/include/overhead_profile.h": "1ed0285f3045da01accfd696b723f7d214250d1cfa5e8090e10c4279da90257a",
+    "generated/include/utils.h": "630cbe4c82a9686333a02d5860eefc9da9dcde941fa46bc9504f1d421ae55bcd",
+    "generated/r_prepare.inc": "0d52e1c5e200e052e54f8a245be0eda1f058687af702c4fdf72c62afbd9a72a3",
+    "generated/support.cpp": "6bc1332f42d649cfe6f351c1931b077b4faf871ba091b72658d8a86611dde818",
+    "original_backend.py": "c02c95c0bab4a0a94dbc40741f9ed995ff8f5be0c7c91a3045b49f7698d7cb57",
+    "README.md": "7ff00047d601807dc3356dac746419a7d2351019e3874cd9d12976617f41ab85",
+    "run_maps.py": "5c17db45a9f24f91f44cebaf81a1b1ee4686e1b0835fa55dd8da9d6ae143d44f",
+    "single_state.py": "981518b4fd1b7ef00b7be9d57e58c80593df38d87e09acbd3a2f861eb6bc5914",
+    "source_manifest.json": "d5789b4c7a8d46fbcb3705bbb5d2d9dcbd399a717f8478e0ad3f2f84cbb19cb6",
+    "sqp_nmpc.py": "159bc506a72c49b154d8146d93df2867afaaa850b6a7890092884b9ffdca1810",
+    "sqp_profile.py": "6d65bfcbf4780832d99ed08d3fae0377144c880702562e223831984ebb93b4d6",
+    "verify_candidate_replays.py": "421264ba18e10f6857fa192cfa52005e72cddcf165f269f8c6c5c150dd4d2e5e",
+    "verify_consistency.py": "90941f9982662a09b12d65124731f24220fe670f7e221db3d283d07439b1cf1c"
+  },
+  "inputs": {
+    "B201": {
+      "scene_source": "E:\\BIT\\01-lqr\\第1次返修\\03_实验数据\\原版算法三方法基准_20261104\\full\\B201\\scene\\scene.json",
+      "scene_sha256": "761f59423a24f1db422049ebc692ff56fd56d1324fa32f38e74745b412fd33b6",
+      "config_sources": {
+        "r": {
+          "path": "E:\\BIT\\01-lqr\\第1次返修\\03_实验数据\\原版算法三方法基准_20261104\\full\\B201\\cilqr\\effective_config.json",
+          "sha256": "cc371bd15a12116758aba7924062ba1d54dbeefe2c1ff1c792b5c4254dd3f769"
+        },
+        "al": {
+          "path": "E:\\BIT\\01-lqr\\第1次返修\\03_实验数据\\原版算法三方法基准_20261104\\full\\B201\\alilqr\\effective_config.json",
+          "sha256": "cc371bd15a12116758aba7924062ba1d54dbeefe2c1ff1c792b5c4254dd3f769"
+        },
+        "sqp": {
+          "path": "E:\\BIT\\01-lqr\\第1次返修\\03_实验数据\\原版算法三方法基准_20261104\\full\\B201\\cilqr\\effective_config.json",
+          "sha256": "cc371bd15a12116758aba7924062ba1d54dbeefe2c1ff1c792b5c4254dd3f769"
+        }
+      }
+    }
+  },
+  "cleanup": {
+    "canonical_code_directory": "../代码",
+    "note": "Duplicate reproduction snapshot consolidated into canonical code. Optimizer/model, bridge, SQP and measured DLL are byte-identical to the actual run. run_maps.py now reads retained B201 inputs locally and copies only runtime dependencies. Original reproduction_sha256 is retained as historical run provenance."
+  }
+}

@@ -1,0 +1,223 @@
+--- baseline/bridge.cpp
++++ profile/bridge.cpp
+@@ -1,3 +1,4 @@
++#include "overhead_profile.h"
+ // Access-only bridge. The optimizer and dynamics are compiled from byte-identical original source.
+ #include "ilqr.h"
+ #include "config_loader.h"
+@@ -192,6 +193,7 @@
+     auto& c=context(ptr);if(c.usage==1)throw std::logic_error("use a separate context for MPC evaluation and original solve");
+     if(method!=1&&method!=2)throw std::invalid_argument("method must be 1=R or 2=AL");
+     c.usage=2;c.profile=method;c.state=state_from(state);c.obstacles=predictions(c,obs,nobs);
++    overhead::reset();
+     const auto started=std::chrono::steady_clock::now();
+     const auto sol=method==1?c.r->solve(c.state,c.obstacles):c.al->solve(c.state,c.obstacles);
+     const double solver_wall_ms=std::chrono::duration<double,std::milli>(std::chrono::steady_clock::now()-started).count();
+@@ -221,3 +223,7 @@
+       s<<"],\"obstacle_prediction_count\":"<<a.N<<",\"usage\":"<<c.usage<<",\"profile\":"<<c.profile<<"}";
+       last_json=s.str();return 0;});return result<0?nullptr:last_json.c_str();
+ }
++
++API const char* ob_timing_profile() { last_json=overhead::json(); return last_json.c_str(); }
++
++namespace overhead { thread_local Profile data; }
+--- baseline/CMakeLists.txt
++++ profile/CMakeLists.txt
+@@ -3,7 +3,7 @@
+ set(CMAKE_CXX_STANDARD 17)
+ set(CMAKE_CXX_STANDARD_REQUIRED ON)
+ add_library(original_model_bridge SHARED bridge.cpp generated/ilqr.cpp generated/config_loader.cpp generated/support.cpp)
+-target_include_directories(original_model_bridge PRIVATE generated/include "../../01_修改后代码/third_party/eigen3")
++target_include_directories(original_model_bridge PRIVATE generated/include "E:/BIT/01-lqr/第1次返修/01_修改后代码/third_party/eigen3")
+ target_compile_definitions(original_model_bridge PRIVATE NOMINMAX _USE_MATH_DEFINES)
+ if(MSVC)
+   target_compile_options(original_model_bridge PRIVATE /utf-8)
+--- baseline/original_backend.py
++++ profile/original_backend.py
+@@ -28,6 +28,7 @@
+         DLL = C.CDLL(str(DLL_PATH))
+         signatures = {
+             'ob_error': (C.c_char_p, []),
++            'ob_timing_profile': (C.c_char_p, []),
+             'ob_create': (C.c_void_p, [C.c_char_p, PTR, C.c_int, C.c_char_p]),
+             'ob_destroy': (None, [C.c_void_p]),
+             'ob_metadata': (C.c_char_p, [C.c_void_p]),
+@@ -168,6 +169,7 @@
+                 'native_fields': dict(zip(['converged', 'iterations', 'final_cost', 'solve_time_ms'], fields[:4].tolist())),
+                 'recomputed_native_cost': float(fields[4]), 'original_geometry_max_residual': float(fields[5]),
+                 'solver_wall_ms': float(fields[6]),
++                'timing_profile': json.loads(self.lib.ob_timing_profile()),
+                 'native_convergence_fields_available': method == 'r', 'metadata': self.metadata}
+ 
+     def close(self):
+--- baseline/run_maps.py
++++ profile/run_maps.py
+@@ -22,11 +22,7 @@
+ from single_state import serial
+ from sqp_nmpc import solve_prepared
+ 
+-BASELINES = {
+-    'B201': ROOT/'03_实验数据/原版基准核验_20261104/B201_v5_N80/B201',
+-    'B207': ROOT/'03_实验数据/原版基准核验_20261104/B207_v6_N80/B207',
+-    'B301': ROOT/'03_实验数据/原算法原地图复跑_20261103/B301',
+-}
++BASELINES = {m: ROOT/'03_实验数据/原版算法三方法基准_20261104/full'/m for m in ['B201','B207','B301']}
+ FULL_STEPS = {'B201': 400, 'B207': 300, 'B301': 200}
+ SPEEDS = {'B201': 5., 'B207': 6., 'B301': 15.}
+ FOLDERS = {'r': 'cilqr', 'al': 'alilqr', 'sqp': 'sqp'}
+@@ -53,7 +49,7 @@
+     dest.mkdir()
+     names = ['bridge.cpp', 'CMakeLists.txt', 'build_bridge.py', 'original_backend.py', 'sqp_nmpc.py',
+              'run_maps.py', 'single_state.py', 'verify_consistency.py', 'verify_candidate_replays.py',
+-             'README.md', 'source_manifest.json', 'adaptation.diff']
++             'README.md', 'source_manifest.json', 'adaptation.diff', 'sqp_profile.py']
+     for name in names:
+         shutil.copy2(HERE/name, dest/name)
+     shutil.copytree(HERE/'generated', dest/'generated')
+@@ -247,7 +243,7 @@
+                                'R fixed control envelope and predicted internal acceleration bounds; it does not emulate the R iteration-dependent first-speed trust interval.',
+                 'threading': 'Methods run sequentially; native AL std::async preserved. OMP/BLAS environment limits do not imply AL single-thread execution.',
+                 'environment': {'python': platform.python_version(), 'numpy': np.__version__, 'scipy': scipy.__version__,
+-                                'platform': platform.platform(), 'thread_limits': {v: os.environ[v] for v in ['OMP_NUM_THREADS', 'OPENBLAS_NUM_THREADS', 'MKL_NUM_THREADS']}},
++                                'platform': platform.platform(), 'cpu': '12th Gen Intel(R) Core(TM) i7-12700H', 'profiling': 'Measurement-only timers; native AL asynchronous workers and native R logging retained; per-iteration costs measured over actual inner-loop bodies. SQP core includes QP, BFGS and line-search bookkeeping.', 'thread_limits': {v: os.environ[v] for v in ['OMP_NUM_THREADS', 'OPENBLAS_NUM_THREADS', 'MKL_NUM_THREADS']}},
+                 'reproduction_sha256': hashes,
+                 'inputs': {m: {'scene_source': str(BASELINES[m]/'scene/scene.json'), 'scene_sha256': sha(BASELINES[m]/'scene/scene.json'),
+                               'config_sources': {method: {'path': str(pair[1]), 'sha256': sha(pair[1])} for method, pair in sources[m][1].items()}}
+--- baseline/sqp_nmpc.py
++++ profile/sqp_nmpc.py
+@@ -5,6 +5,7 @@
+ that difference is reported explicitly. Soft R geometry/rate barriers remain soft.
+ """
+ import time
++from sqp_profile import profile_slsqp
+ import numpy as np
+ from scipy.optimize import Bounds, LinearConstraint, minimize
+ 
+@@ -38,8 +39,9 @@
+         calls += 1
+         return backend.cost(flat.reshape(N, 2), kind='r_exact')
+ 
+-    result = minimize(objective, seed.ravel(), method='SLSQP', bounds=Bounds(lower, upper),
+-                      constraints=constraints, options={'maxiter': int(maxiter), 'ftol': float(ftol), 'disp': False})
++    with profile_slsqp() as timing_profile:
++        result = minimize(objective, seed.ravel(), method='SLSQP', bounds=Bounds(lower, upper),
++                          constraints=constraints, options={'maxiter': int(maxiter), 'ftol': float(ftol), 'disp': False})
+     elapsed = time.perf_counter()-started
+     controls = np.asarray(result.x).reshape(N, 2)
+     if np.isfinite(controls).all():
+@@ -56,7 +58,7 @@
+                      if np.isfinite(controls).all() else np.nan)
+     return {**evaluation, 'method': 'SQP-NMPC/original-R-penalty', 'scipy_success': bool(result.success),
+             'status': int(result.status), 'message': str(result.message), 'iterations': int(result.nit),
+-            'objective_calls': calls, 'nfev': int(result.nfev), 'njev': int(getattr(result, 'njev', -1)),
++            'timing_profile': timing_profile, 'objective_calls': calls, 'nfev': int(result.nfev), 'njev': int(getattr(result, 'njev', -1)),
+             'initialization_and_minimize_ms': elapsed*1000, 'prepare_wall_ms': meta['prepare_wall_ms'],
+             'solver_wall_ms': elapsed*1000+meta['prepare_wall_ms'],
+             'solve_wall_ms': elapsed*1000+meta['prepare_wall_ms'], 'hard_control_max_residual': hard_residual,
+--- baseline/generated\ilqr.cpp
++++ profile/generated\ilqr.cpp
+@@ -1,3 +1,4 @@
++#include "overhead_profile.h"
+ #include <cmath>
+ #include <ctime>
+ #include <iostream>
+@@ -197,7 +198,7 @@
+     Solution nominal_solution = get_nominal_solution(init_state);
+     Solution current_solution = nominal_solution;
+     Solution new_solution;
+-    double J_old = cal_cost_with_logging(current_solution, 0);
++    double J_old = [&](){ overhead::Timer overhead_timer(overhead::data.cost); return  cal_cost_with_logging(current_solution, 0); }();
+     lamb = arg.lamb_init;
+ 
+     converged = false;
+@@ -207,6 +208,7 @@
+     int iterations_count = 0;
+     
+     for (int iter = 0; iter < arg.max_iter; ++iter) {
++        overhead::data.outer=1; overhead::Iteration overhead_iteration(1,iter+1);
+         iterations_count = iter + 1;
+         // std::cout << "Iteration: " << iter + 1 << ", Cost: " << J_old << ", Lambda: " << lamb << std::endl;
+         
+@@ -215,32 +217,40 @@
+ 
+         // 反向传播计算控制修正量
+         // clock_t start = clock();
++        { overhead::Timer overhead_timer(overhead::data.linearization);
+         compute_df(current_solution);
++        }
+         // clock_t end = clock();
+         // double cpu_time_used = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+         // std::cout << "compute_df time used: " << cpu_time_used * 1000 << " ms\n";
+         // start = clock();
+ 
++        { overhead::Timer overhead_timer(overhead::data.derivatives);
+         compute_cost_derivatives(current_solution);
++        }
+         // end = clock();
+         // cpu_time_used = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+         // std::cout << "compute_cost_derivatives time used: " << cpu_time_used * 1000 << " ms\n";
+         // start = clock();
+ 
++        { overhead::Timer overhead_timer(overhead::data.backward);
+         backward();
++        }
+         // end = clock();
+         // cpu_time_used = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+         // std::cout << "backward time used: " << cpu_time_used * 1000  << " ms\n";
+         // start = clock();
+ 
+         // 正向传播尝试新解并计算新代价
++        { overhead::Timer overhead_timer(overhead::data.forward);
+         new_solution = forward(current_solution);
++        }
+         // end = clock();
+         // cpu_time_used = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+         // std::cout << "forward time used: " << cpu_time_used * 1000 << " ms\n";
+         // start = clock();
+ 
+-        double J_new = cal_cost_with_logging(new_solution, iter + 1);
++        double J_new = [&](){ overhead::Timer overhead_timer(overhead::data.cost); return  cal_cost_with_logging(new_solution, iter + 1); }();
+         // end = clock();
+         // cpu_time_used = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+         // std::cout << "cal_cost time used: " << cpu_time_used * 1000 << " ms\n";
+@@ -1265,16 +1275,26 @@
+     converged = false;
+     
+     for(int outer = 0; outer < max_outer_iters; ++outer){
++        ++overhead::data.outer;
+         // Inner iLQR Loop
+-        double J_old = cal_cost(current_solution); // Augmented Lagrangian Cost
++        double J_old = [&](){ overhead::Timer overhead_timer(overhead::data.cost); return  cal_cost(current_solution); }();
+         
+         for (int inner = 0; inner < max_inner_iters; ++inner) {
++            overhead::Iteration overhead_iteration(outer+1,inner+1);
++        { overhead::Timer overhead_timer(overhead::data.linearization);
+             compute_df(current_solution);
++        }
++        { overhead::Timer overhead_timer(overhead::data.derivatives);
+             compute_al_derivatives(current_solution);
++        }
++        { overhead::Timer overhead_timer(overhead::data.backward);
+             backward();
++        }
++        { overhead::Timer overhead_timer(overhead::data.forward);
+             new_solution = forward(current_solution);
+-            
+-            double J_new = cal_cost(new_solution);
++        }
++            
++            double J_new = [&](){ overhead::Timer overhead_timer(overhead::data.cost); return  cal_cost(new_solution); }();
+             
+             if (std::abs(J_old - J_new) < arg.tol) {
+                 current_solution = new_solution;
+@@ -1294,7 +1314,10 @@
+         }
+         
+         // Update AL parameters
++        { overhead::Timer overhead_timer(overhead::data.al_update);
++        ++overhead::data.updates;
+         update_constraints(current_solution);
++        }
+     }
+     
+     this->pre_solution = current_solution;

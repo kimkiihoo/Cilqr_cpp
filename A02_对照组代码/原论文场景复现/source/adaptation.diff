@@ -1,0 +1,221 @@
+--- original/src/main.cpp
++++ adapted/src/main.cpp
+@@ -3,6 +3,7 @@
+ #include "utils.h"
+ #include "config_loader.h"
+ #include <ctime>
++#include "replay_support.h"
+ 
+ #ifdef _WIN32
+ #include <windows.h>
+@@ -57,7 +58,7 @@
+     Eigen::Vector3d start(config.start_x, config.start_y, config.start_theta);
+     Eigen::Vector3d goal(config.goal_x, config.goal_y, config.goal_theta);
+     
+-    if (!plan_global_path(bitmap_map, start, goal, global_plan, ha_params, enable_planning)) {
++    if (!replay_load_path(global_plan) && !plan_global_path(bitmap_map, start, goal, global_plan, ha_params, enable_planning)) {
+         std::cerr << "plan_global_path failed, fallback to load_map" << std::endl;
+         auto fallback_info = load_map(config.start_x, config.start_y, config.start_theta);
+         std::vector<Point> fallback_points;
+@@ -108,7 +109,8 @@
+ ObstacleData initialize_obstacles(const GlobalPlan& global_plan, const MapData& bitmap_map, const Arg& arg, const RunConfig& run_config) {
+     ObstacleData obs_data;
+     OccupancyGrid grid = make_occupancy_grid(bitmap_map, 0.1, 0.5);
+-    std::vector<State> obs_initial_states = generate_obstacles(global_plan, grid, run_config.obstacle_count, run_config.obstacle_distance, run_config.obstacle_speed);
++    std::vector<State> obs_initial_states;
++    if (!replay_load_obstacles(obs_initial_states)) obs_initial_states = generate_obstacles(global_plan, grid, run_config.obstacle_count, run_config.obstacle_distance, run_config.obstacle_speed);
+     
+     for(const auto& obs_state : obs_initial_states) {
+         Trajectory obs_trj = predict_obstacle_trajectory(obs_state, arg.dt, arg.N);
+@@ -150,6 +152,7 @@
+ 
+     // 1. Parse Arguments (Override config)
+     parse_arguments(argc, argv, run_config);
++    replay_runtime(arg, system_model, run_config);
+     
+     std::cout << "======================== solver_type: " << run_config.solver_type << " ========================" <<std::endl;
+     std::cout << "Start: (" << run_config.start_x << ", " << run_config.start_y << ", " << run_config.start_theta << ") | "
+@@ -184,6 +187,8 @@
+ 
+     // 6. Initialize Obstacles
+     ObstacleData obs_data = initialize_obstacles(global_plan, bitmap_map, arg, run_config);
++    replay_save_scene(global_plan, obs_data.current_states);
++    if (argc > 1 && std::string(argv[1]) == "--prepare-scene") return 0;
+ 
+     // 7. Initialize Solvers
+     CILQRSolver cilqr_solver(ego, obs_data.trajectories, arg, run_config.selected_map, "cilqr");
+@@ -219,6 +224,7 @@
+         std::cout << "CMax: " << cmax << "\n";
+ 
+         // Update Vehicle State
++        if (solution.control_sequence.controls.empty()) { std::cerr << "REPLAY_FAILURE empty_control_sequence at cycle " << i << std::endl; return 2; }
+         cur_ctrl = solution.control_sequence.controls[0];
+         cur_state = ego.get_model().dynamics(cur_state, cur_ctrl);
+         
+@@ -231,7 +237,7 @@
+         update_obstacle_states(obs_data, arg);
+ 
+         // Visualization
+-        dynamic_plot(global_plan_log, ego_log, obs_data.trajectories, solution, &bitmap_map, global_plan, ego.get_model(), arg, run_config.solver_type, run_config.selected_map);
++        replay_frame(ego_log, obs_data.trajectories, solution, global_plan, ego.get_model(), arg, run_config.solver_type, run_config.selected_map, i);
+     }
+ 
+     return 0;
+--- original/src/utils.cpp
++++ adapted/src/utils.cpp
+@@ -15,7 +15,7 @@
+ #include <array>
+ #include <memory>
+ // 保留原有的matplotlib支持（仅在需要时）
+-#include "matplotlibcpp.h"
++// matplotlib C++ debug renderer omitted; plotting is performed offline.
+ #ifdef _WIN32
+ #include <windows.h>
+ #endif
+@@ -134,8 +134,7 @@
+     {
+         int attempts = std::min<int>(200, std::max(20, iterations * 40));
+         if ((int)pts.size() > 3 && attempts > 0) {
+-            std::random_device rd;
+-            std::mt19937 rng(rd());
++            std::mt19937 rng(20261030u); // Replay seed; only global-path shortcut sampling.
+             for (int a = 0; a < attempts; ++a) {
+                 int n = (int)pts.size();
+                 if (n <= 3) break;
+@@ -871,58 +870,7 @@
+ }
+ 
+ void draw_bitmap_debug(const MapData& map_data, const std::string& output_path) {
+-    if (map_data.width <= 0 || map_data.height <= 0 || map_data.data.empty()) {
+-        throw std::runtime_error("draw_bitmap_debug: invalid map_data");
+-    }
+-    
+-    std::cout << "Drawing bitmap map: " << map_data.width << "x" << map_data.height << std::endl;
+-    
+-    // 设置matplotlib后端为Agg（非交互式）
+-    matplotlibcpp::backend("Agg");
+-    
+-    int height = map_data.height;
+-    int width = map_data.width;
+-    std::vector<float> map_for_display(height * width);
+-    
+-    for (int i = 0; i < height; ++i) {
+-        for (int j = 0; j < width; ++j) {
+-            double v = (i < (int)map_data.data.size() && j < (int)map_data.data[i].size())
+-                        ? map_data.data[i][j] : 0.0;
+-            
+-            if (v == -1.0) {
+-                map_for_display[i * width + j] = 0.0f;
+-            } else {
+-                map_for_display[i * width + j] = static_cast<float>(
+-                    map_data.max_elevation > 0.0 ? v / map_data.max_elevation : 0.0);
+-            }
+-        }
+-    }
+-    
+-    double x_min = map_data.origin.size() > 0 ? map_data.origin[0] : 0.0;
+-    double y_min = map_data.origin.size() > 1 ? map_data.origin[1] : 0.0;
+-    double x_max = x_min + width * map_data.resolution;
+-    double y_max = y_min + height * map_data.resolution;
+-    
+-    std::cout << "Map coordinates: x=[" << x_min << ", " << x_max << "], y=[" << y_min << ", " << y_max << "]" << std::endl;
+-    std::cout << "Map origin size: " << map_data.origin.size() << std::endl;
+-    if (map_data.origin.size() >= 2) {
+-        std::cout << "Origin: [" << map_data.origin[0] << ", " << map_data.origin[1] << "]" << std::endl;
+-    }
+-
+-    std::map<std::string, std::string> keywords;
+-    keywords["cmap"] = "gray";
+-    keywords["extent"] = std::to_string(x_min) + "," + std::to_string(x_max) + "," +
+-                         std::to_string(y_min) + "," + std::to_string(y_max);
+-
+-    matplotlibcpp::imshow(map_for_display.data(), height, width, 1, keywords);
+-    matplotlibcpp::colorbar();
+-    matplotlibcpp::title("Bitmap Debug");
+-    matplotlibcpp::xlabel("X (m)");
+-    matplotlibcpp::ylabel("Y (m)");
+-    
+-    std::string save_path = output_path.empty() ? "bitmap_debug.png" : output_path;
+-    matplotlibcpp::save(save_path);
+-    std::cout << "Map saved to: " << save_path << std::endl;
++    (void)map_data; (void)output_path; // Debug-only renderer disabled.
+ }
+ 
+ void my_plot(const std::vector<std::vector<double>>& global_plan_log,
+@@ -978,7 +926,7 @@
+     
+     #ifdef _WIN32
+         char buffer[MAX_PATH];
+-        GetModuleFileNameA(NULL, buffer, MAX_PATH);
++        buffer[0] = 0; // Use relative ASCII paths inside the current run.
+         std::string exe_path(buffer);
+         std::string exe_dir = exe_path.substr(0, exe_path.find_last_of("\\"));
+         // 从可执行文件目录向上找到项目根目录
+@@ -1084,7 +1032,7 @@
+     nodes.push_back({Eigen::Vector2d(start[0], start[1]), -1, 0.0});
+ 
+     // 3) 随机采样器（支持随机种子与“直线路径走廊”采样）
+-    unsigned int seed = std::random_device{}();
++    unsigned int seed = 20261030u; // Replay seed; only RRT* fallback.
+     std::mt19937 rng(seed);
+     std::uniform_real_distribution<double> ux(grid.origin_x, grid.origin_x + grid.width * grid.resolution);
+     std::uniform_real_distribution<double> uy(grid.origin_y, grid.origin_y + grid.height * grid.resolution);
+@@ -1230,27 +1178,13 @@
+     return false;
+ }
+ std::string resolve_resource_path(const std::string& relative_path) {
+-#ifdef _WIN32
+-    char buffer[MAX_PATH];
+-    GetModuleFileNameA(NULL, buffer, MAX_PATH);
+-    std::string exe_path(buffer);
+-    std::string exe_dir = exe_path.substr(0, exe_path.find_last_of("\\"));
+-    // 从可执行文件目录向上找到项目根目录
+-    size_t build_pos = exe_dir.find("\\build");
+-    if (build_pos != std::string::npos) {
+-        std::string project_root = exe_dir.substr(0, build_pos);
+-        return project_root + "\\" + relative_path;
+-    }
+-    return relative_path;
+-#else
+-    return relative_path;
+-#endif
++    return relative_path; // Process CWD is the isolated run directory.
+ }
+ 
+ void save_m_map_info(const std::vector<std::vector<double>>& m_map_info) {
+ #ifdef _WIN32
+     char buffer[MAX_PATH];
+-    GetModuleFileNameA(NULL, buffer, MAX_PATH);
++    buffer[0] = 0; // Use relative ASCII paths inside the current run.
+     std::string exe_path(buffer);
+     std::string exe_dir = exe_path.substr(0, exe_path.find_last_of("\\"));
+     size_t build_pos = exe_dir.find("\\build");
+@@ -1681,7 +1615,7 @@
+ 
+     #ifdef _WIN32
+         char buffer[MAX_PATH];
+-        GetModuleFileNameA(NULL, buffer, MAX_PATH);
++        buffer[0] = 0; // Use relative ASCII paths inside the current run.
+         std::string exe_path(buffer);
+         std::string exe_dir = exe_path.substr(0, exe_path.find_last_of("\\"));
+         // 从可执行文件目录向上找到项目根目录
+@@ -2073,7 +2007,7 @@
+     
+     #ifdef _WIN32
+         char buffer[MAX_PATH];
+-        GetModuleFileNameA(NULL, buffer, MAX_PATH);
++        buffer[0] = 0; // Use relative ASCII paths inside the current run.
+         std::string exe_path(buffer);
+         std::string exe_dir = exe_path.substr(0, exe_path.find_last_of("\\"));
+         size_t build_pos = exe_dir.find("\\build");
+--- original/include/ilqr.h
++++ adapted/include/ilqr.h
+@@ -107,7 +107,7 @@
+ //计算两点之间距离
+ inline double distance(const Point& p1, const Point& p2);
+ //找到路径中离自车最短距离的点
+-inline size_t find_closest_point(const std::vector<Point>& path,const State& state);
++size_t find_closest_point(const std::vector<Point>& path,const State& state);
+ //角度归一化到[-π, π]
+ inline double angle_wrap(double theta) {
+     theta = fmod(theta + M_PI, 2.0*M_PI); 

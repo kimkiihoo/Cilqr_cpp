@@ -1,0 +1,30 @@
+{
+  "map": "B201",
+  "methods": [
+    "R-CILQR",
+    "AL-iLQR",
+    "SQP-NMPC",
+    "Hybrid A* + ST*"
+  ],
+  "frames": 400,
+  "style": "Reference two-panel controls and separate logarithmic timing figure; vertical legend; Times New Roman; 600 dpi",
+  "control_values_checked": 3200,
+  "per_cycle_timing_values_checked": 1200,
+  "curve_processing": "All original values, no smoothing or filtering",
+  "hybrid_st_timing": {
+    "frame_index": 0,
+    "measurement_count": 1,
+    "path_preparation_ms": 1641.0898000003726,
+    "st_stage_ms": 8701.274799999737,
+    "total_ms": 10342.36460000011,
+    "meaning": "One complete 40-second-window global plan, not a local per-cycle solve. No timing points for frames 1..399."
+  },
+  "source_sha256": {
+    "E:\\BIT\\01-lqr\\第1次返修\\A02_对照组代码\\仿真数据\\原版算法三方法基准_20261104\\full\\B201\\cilqr\\cycles.csv": "a7288b7445944a20925907a4f106d274abdd833c34b65749c0ee3f37c5ebffa0",
+    "E:\\BIT\\01-lqr\\第1次返修\\A02_对照组代码\\仿真数据\\原版算法三方法基准_20261104\\full\\B201\\alilqr\\cycles.csv": "636e5c3a45d14671b19e864ac55a0bd81d7859d4854628642fc6ec87920d2d4f",
+    "E:\\BIT\\01-lqr\\第1次返修\\A02_对照组代码\\仿真数据\\原版算法三方法基准_20261104\\full\\B201\\sqp\\cycles.csv": "1830e7a0fff5b801cf9bc75fb09068eb93c508fd1cbf5befe7ae53b209d4b4c0",
+    "E:\\BIT\\01-lqr\\第1次返修\\A02_对照组代码\\仿真数据\\HybridA_ST_B201_20261105\\cycles.csv": "cb89dfd97c95da538ae8cc1d415b86fa0c5fc8ef8475d9127c32583067e00fa2",
+    "E:\\BIT\\01-lqr\\第1次返修\\A02_对照组代码\\仿真数据\\HybridA_ST_B201_20261105\\summary.json": "8ba415de8ddae9b29baf81b0e89b0a399768c6a9427e64f311b09b718185c161"
+  },
+  "plot_script_sha256": "40535eb870267971f8dbb0075b02da89abc9f1d9544245fac4cba3efe1905db4"
+}

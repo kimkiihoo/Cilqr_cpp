@@ -1,0 +1,123 @@
+Configuration loaded from config/main.json, config/ilqr.json, config/hybrid_astar.json
+Computed articulated limits: kappa_max=0.06274, R_min=15.9388
+Derived gamma_dot limits: [-0.15685, 0.15685]
+代价分析日志文件已创建: C:\Temp\original_mpc_xl2ymryg\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_104117.csv
+  迭代 0: alpha=0.500000, J_new=1274.077358, delta_cost=-97.181802, delta_V=-106.668566, ratio=0.911063
+========================
+  迭代 0: alpha=0.500000, J_new=1245.778340, delta_cost=-28.299019, delta_V=-30.188384, ratio=0.937414
+========================
+  迭代 0: alpha=0.500000, J_new=1237.616787, delta_cost=-8.161553, delta_V=-8.474425, ratio=0.963080
+========================
+  迭代 0: alpha=0.500000, J_new=1237.521662, delta_cost=-0.095125, delta_V=-2.474698, ratio=0.038439
+  迭代 1: alpha=0.250000, J_new=1236.213024, delta_cost=-1.403763, delta_V=-1.432830, ratio=0.979713
+========================
+  迭代 0: alpha=0.500000, J_new=1237.661384, delta_cost=1.448359, delta_V=-1.512226, ratio=-0.957767
+  迭代 1: alpha=0.250000, J_new=1237.614300, delta_cost=1.401275, delta_V=-0.876892, ratio=-1.598002
+  迭代 2: alpha=0.125000, J_new=1235.750960, delta_cost=-0.462065, delta_V=-0.468641, ratio=0.985967
+========================
+Converged | iteration: 5 J_total :1235.750960
+  迭代 0: alpha=0.500000, J_new=1231.141242, delta_cost=2.086476, delta_V=-1.191070, ratio=-1.751766
+  迭代 1: alpha=0.250000, J_new=1231.484366, delta_cost=2.429600, delta_V=-0.680047, ratio=-3.572697
+  迭代 2: alpha=0.125000, J_new=1230.899679, delta_cost=1.844913, delta_V=-0.361151, ratio=-5.108423
+  迭代 3: alpha=0.062500, J_new=1229.923387, delta_cost=0.868621, delta_V=-0.185858, ratio=-4.673584
+  迭代 4: alpha=0.015625, J_new=1229.011082, delta_cost=-0.043684, delta_V=-0.047455, ratio=0.920545
+========================
+Converged | iteration: 1 J_total :1229.011082
+  迭代 0: alpha=0.500000, J_new=1226.281593, delta_cost=2.186540, delta_V=-1.188343, ratio=-1.839990
+  迭代 1: alpha=0.250000, J_new=1226.648916, delta_cost=2.553863, delta_V=-0.678169, ratio=-3.765824
+  迭代 2: alpha=0.125000, J_new=1226.181061, delta_cost=2.086008, delta_V=-0.360084, ratio=-5.793122
+  迭代 3: alpha=0.062500, J_new=1225.690762, delta_cost=1.595709, delta_V=-0.185292, ratio=-8.611881
+  迭代 4: alpha=0.015625, J_new=1224.051404, delta_cost=-0.043649, delta_V=-0.047307, ratio=0.922670
+========================
+Converged | iteration: 1 J_total :1224.051404
+代价分析日志已保存到: C:\Temp\original_mpc_xl2ymryg\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_104117.csv
+Configuration loaded from config/main.json, config/ilqr.json, config/hybrid_astar.json
+Computed articulated limits: kappa_max=0.062740, R_min=15.938805
+Derived gamma_dot limits: [-0.156850, 0.156850]
+代价分析日志文件已创建: C:\Temp\original_mpc_1n1arwcq\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_104117.csv
+Outer Iter 0: Max Violation = 0.000000
+Outer Iter 0: Max Violation = 0.000000
+Outer Iter 0: Max Violation = 0.000000
+代价分析日志已保存到: C:\Temp\original_mpc_1n1arwcq\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_104117.csv
+Configuration loaded from config/main.json, config/ilqr.json, config/hybrid_astar.json
+Computed articulated limits: kappa_max=0.062740, R_min=15.938805
+Derived gamma_dot limits: [-0.156850, 0.156850]
+代价分析日志文件已创建: C:\Temp\original_mpc_klhbttce\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_104117.csv
+  迭代 0: alpha=0.500000, J_new=812.175134, delta_cost=-82.742963, delta_V=-90.907743, ratio=0.910186
+========================
+  迭代 0: alpha=0.500000, J_new=788.985127, delta_cost=-23.190007, delta_V=-24.777654, ratio=0.935924
+========================
+  迭代 0: alpha=0.500000, J_new=782.582399, delta_cost=-6.402727, delta_V=-6.676543, ratio=0.958988
+========================
+  迭代 0: alpha=0.500000, J_new=780.764059, delta_cost=-1.818341, delta_V=-1.843322, ratio=0.986447
+========================
+  迭代 0: alpha=0.500000, J_new=780.183410, delta_cost=-0.580648, delta_V=-0.561959, ratio=1.033257
+========================
+Converged | iteration: 5 J_total :780.183410
+代价分析日志已保存到: C:\Temp\original_mpc_klhbttce\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_104117.csv
+Configuration loaded from config/main.json, config/ilqr.json, config/hybrid_astar.json
+Computed articulated limits: kappa_max=0.062740, R_min=15.938805
+Derived gamma_dot limits: [-0.156850, 0.156850]
+代价分析日志文件已创建: C:\Temp\original_mpc_k0gehse3\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_104117.csv
+Outer Iter 0: Max Violation = 0.000000
+代价分析日志已保存到: C:\Temp\original_mpc_k0gehse3\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_104117.csv
+Configuration loaded from config/main.json, config/ilqr.json, config/hybrid_astar.json
+Computed articulated limits: kappa_max=0.062740, R_min=15.938805
+Derived gamma_dot limits: [-0.188220, 0.188220]
+代价分析日志文件已创建: C:\Temp\original_mpc_labppugt\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_104117.csv
+  迭代 0: alpha=0.500000, J_new=8079.998410, delta_cost=-2176.056928, delta_V=-2252.532354, ratio=0.966049
+========================
+  迭代 0: alpha=0.500000, J_new=6443.329351, delta_cost=-1636.669059, delta_V=-1615.789352, ratio=1.012922
+========================
+  迭代 0: alpha=0.500000, J_new=5100.662667, delta_cost=-1342.666684, delta_V=-1294.972633, ratio=1.036830
+========================
+  迭代 0: alpha=0.500000, J_new=3982.610094, delta_cost=-1118.052573, delta_V=-1072.600079, ratio=1.042376
+========================
+  迭代 0: alpha=0.500000, J_new=3221.862345, delta_cost=-760.747750, delta_V=-740.070771, ratio=1.027939
+========================
+  迭代 0: alpha=0.500000, J_new=2755.645957, delta_cost=-466.216388, delta_V=-451.131853, ratio=1.033437
+========================
+  迭代 0: alpha=0.500000, J_new=2308.124383, delta_cost=-447.521574, delta_V=-411.248689, ratio=1.088202
+========================
+  迭代 0: alpha=0.500000, J_new=1865.858537, delta_cost=-442.265846, delta_V=-426.435756, ratio=1.037122
+========================
+  迭代 0: alpha=0.500000, J_new=1738.635556, delta_cost=-127.222981, delta_V=-128.144828, ratio=0.992806
+========================
+  迭代 0: alpha=0.500000, J_new=1706.247366, delta_cost=-32.388190, delta_V=-33.372994, ratio=0.970491
+========================
+  迭代 0: alpha=0.500000, J_new=1697.845762, delta_cost=-8.401603, delta_V=-9.840591, ratio=0.853770
+========================
+  迭代 0: alpha=0.500000, J_new=1694.709691, delta_cost=-3.136071, delta_V=-3.975367, ratio=0.788876
+========================
+  迭代 0: alpha=0.500000, J_new=1693.100681, delta_cost=-1.609010, delta_V=-2.326976, ratio=0.691459
+========================
+  迭代 0: alpha=0.500000, J_new=1692.565446, delta_cost=-0.535235, delta_V=-1.849034, ratio=0.289468
+========================
+Converged | iteration: 14 J_total :1692.565446
+代价分析日志已保存到: C:\Temp\original_mpc_labppugt\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_104117.csv
+Configuration loaded from config/main.json, config/ilqr.json, config/hybrid_astar.json
+Computed articulated limits: kappa_max=0.062740, R_min=15.938805
+Derived gamma_dot limits: [-0.188220, 0.188220]
+代价分析日志文件已创建: C:\Temp\original_mpc_e2_xguib\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_104117.csv
+Outer Iter 0: Max Violation = 0.857784
+Outer Iter 1: Max Violation = 0.857784
+Outer Iter 2: Max Violation = 0.857784
+Outer Iter 3: Max Violation = 0.857784
+Outer Iter 4: Max Violation = 0.944292
+Outer Iter 5: Max Violation = 0.944292
+Outer Iter 6: Max Violation = 0.927014
+Outer Iter 7: Max Violation = 0.927014
+Outer Iter 8: Max Violation = 0.927014
+Outer Iter 9: Max Violation = 0.927014
+Outer Iter 10: Max Violation = 0.927014
+Outer Iter 11: Max Violation = 1.640962
+Outer Iter 12: Max Violation = 1.640962
+Outer Iter 13: Max Violation = 4.151217
+Outer Iter 14: Max Violation = 4.151217
+Outer Iter 15: Max Violation = 4.151217
+Outer Iter 16: Max Violation = 4.151217
+Outer Iter 17: Max Violation = 6.836771
+Outer Iter 18: Max Violation = 6.836771
+Outer Iter 19: Max Violation = 6.836771
+代价分析日志已保存到: C:\Temp\original_mpc_e2_xguib\logs/outputs/original_bridge/cilqr/logs/cilqr_cost_analysis_20261104_104117.csv
+PASS: E:\BIT\01-lqr\��1�η���\02_���������\ԭģ��MPC����\verification\candidate_replay_report.json

@@ -1,0 +1,117 @@
+{
+  "scope": "Original R-CILQR B201 reference only; baseline for the independent nominal LTV-MPC tracking follow-up.",
+  "map": "B201",
+  "source_unchanged": true,
+  "source_euler_state_chain_max_residual": 7.105427357601002e-15,
+  "state_samples": 401,
+  "control_intervals": 400,
+  "original_duration_s": 40.0,
+  "path_length_m": 96.07442905278275,
+  "goal_xy_m": [
+    80.0,
+    80.0
+  ],
+  "terminal_xy_m": [
+    79.37335669181591,
+    79.82748544397774
+  ],
+  "terminal_goal_distance_m": 0.649956235243154,
+  "terminal_reference_speed_mps": 0.012347886066284104,
+  "reference_goal_position_within_1p5m": true,
+  "reference_last_speed_at_most_0p5mps": true,
+  "geometry_parameters": {
+    "lf": 3.0,
+    "lr": 3.0,
+    "obs_length": 5.0,
+    "obs_width": 3.0,
+    "width": 3.0,
+    "box_length": 5.0
+  },
+  "dense_sample_dt_s": 0.002,
+  "dense_sampling_method": "Linear interpolation of x/y/gamma and unwrapped heading between the fixed archived states; no reference resimulation or smoothing.",
+  "obstacle_clock": "Obstacle positions advance from their archived initial states at absolute execution time t, independently of any retimed reference progress.",
+  "initial_obstacles": [
+    [
+      56.97145407444933,
+      65.86908379407203,
+      1.118075221470903,
+      1.0
+    ],
+    [
+      55.512117871277844,
+      59.906920996816986,
+      1.4568168311986618,
+      1.0
+    ]
+  ],
+  "original_rectangles": {
+    "sample_count": 20001,
+    "zero_clearance_or_collision_samples": 0,
+    "minimum_clearance_m": 4.205768063875767,
+    "minimum_clearance_time_s": 14.134,
+    "minimum_clearance_obstacle_index": 1,
+    "geometry": "original axle-centered length/width rectangles"
+  },
+  "joint_extended_rectangles": {
+    "sample_count": 20001,
+    "zero_clearance_or_collision_samples": 0,
+    "minimum_clearance_m": 4.205768063875767,
+    "minimum_clearance_time_s": 14.134,
+    "minimum_clearance_obstacle_index": 1,
+    "geometry": "rectangles extended to the articulation joint"
+  },
+  "configured_articulation_rate_limits_radps": [
+    -0.3,
+    0.3
+  ],
+  "effective_runtime_articulation_rate_limits_radps": [
+    -0.15684989808486893,
+    0.15684989808486893
+  ],
+  "reference_articulation_rate_max_abs_radps": 0.4976379998793127,
+  "reference_runtime_rate_violation_intervals": 67,
+  "reference_runtime_rate_max_excess_radps": 0.34078810179444374,
+  "effective_acceleration_limits_mps2": [
+    -4,
+    3
+  ],
+  "reference_first_control_acceleration_min_mps2": -3.318862600173609,
+  "reference_first_control_acceleration_max_mps2": 1.7953439037158159,
+  "reference_first_control_acceleration_violation_count": 0,
+  "reference_first_control_acceleration_max_excess_mps2": 0.0,
+  "interpretation": [
+    "Collision and clearance results apply only to this map and this original time profile; they must be recomputed against absolute obstacle time for a retimed execution.",
+    "Rate and acceleration feasibility are assessed separately above; geometric clearance alone does not establish feasibility for the 6-state lagged plant.",
+    "A new speed/progress profile must be archived separately and must not overwrite or re-anchor this reference to the actual state at each cycle.",
+    "The 0.1 m RMSE, 0.3 m maximum error and 0.05 m actual clearance criteria are engineering acceptance targets for this follow-up, not a paper or industry standard.",
+    "No continuous-time or real-vehicle safety claim follows from sampled polygon checks."
+  ],
+  "acceptance_targets": {
+    "front_spatial_lateral_rmse_m": 0.1,
+    "rear_spatial_lateral_rmse_m": 0.1,
+    "front_spatial_lateral_max_abs_m": 0.3,
+    "rear_spatial_lateral_max_abs_m": 0.3,
+    "joint_extended_body_sampled_min_clearance_m": 0.05,
+    "sampled_collision_count": 0,
+    "original_goal_distance_m": 1.5,
+    "terminal_abs_speed_mps": 0.5
+  },
+  "input_manifest": [
+    {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\A04_跟踪实验\\输入快照\\full\\B201\\cilqr\\trajectories.npz",
+      "sha256": "5fe0ffd7c29292e17e811d965d55890e86cc39b9bc731e595a464a0efe38afa7"
+    },
+    {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\A04_跟踪实验\\输入快照\\full\\B201\\cilqr\\effective_config.json",
+      "sha256": "cc371bd15a12116758aba7924062ba1d54dbeefe2c1ff1c792b5c4254dd3f769"
+    },
+    {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\A04_跟踪实验\\输入快照\\full\\B201\\cilqr\\metadata.json",
+      "sha256": "8852af8eb3e8bac3ca931a3fa8749368d952756ced79203772d873443437adeb"
+    },
+    {
+      "path": "E:\\BIT\\01-lqr\\第1次返修\\A04_跟踪实验\\输入快照\\full\\B201\\scene\\scene.json",
+      "sha256": "761f59423a24f1db422049ebc692ff56fd56d1324fa32f38e74745b412fd33b6"
+    }
+  ]
+}

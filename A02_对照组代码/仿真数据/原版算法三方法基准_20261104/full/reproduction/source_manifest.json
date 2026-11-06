@@ -1,0 +1,61 @@
+{
+  "files": [
+    {
+      "original": "include\\ilqr.h",
+      "generated": "generated\\include\\ilqr.h",
+      "original_sha256": "580818fd0e46968780d0204129ecb5ba4245f94b3cc1b222f9e14040a29458e8",
+      "generated_sha256": "e808ee18d45611a6821cb33779c541d159a310b3e2b4fdbac8cc5d0511713ae4",
+      "text_changed": true
+    },
+    {
+      "original": "include\\utils.h",
+      "generated": "generated\\include\\utils.h",
+      "original_sha256": "e96720256b732259d7b39a4bbb2d4966857134f8328d4932a6c8d033bdeadf1d",
+      "generated_sha256": "630cbe4c82a9686333a02d5860eefc9da9dcde941fa46bc9504f1d421ae55bcd",
+      "text_changed": false
+    },
+    {
+      "original": "include\\common_types.h",
+      "generated": "generated\\include\\common_types.h",
+      "original_sha256": "1725dddd023547f0978f89d88d5d7352fde5a65044382ecdc594b00826cb147c",
+      "generated_sha256": "366f74a91d0a04c55ab82eeea3969bce2ad09b8d2a73b0165634b3fcfe2dcdac",
+      "text_changed": false
+    },
+    {
+      "original": "include\\config_loader.h",
+      "generated": "generated\\include\\config_loader.h",
+      "original_sha256": "0e3b8c669f9ab8381d43771efc8e6632e9e601f8face116e391b6501a230fdb4",
+      "generated_sha256": "52f17c2295f44611ca985eaa6fc4c3de88ad3c672c5e620fbaf56655da71c9d3",
+      "text_changed": false
+    },
+    {
+      "original": "include\\hybrid_astar.h",
+      "generated": "generated\\include\\hybrid_astar.h",
+      "original_sha256": "0839f68139e23acd70db5976e26ed9948ffb716d66a56248ea1f66598a4c6896",
+      "generated_sha256": "9976321ba3ba20435bb2a85926c90901fc98945c8a1c5dfe91c02c3b9c418d88",
+      "text_changed": false
+    },
+    {
+      "original": "src/ilqr.cpp",
+      "generated": "generated\\ilqr.cpp",
+      "original_sha256": "6fd2bac169ab20eed5854eff849c68b2c8a11be1f3969a38c1e024b741197fdc",
+      "generated_sha256": "6fd2bac169ab20eed5854eff849c68b2c8a11be1f3969a38c1e024b741197fdc",
+      "text_changed": false
+    },
+    {
+      "original": "src/config_loader.cpp",
+      "generated": "generated\\config_loader.cpp",
+      "original_sha256": "355a497d750e0ae50303cfeab3433cd827644a68aa7f072044ed01994b4279c6",
+      "generated_sha256": "355a497d750e0ae50303cfeab3433cd827644a68aa7f072044ed01994b4279c6",
+      "text_changed": false
+    }
+  ],
+  "extracted_functions": [
+    "utils.cpp:compute_articulated_limits",
+    "utils.cpp:predict_obstacle_trajectory",
+    "main.cpp:finalize_parameters",
+    "ilqr.cpp:CILQRSolver::solve preamble"
+  ],
+  "original_optimizer_sha256": "6fd2bac169ab20eed5854eff849c68b2c8a11be1f3969a38c1e024b741197fdc",
+  "scope": "Header friend access and helper linkage only; optimizer/model and config loader .cpp byte-identical. Two log path functions are standalone I/O shims; no planner geometry from any revision backend."
+}

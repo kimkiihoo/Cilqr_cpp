@@ -1,0 +1,68 @@
+[
+  {
+    "path": "src/config_loader.cpp",
+    "original_sha256": "355a497d750e0ae50303cfeab3433cd827644a68aa7f072044ed01994b4279c6",
+    "adapted_sha256": "355a497d750e0ae50303cfeab3433cd827644a68aa7f072044ed01994b4279c6",
+    "changed": false
+  },
+  {
+    "path": "src/hybrid_astar.cpp",
+    "original_sha256": "cec91b394e21d12565adcf65ddc1e27c40e8171c573948f877735c6159c018c6",
+    "adapted_sha256": "cec91b394e21d12565adcf65ddc1e27c40e8171c573948f877735c6159c018c6",
+    "changed": false
+  },
+  {
+    "path": "src/ilqr.cpp",
+    "original_sha256": "6fd2bac169ab20eed5854eff849c68b2c8a11be1f3969a38c1e024b741197fdc",
+    "adapted_sha256": "6fd2bac169ab20eed5854eff849c68b2c8a11be1f3969a38c1e024b741197fdc",
+    "changed": false
+  },
+  {
+    "path": "src/main.cpp",
+    "original_sha256": "54753d4edc911570fee84d687e4b7ea796d043927ac790c335510d7c7b1d35ed",
+    "adapted_sha256": "a52897afbbd78e3d5a9b210971ff19df30537f7b053fbfd3c63c37cc35be6944",
+    "changed": true
+  },
+  {
+    "path": "src/utils.cpp",
+    "original_sha256": "1dc7f3409aefed25a0c2244933b869d0273cc2b7aad02ff6eee60c89326cdd12",
+    "adapted_sha256": "74045f7af60babdcbd816b2349808cba26f6b0020e8a1116934ab94c58e8859f",
+    "changed": true
+  },
+  {
+    "path": "include/common_types.h",
+    "original_sha256": "1725dddd023547f0978f89d88d5d7352fde5a65044382ecdc594b00826cb147c",
+    "adapted_sha256": "1725dddd023547f0978f89d88d5d7352fde5a65044382ecdc594b00826cb147c",
+    "changed": false
+  },
+  {
+    "path": "include/config_loader.h",
+    "original_sha256": "0e3b8c669f9ab8381d43771efc8e6632e9e601f8face116e391b6501a230fdb4",
+    "adapted_sha256": "0e3b8c669f9ab8381d43771efc8e6632e9e601f8face116e391b6501a230fdb4",
+    "changed": false
+  },
+  {
+    "path": "include/hybrid_astar.h",
+    "original_sha256": "0839f68139e23acd70db5976e26ed9948ffb716d66a56248ea1f66598a4c6896",
+    "adapted_sha256": "0839f68139e23acd70db5976e26ed9948ffb716d66a56248ea1f66598a4c6896",
+    "changed": false
+  },
+  {
+    "path": "include/ilqr.h",
+    "original_sha256": "580818fd0e46968780d0204129ecb5ba4245f94b3cc1b222f9e14040a29458e8",
+    "adapted_sha256": "5b855740db4826735554cdfee2025ae5c6cee532b2986951d70ec8162d9d6258",
+    "changed": true
+  },
+  {
+    "path": "include/matplotlibcpp.h",
+    "original_sha256": "fb774077c812d70ddc0ca699b5c9c8b3d37145301237e72f589f4128e473198a",
+    "adapted_sha256": "fb774077c812d70ddc0ca699b5c9c8b3d37145301237e72f589f4128e473198a",
+    "changed": false
+  },
+  {
+    "path": "include/utils.h",
+    "original_sha256": "e96720256b732259d7b39a4bbb2d4966857134f8328d4932a6c8d033bdeadf1d",
+    "adapted_sha256": "e96720256b732259d7b39a4bbb2d4966857134f8328d4932a6c8d033bdeadf1d",
+    "changed": false
+  }
+]

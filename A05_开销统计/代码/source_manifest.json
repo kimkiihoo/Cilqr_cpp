@@ -1,0 +1,27 @@
+{
+  "scope": "Canonical reproducible B201 timing code after removing duplicate snapshots and unused helpers.",
+  "files": {
+    "bridge.cpp": "7f92daff10830beaad576f76f12987241da55d72a30b03ca854a89f4e282f473",
+    "CMakeLists.txt": "916d36738f5fb73dde51d1b884e505eb3b181491a0fb65eef7a82400aa609bae",
+    "original_backend.py": "cb63b8f445a20739fcd43c993343cc4427f8742a244a61573a96ebc0d7c4fcc2",
+    "run_maps.py": "5069841ab4419a555a976b43d60e31ec70e78ed3427be4fd53c988fb579bba65",
+    "single_state.py": "981518b4fd1b7ef00b7be9d57e58c80593df38d87e09acbd3a2f861eb6bc5914",
+    "sqp_nmpc.py": "159bc506a72c49b154d8146d93df2867afaaa850b6a7890092884b9ffdca1810",
+    "sqp_profile.py": "6d65bfcbf4780832d99ed08d3fae0377144c880702562e223831984ebb93b4d6",
+    "build/libgcc_s_seh-1.dll": "2de4355648441db0230a9aba1a149fc829b094f83c14c37ea3f775356d33d8b1",
+    "build/libstdc++-6.dll": "428d22a8a4d25e39edad36851122701b3460c2bcf628884cdd2664530d2dd634",
+    "build/libwinpthread-1.dll": "e271f374468d584905afcdf7da96a6adeb5ee15702b39869e2003b0f102f20c4",
+    "build/original_model_bridge.dll": "5592dd8ddd25cdc800f65cfc7b02e1040854b14b58a8c85ca8c9dfa209ce116a",
+    "generated/config_loader.cpp": "355a497d750e0ae50303cfeab3433cd827644a68aa7f072044ed01994b4279c6",
+    "generated/ilqr.cpp": "0eec5d4b5a2846ad3e8b8b65a7ac9e4e232b8bff90209f28eebd4e4c1ec97c55",
+    "generated/r_prepare.inc": "0d52e1c5e200e052e54f8a245be0eda1f058687af702c4fdf72c62afbd9a72a3",
+    "generated/support.cpp": "6bc1332f42d649cfe6f351c1931b077b4faf871ba091b72658d8a86611dde818",
+    "generated/include/common_types.h": "366f74a91d0a04c55ab82eeea3969bce2ad09b8d2a73b0165634b3fcfe2dcdac",
+    "generated/include/config_loader.h": "52f17c2295f44611ca985eaa6fc4c3de88ad3c672c5e620fbaf56655da71c9d3",
+    "generated/include/hybrid_astar.h": "9976321ba3ba20435bb2a85926c90901fc98945c8a1c5dfe91c02c3b9c418d88",
+    "generated/include/ilqr.h": "e808ee18d45611a6821cb33779c541d159a310b3e2b4fdbac8cc5d0511713ae4",
+    "generated/include/overhead_profile.h": "1ed0285f3045da01accfd696b723f7d214250d1cfa5e8090e10c4279da90257a",
+    "generated/include/utils.h": "630cbe4c82a9686333a02d5860eefc9da9dcde941fa46bc9504f1d421ae55bcd"
+  },
+  "layout_update": "2026-11-05: source/config/Eigen path resolution supports A01/A02/A05. Optimizer/model source and the measured DLL are unchanged; archived protocol hashes retain the historical run provenance."
+}
