@@ -326,6 +326,8 @@ def final_tracking_audit(folder=None):
     from scipy.integrate import solve_ivp
     folder = Path(folder) if folder else ROOT / '原始数据/LTV_MPC/B201/cilqr'
     protocol, summary = (read_json(folder / 'protocol.json'), read_json(folder / 'summary.json'))
+    if protocol.get('reference_mode') == 'original_time':
+        return original_time_tracking_audit(folder, protocol, summary)
     targets = read_json(ROOT / '代码/ltv_acceptance_targets.json')
     p = protocol['parameters']
     scene = read_json(ROOT / '输入快照/full/B201/scene/scene.json')
@@ -475,6 +477,248 @@ def final_tracking_audit(folder=None):
     report_lines = ['# B201 正常状态 LTV-MPC 跟踪独立核验', '', f'工程验收结论：{passed_text}。本次仅核验原 R-CILQR 的 B201 几何参考，使用独立 LTV-MPC 跟踪和透明的离线重定时；未增加其他地图、方法或扰动工况。', '', f"原始 {len(archived_pose)} 个位姿顶点及终点均保留，参考没有随实际车辆位置重新锚定。初始真实速度仍为 5 m/s；重定时巡航上限为 {protocol['cruise_profile_cap_mps']:.1f} m/s，另保留初始减速过程。原参考时长 40.00 s，新行驶时长 {profile_time[-1]:.4f} s，加终点静置后总时长 {times[-1]:.2f} s。全部 {len(times)} 个记录样本进入误差统计。", '', '| 指标 | 前轴 | 后轴 | 工程目标 |', '|---|---:|---:|---:|', f"| 原冻结折线空间横向 RMSE / m | {spatial_metrics['front_lateral_m']['rmse']:.6f} | {spatial_metrics['rear_lateral_m']['rmse']:.6f} | ≤ 0.1 |", f"| 原冻结折线空间横向最大绝对误差 / m | {spatial_metrics['front_lateral_m']['max_abs']:.6f} | {spatial_metrics['rear_lateral_m']['max_abs']:.6f} | ≤ 0.3 |", f"| 重定时参考时间匹配横向 RMSE / m | {time_metrics['front_lateral_error_m']['rmse']:.6f} | {time_metrics['rear_lateral_error_m']['rmse']:.6f} | ≤ 0.1 |", f"| 重定时参考时间匹配横向最大绝对误差 / m | {time_metrics['front_lateral_error_m']['max_abs']:.6f} | {time_metrics['rear_lateral_error_m']['max_abs']:.6f} | ≤ 0.3 |", '', '空间误差通过独立搜索原始前后轴折线的最近连续线段得到，同时核算到折线的欧氏距离，未利用控制器给出的进度来缩小误差。上述阈值是本轮预先约定的工程目标，不是通用标准。', '', f"动态障碍安全核验：在每个实际已执行控制区间用独立 DOP853 积分，按 0.002 s 得到 {len(dense_times)} 个状态，以真实执行时间推进障碍，再用 Shapely/GEOS 检查延伸至铰接点的前后车体矩形。采样碰撞数为 {dense_safety['zero_clearance_or_collision_samples']}，最小间距为 {dense_safety['minimum_clearance_m']:.6f} m，大于 0.05 m。DOP853 与记录的 RK4 状态最大差为 {maximum_replay_difference:.3g}。这仍是密集采样核验，不表述为连续时间或实车安全保证。", '', f"道路走廊核验采用原程序“最近全局路径顶点再加一”的匹配方式及左右各 5 m 范围。前后轴中心与延伸车体八角点均无采样越界，角点最大绝对横向距离为 {corridor['maximum_abs_corner_lateral_m']:.6f} m。该检查不等同于栅格地图真实道路边界认证。", '', f"原场景终点仍为 (80, 80) m。最终位置误差 {goal_distance:.6f} m，实际速度 {actual[-1, 4]:.3g} m/s，满足 1.5 m 内且速度绝对值不大于 0.5 m/s 的停车目标。铰接角、实际角速度、实际加速度和命令边界均满足原运行限制；命令速度变化率仅有 {constraint_violations['command_speed_slew']:.3g} 的浮点误差。", '', f"控制器真实性核验：首周期和转弯周期两份已保存 QP 分别核对了正定目标 Hessian、初始状态等式、仿射缺陷、世界坐标时变动力学矩阵、原始约束残差及 KKT 驻点残差。全部 {len(cycles)} 个控制周期均已归档，QP 失败 {failures} 次、fallback {fallback} 次；执行前命令投影最大修正为 {timing['max_command_projection']:.3g}，未扩大任何硬边界。", '', f"计时限制：每次完整控制计算平均 {timing['controller_mean_s'] * 1000:.2f} ms、95% 分位 {timing['controller_p95_s'] * 1000:.2f} ms、最大 {timing['controller_max_s'] * 1000:.2f} ms。{timing['deadline_exceedance_cycles']}/{len(cycles)} 个周期（{timing['deadline_exceedance_fraction'] * 100:.2f}%）超过 50 ms 控制周期。本仿真未将计算耗时注入执行时钟，因此结论限于离线跟踪，不能写成已证明硬实时运行。", '', '复核入口：代码/audit_ltv_mpc.py。详细散列、QP残差、所有判据和密集检查结果见 ltv_mpc_independent_audit_B201.json；精简数值见 ltv_mpc_independent_metrics_B201.csv。']
     (OUTPUT / 'LTV-MPC跟踪核验说明_B201.md').write_text('\n'.join(report_lines) + '\n', encoding='utf-8')
     return outcome
+def original_time_tracking_audit(folder, protocol, summary):
+    """独立核验未重定时的原轨迹；数据一致性与性能达标分别报告。"""
+    from scipy.integrate import solve_ivp
+    folder = Path(folder)
+    targets = read_json(ROOT / '代码/ltv_acceptance_targets.json')
+    source = ROOT / '输入快照/full/B201/cilqr'
+    scene_path = source.parent / 'scene/scene.json'
+    scene = read_json(scene_path)
+    runtime = read_json(source / 'metadata.json')['initial_cpp_parameters']
+    p = protocol['parameters']
+    data = read_numeric_csv(folder / 'nominal.csv')
+    original = read_numeric_csv(folder / 'original_reference.csv')
+    sampled = read_numeric_csv(folder / 'sampled_reference.csv')
+    with (folder / 'mpc_cycles.csv').open(encoding='utf-8-sig', newline='') as handle:
+        cycles = list(csv.DictReader(handle))
+    errors = []
+
+    def check(ok, label):
+        if not bool(ok):
+            errors.append(label)
+
+    def close(a, b, label, atol=2e-8):
+        aa, bb = np.asarray(a), np.asarray(b)
+        check(aa.shape == bb.shape and np.allclose(aa, bb, atol=atol, rtol=1e-9), label)
+
+    check(summary['map'] == 'B201' and summary['case'] == 'nominal', 'B201 nominal scope')
+    for filename, key in [('nominal.csv', 'actual_csv_sha256'),
+                          ('original_reference.csv', 'original_reference_sha256'),
+                          ('sampled_reference.csv', 'sampled_reference_sha256')]:
+        check(sha(folder / filename) == summary[key], 'unchanged output hash ' + filename)
+    check(sha(ROOT / '代码/ltv_mpc_tracking.py') == protocol['script_sha256'], 'controller code hash')
+    check(sha(ROOT / '代码/tracking_experiment.py') == protocol['shared_parameters_script_sha256'], 'source loader code hash')
+    limits_path = ROOT / '代码/ltv_control_limits.json'
+    limits_manifest = read_json(limits_path)
+    check(sha(limits_path) == protocol['control_limits_sha256'], 'numerical control limits manifest hash')
+    check(limits_manifest == protocol['control_limits'], 'recorded control limits manifest')
+    for key in ('gamma_dot_min', 'gamma_dot_max', 'v_min', 'v_max'):
+        close(p[key], limits_manifest[key], 'control envelope agrees with manifest ' + key)
+    original_cpp = ROOT.parent / limits_manifest['source_path']
+    if original_cpp.exists():
+        check(sha(original_cpp) == limits_manifest['source_sha256'], 'original forward-pass source hash')
+        source_text = original_cpp.read_text(encoding='utf-8-sig')
+        check(all(line in source_text for line in limits_manifest['source_excerpt'].splitlines()), 'recorded clipping statements present in original C++')
+    source_audit = read_json(folder / 'original_reference_audit.json')
+    for filename, key in [('trajectories.npz', 'source_npz_sha256'), ('cycles.jsonl', 'source_cycles_jsonl_sha256'),
+                          ('metadata.json', 'source_metadata_sha256'), ('effective_config.json', 'source_effective_config_sha256')]:
+        check(sha(source / filename) == source_audit[key], 'unchanged frozen source ' + filename)
+    with np.load(source / 'trajectories.npz', allow_pickle=False) as archive:
+        archived_pose = archive['actual_states'].copy()
+        archived_control = archive['controls'][:, 0].copy()
+    archived_pose[:, 2] = np.unwrap(archived_pose[:, 2])
+    source_cycles = [json.loads(line)['summary'] for line in (source / 'cycles.jsonl').read_text(encoding='utf-8').splitlines() if line]
+    check(all(row['executed'] for row in source_cycles), 'every frozen planning cycle executed')
+    archived_times = np.r_[0., [row['time_s'] for row in source_cycles]]
+    cycle_controls = np.array([[row['velocity'], row['gamma_dot']] for row in source_cycles])
+    close(cycle_controls, archived_control, 'source JSONL and NPZ applied controls', atol=1e-12)
+    original_pose = np.column_stack([original[k] for k in ('x', 'y', 'theta', 'gamma')])
+    original_inputs = np.column_stack([original[k] for k in ('v', 'gamma_dot')])
+    check(np.array_equal(original_pose, archived_pose), 'all original pose values exactly preserved')
+    check(np.array_equal(original_inputs[:-1], archived_control), 'all original speed and rate values exactly preserved')
+    check(np.array_equal(original['t'], archived_times), 'all original timestamps exactly preserved')
+    close(original_inputs[-1], archived_control[-1], 'duplicated final control is archival only', atol=0.)
+    times = data['t']
+    dt, plant_dt = float(protocol['controller_dt_s']), float(protocol['plant_dt_s'])
+    close(times, np.arange(len(times)) * plant_dt, 'complete plant sample clock')
+    complete = bool(abs(times[-1] - archived_times[-1]) < 1e-9 and len(times) == int(round(archived_times[-1] / plant_dt)) + 1)
+    check(bool(summary['scheduled_time_completed']) == complete, 'completion status matches original final timestamp')
+    close(summary['duration_s'], times[-1], 'reported actual duration')
+    close(summary['original_duration_s'], archived_times[-1], 'reported original duration')
+
+    def reconstruct_reference(query_times):
+        query_times = np.asarray(query_times)
+        pose = np.column_stack([np.interp(query_times, archived_times, archived_pose[:, j]) for j in range(4)])
+        index = np.clip(np.searchsorted(archived_times, query_times + 1e-10, side='right') - 1, 0, len(archived_control) - 1)
+        return pose, archived_control[index]
+
+    reference_pose, reference_inputs = reconstruct_reference(times)
+    close(np.column_stack([data[k] for k in ('ref_x', 'ref_y', 'ref_theta', 'ref_gamma')]), reference_pose, 'time-matched original poses')
+    close(np.column_stack([data[k] for k in ('ref_v', 'ref_gamma_dot')]), reference_inputs, 'original speed and rate held on original intervals')
+    close(data['original_time_s'], times, 'actual and original clocks identical')
+    close(data['time_delay_from_original_s'], np.zeros(len(times)), 'no hidden phase shift')
+    sampled_pose, sampled_inputs = reconstruct_reference(sampled['t'])
+    close(sampled['t'], np.arange(int(round(archived_times[-1] / dt)) + 1) * dt, 'complete sampled reference clock')
+    close(np.column_stack([sampled[k] for k in ('x', 'y', 'theta', 'gamma')]), sampled_pose, 'separate reference file poses')
+    close(np.column_stack([sampled[k] for k in ('v', 'gamma_dot')]), sampled_inputs, 'separate reference file original inputs')
+    close(sampled['original_time_s'], sampled['t'], 'separate reference original time')
+    close(sampled['time_delay_from_original_s'], np.zeros(len(sampled['t'])), 'separate reference has zero time remapping')
+    s = np.r_[0., np.cumsum(np.linalg.norm(np.diff(archived_pose[:, :2], axis=0), axis=1))]
+    close(data['path_s'], np.interp(times, archived_times, s), 'progress follows original time, not measured position')
+    actual = np.column_stack([data[k] for k in ('x', 'y', 'theta', 'gamma', 'v', 'gamma_dot')])
+    commands = np.column_stack([data[k] for k in ('v_command', 'gamma_dot_command')])
+    close(actual[0], np.r_[archived_pose[0], p['initial_speed'], 0.], 'original nominal initial pose/speed and zero actuator rate')
+    fd = actual[:, :2] - reference_pose[:, :2]
+    rd = rear_axles(actual, p) - rear_axles(reference_pose, p)
+    fh, rh = reference_pose[:, 2], reference_pose[:, 2] + reference_pose[:, 3]
+    reconstructed = {
+        'front_lateral_error_m': -fd[:, 0] * np.sin(fh) + fd[:, 1] * np.cos(fh),
+        'rear_lateral_error_m': -rd[:, 0] * np.sin(rh) + rd[:, 1] * np.cos(rh),
+        'front_longitudinal_error_m': fd[:, 0] * np.cos(fh) + fd[:, 1] * np.sin(fh),
+        'front_position_error_m': np.linalg.norm(fd, axis=1),
+        'rear_position_error_m': np.linalg.norm(rd, axis=1),
+        'heading_error_rad': np.arctan2(np.sin(actual[:, 2] - fh), np.cos(actual[:, 2] - fh)),
+        'gamma_error_rad': np.arctan2(np.sin(actual[:, 3] - reference_pose[:, 3]), np.cos(actual[:, 3] - reference_pose[:, 3])),
+        'speed_error_mps': actual[:, 4] - reference_inputs[:, 0]}
+    time_metrics = {}
+    for name, values in reconstructed.items():
+        close(values, data[name], 'independent sample error ' + name)
+        time_metrics[name] = stats(values)
+        close(summary[name + '_rmse'], time_metrics[name]['rmse'], 'summary RMSE ' + name)
+        close(summary[name + '_max_abs'], time_metrics[name]['max_abs'], 'summary maximum ' + name)
+    time_metrics['rear_longitudinal_error_m'] = stats(rd[:, 0] * np.cos(rh) + rd[:, 1] * np.sin(rh))
+    time_metrics['articulation_rate_error_radps'] = stats(actual[:, 5] - reference_inputs[:, 1])
+    front_lat, front_dist = polyline_errors(actual[:, :2], archived_pose[:, :2])
+    rear_lat, rear_dist = polyline_errors(rear_axles(actual, p), rear_axles(archived_pose, p))
+    spatial_metrics = {'front_lateral_m': stats(front_lat), 'rear_lateral_m': stats(rear_lat),
+                       'front_nearest_polyline_distance_m': stats(front_dist), 'rear_nearest_polyline_distance_m': stats(rear_dist)}
+    stride = int(round(dt / plant_dt))
+    close([float(row['t']) for row in cycles], np.arange(len(cycles)) * dt, 'complete controller clock')
+    executed_cycles = int(round(times[-1] / dt))
+    check(len(cycles) in (executed_cycles, executed_cycles + 1), 'all executed and optional failed terminal cycles retained')
+    for i in range(1, len(times)):
+        if i % stride != 0 or i == len(times) - 1:
+            close(commands[i], commands[i - 1], 'command held between controller updates')
+    acceleration = np.clip((commands[:, 0] - actual[:, 4]) / protocol['tau_v_s'], p['acc_min'], p['acc_max'])
+    close(acceleration, data['acceleration_mps2'], 'actual acceleration from actuator model')
+    violations = {}
+    for name, values, low, high in [('articulation', actual[:, 3], p['gamma_min'], p['gamma_max']),
+            ('speed', actual[:, 4], p['v_min'], p['v_max']), ('articulation_rate', actual[:, 5], p['gamma_dot_min'], p['gamma_dot_max']),
+            ('speed_command', commands[:, 0], p['v_min'], p['v_max']), ('rate_command', commands[:, 1], p['gamma_dot_min'], p['gamma_dot_max']),
+            ('acceleration', acceleration, p['acc_min'], p['acc_max'])]:
+        violations[name] = float(excess(values, low, high).max())
+    command_slew = np.diff(np.r_[p['initial_speed'], commands[:-1:stride, 0]]) / dt
+    violations['command_speed_slew'] = float(excess(command_slew, p['acc_min'], p['acc_max']).max(initial=0.))
+    for key in ('gamma_min', 'gamma_max', 'acc_min', 'acc_max'):
+        close(p[key], runtime[key], 'unchanged original limit ' + key)
+    close([p['gamma_dot_min'], p['gamma_dot_max']], [-1.5, 1.5], 'rate bounds equal original R forward-pass numerical clipping')
+    soft_low, soft_high = runtime['gamma_dot_min'], runtime['gamma_dot_max']
+    close([p.get('planning_gamma_dot_min', soft_low), p.get('planning_gamma_dot_max', soft_high)], [soft_low, soft_high], 'separately retained planning soft thresholds')
+    soft_diagnostic = {'thresholds_radps': [soft_low, soft_high], 'tracking_numerical_hard_bounds_radps': [p['gamma_dot_min'], p['gamma_dot_max']],
+        'meaning': 'Planning barrier thresholds are soft; tracking hard bounds match original R forward-pass numerical clipping. The latter are not measured hardware capability.'}
+    for name, rate in [('original_reference', archived_control[:, 1]), ('actual_state', actual[:, 5]), ('actual_command', commands[:, 1])]:
+        violation = excess(rate, soft_low, soft_high)
+        soft_diagnostic[name] = {'max_abs_radps': float(abs(rate).max()), 'max_soft_threshold_excess_radps': float(violation.max()), 'exceedance_samples': int(np.sum(violation > 1e-9))}
+    dense_dt = float(targets['dense_geometry_dt_s'])
+    dense_states, dense_times, maximum_replay_difference = [], [], 0.
+    replay_state = actual[0].copy()
+    for cycle in range(executed_cycles):
+        row = cycle * stride
+        t0, t1 = times[row], times[row + stride]
+        sample_times = np.linspace(t0, t1, int(round(dt / dense_dt)) + 1)
+        u = commands[row]
+        solution = solve_ivp(lambda t, x: independent_rhs(x, u, p, protocol['tau_v_s'], protocol['tau_gamma_dot_s']),
+                             (t0, t1), replay_state, t_eval=sample_times, method='DOP853', rtol=1e-11, atol=1e-12)
+        check(solution.success, 'independent dense integration completed')
+        dense = solution.y.T
+        maximum_replay_difference = max(maximum_replay_difference, float(abs(dense[::int(round(plant_dt / dense_dt))] - actual[row:row + stride + 1]).max()))
+        dense_states.append(dense[:-1]); dense_times.append(sample_times[:-1])
+        replay_state = dense[-1].copy()
+    dense_states = np.vstack([*dense_states, replay_state[None, :]])
+    dense_times = np.r_[*dense_times, times[-1]]
+    check(maximum_replay_difference < 2e-5, 'whole-trajectory independent DOP853 vs logged RK4 states')
+    _, logged_clearance = dense_geometry(actual, times, p, scene, True, with_values=True)
+    close(logged_clearance, data['extended_body_clearance_m'], 'independent Shapely logged clearance')
+    dense_safety = dense_geometry(dense_states, dense_times, p, scene, True)
+    dense_safety.update({'sample_dt_s': dense_dt, 'method': 'Independent chained DOP853 replay of every held command from the original initial state, without state resets. Obstacles advance at original absolute time; Shapely checks joint-extended rectangles.'})
+    corridor = corridor_audit(dense_states, dense_times, p, scene)
+    dense_violations = {name: float(excess(dense_states[:, col], low, high).max()) for name, col, low, high in [
+        ('articulation', 3, p['gamma_min'], p['gamma_max']), ('speed', 4, p['v_min'], p['v_max']),
+        ('articulation_rate', 5, p['gamma_dot_min'], p['gamma_dot_max'])]}
+    qp_checks = []
+    for name in ('initial_qp', 'turn_qp'):
+        if (folder / (name + '_solution.npz')).exists():
+            q = qp_snapshot_audit(folder, name, p, dt)
+            qp_checks.append(q)
+            check(q['passed'], 'independent QP snapshot ' + name)
+        elif complete:
+            check(False, 'missing QP snapshot ' + name)
+    failures = sum(int(float(row['qp_status_val'])) not in (1, 2) for row in cycles)
+    fallback = sum(row['fallback'] != 'none' for row in cycles)
+    check(failures == summary['qp_failures'] and fallback == summary['fallback_cycles'], 'all solver failures accounted')
+    controller_time = np.array([float(row['controller_wall_s']) for row in cycles])
+    qp_time = np.array([float(row['qp_total_solve_wall_s']) for row in cycles])
+    check(np.all(controller_time + 1e-9 >= qp_time), 'controller time includes QP time')
+    timing = {'control_period_s': dt, 'cycles': len(cycles), 'controller_mean_s': float(controller_time.mean()),
+        'controller_p95_s': float(np.quantile(controller_time, .95)), 'controller_max_s': float(controller_time.max()),
+        'deadline_exceedance_cycles': int(np.sum(controller_time > dt)), 'deadline_exceedance_fraction': float(np.mean(controller_time > dt)),
+        'qp_total_mean_s': float(qp_time.mean()), 'qp_failures': failures, 'fallback_cycles': fallback,
+        'max_command_projection': max(float(row.get('command_projection_max_abs') or 0.) for row in cycles),
+        'delay_policy': 'Measured wall-clock times are not inserted as actuation delays; no hard real-time claim.'}
+    goal_cfg = read_json(source / 'effective_config.json')['main']['run_configs']['B201']
+    goal = np.array([goal_cfg['goal_x'], goal_cfg['goal_y']])
+    goal_distance = float(np.linalg.norm(actual[-1, :2] - goal))
+    close(goal_distance, summary['final_goal_distance_m'], 'terminal goal distance')
+    terminal_pass = complete and goal_distance <= targets['goal_distance_max_m'] and abs(actual[-1, 4]) <= targets['terminal_speed_absolute_max_mps']
+    time_pass = all(time_metrics[name]['rmse'] <= targets[axle + '_lateral_rmse_max_m'] and time_metrics[name]['max_abs'] <= targets[axle + '_lateral_absolute_error_max_m'] for axle, name in [('front', 'front_lateral_error_m'), ('rear', 'rear_lateral_error_m')])
+    spatial_pass = all(spatial_metrics[axle + '_lateral_m']['rmse'] <= targets[axle + '_lateral_rmse_max_m'] and spatial_metrics[axle + '_lateral_m']['max_abs'] <= targets[axle + '_lateral_absolute_error_max_m'] for axle in ('front', 'rear'))
+    limits_pass = max([*violations.values(), *dense_violations.values()]) <= targets['state_and_input_bound_tolerance']
+    corridor_pass = corridor['joint_extended_corner_max_violation_m'] <= targets['state_and_input_bound_tolerance']
+    safety_pass = dense_safety['minimum_clearance_m'] >= targets['minimum_body_obstacle_clearance_m'] and dense_safety['zero_clearance_or_collision_samples'] <= targets['body_collision_samples_max'] and limits_pass
+    outcome = {'audit_passed': not errors, 'audit_errors': errors, 'map': 'B201', 'planner': 'R-CILQR', 'controller': 'LTV-MPC', 'case': 'nominal',
+        'reference_mode': 'original_time', 'targets': targets, 'original_duration_s': float(archived_times[-1]), 'duration_s': float(times[-1]),
+        'original_time_completed': complete, 'samples': len(times), 'expected_control_cycles': int(round(archived_times[-1] / dt)),
+        'reference_vertices_preserved': len(archived_pose), 'spatial_reference_reanchored': False, 'time_reparameterized': False,
+        'time_matched_metrics': time_metrics, 'frozen_original_polyline_spatial_metrics': spatial_metrics,
+        'dense_plant_replay_max_abs_error': maximum_replay_difference, 'dense_actual_clock_geometry': dense_safety,
+        'dense_global_path_corridor_diagnostic': corridor, 'actual_state_and_input_max_violations': violations,
+        'dense_actual_state_max_violations': dense_violations, 'planning_soft_rate_threshold_diagnostic': soft_diagnostic,
+        'qp_snapshot_checks': qp_checks, 'controller_timing': timing, 'goal_xy_m': goal.tolist(), 'final_position_m': actual[-1, :2].tolist(),
+        'final_goal_distance_m': goal_distance, 'final_actual_speed_mps': float(actual[-1, 4]),
+        'acceptance': {'original_time_completed': complete, 'time_matched_precision': bool(time_pass), 'independent_spatial_precision': bool(spatial_pass),
+            'sampled_dense_safety_and_actual_limits': bool(safety_pass), 'sampled_corridor': bool(corridor_pass), 'original_goal_arrival_and_stop': bool(terminal_pass),
+            'all_engineering_targets_met': bool(not errors and time_pass and spatial_pass and safety_pass and corridor_pass and terminal_pass and failures == 0 and fallback == 0),
+            'hard_real_time_demonstrated': False}, 'source_reference_audit': original_reference_audit('B201')}
+    input_paths = [folder / name for name in ('nominal.csv', 'original_reference.csv', 'sampled_reference.csv', 'mpc_cycles.csv', 'protocol.json', 'original_reference_audit.json')]
+    input_paths += [source / name for name in ('trajectories.npz', 'cycles.jsonl', 'metadata.json', 'effective_config.json')]
+    input_paths += [scene_path, limits_path, ROOT / '代码/ltv_acceptance_targets.json', Path(__file__)]
+    outcome['input_hashes'] = [{'path': str(path), 'sha256': sha(path)} for path in input_paths]
+    OUTPUT.mkdir(parents=True, exist_ok=True)
+    (OUTPUT / 'ltv_mpc_independent_audit_B201.json').write_text(json.dumps(outcome, ensure_ascii=False, indent=2, allow_nan=False), encoding='utf-8')
+    metric_row = {'map': 'B201', 'controller': 'LTV-MPC', 'duration_s': float(times[-1]), 'original_time_completed': complete,
+        'dense_min_clearance_m': dense_safety['minimum_clearance_m'], 'dense_collision_samples': dense_safety['zero_clearance_or_collision_samples'],
+        'goal_distance_m': goal_distance, 'final_speed_mps': float(actual[-1, 4]), 'qp_failures': failures,
+        'all_engineering_targets_met': outcome['acceptance']['all_engineering_targets_met']}
+    metric_row.update({name + '_' + statistic: value for name, result in time_metrics.items() for statistic, value in result.items()})
+    with (OUTPUT / 'ltv_mpc_independent_metrics_B201.csv').open('w', encoding='utf-8-sig', newline='') as handle:
+        writer = csv.DictWriter(handle, fieldnames=list(metric_row)); writer.writeheader(); writer.writerow(metric_row)
+    lines = ['# B201 原始时序轨迹跟踪核验', '',
+        f"数据一致性核验：{'通过' if not errors else '未通过'}；工程精度与安全目标：{'通过' if outcome['acceptance']['all_engineering_targets_met'] else '未通过'}。",
+        f"原始时长 {archived_times[-1]:.2f} s，实际记录 {times[-1]:.2f} s，共 {len(times)} 个样本。原时间戳、401 个位姿及400段速度/角速度均逐项核对；无重定时、无参考位置重置、无删去起始或终末样本。", '',
+        '| 同时刻误差 | RMSE | 最大绝对值 |', '|---|---:|---:|']
+    lines += [f'| {name} | {result["rmse"]:.6f} | {result["max_abs"]:.6f} |' for name, result in time_metrics.items()]
+    lines += ['', f"独立 DOP853 从原始初态连续重放全部指令，按 {dense_dt:.3f} s 采样；与日志状态最大差 {maximum_replay_difference:.3g}。最小车体障碍净距 {dense_safety['minimum_clearance_m']:.6f} m，碰撞样本 {dense_safety['zero_clearance_or_collision_samples']}；走廊角点最大超限 {corridor['joint_extended_corner_max_violation_m']:.6f} m。",
+        f"原场景目标距离 {goal_distance:.6f} m，末速度 {actual[-1, 4]:.6f} m/s。QP失败 {failures} 次，回退 {fallback} 次。",
+        f"规划铰接角速度软阈值为 [{soft_low:.6f}, {soft_high:.6f}] rad/s，跟踪硬数值包络为 [{p['gamma_dot_min']:.1f}, {p['gamma_dot_max']:.1f}] rad/s，与原R前向迭代截断值一致。原参考和实际执行对软阈值的超限另行记录，不能据数值包络内可跟踪推断满足软阈值或已验证实车执行器能力。",
+        f"控制计算平均 {timing['controller_mean_s'] * 1000:.3f} ms，最大 {timing['controller_max_s'] * 1000:.3f} ms；{timing['deadline_exceedance_cycles']}/{len(cycles)} 个周期超过控制周期。本仿真不注入计算时延。",
+        '横向精度门槛沿用修改前的RMSE≤0.1m、最大绝对值≤0.3m。纵向、速度和姿态误差完整报告，不设置事后通过门槛。']
+    if errors:
+        lines += ['', '数据核验问题：'] + ['- ' + error for error in errors]
+    (OUTPUT / 'LTV-MPC跟踪核验说明_B201.md').write_text('\n'.join(lines) + '\n', encoding='utf-8')
+    return outcome
+
+
 if __name__ == '__main__':
     report = original_reference_audit()
     if '--reference-only' in sys.argv:

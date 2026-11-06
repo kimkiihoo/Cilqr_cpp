@@ -1,0 +1,14 @@
+{
+  "gamma_dot_min": -1.5,
+  "gamma_dot_max": 1.5,
+  "v_min": -5.0,
+  "v_max": 30.0,
+  "source_path": "A01_原始论文与原始代码\\原始代码\\Cilqr_cpp-CAV\\Cilqr_cpp-CAV\\src\\ilqr.cpp",
+  "source_sha256": "6fd2bac169ab20eed5854eff849c68b2c8a11be1f3969a38c1e024b741197fdc",
+  "source_lines": [
+    928,
+    929
+  ],
+  "source_excerpt": "U_tmp[i][0] = std::clamp(U_tmp[i][0], -5.0, 30.0);\nU_tmp[i][1] = std::clamp(U_tmp[i][1], -1.5, 1.5);",
+  "meaning": "Original R-CILQR forward-pass numerical control envelope; not an identified hardware limit. Runtime gamma_dot thresholds in metadata are soft barrier parameters."
+}

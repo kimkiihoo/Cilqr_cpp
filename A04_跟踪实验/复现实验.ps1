@@ -8,7 +8,7 @@ if (-not $OutputDirectory) { $OutputDirectory = Join-Path $PSScriptRoot ('复现
 if (Test-Path -LiteralPath $OutputDirectory) { throw '输出目录已存在，请指定新目录，以免覆盖原始数据。' }
 New-Item -ItemType Directory -Path $OutputDirectory | Out-Null
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot '输入快照'),(Join-Path $PSScriptRoot '代码') -Destination $OutputDirectory -Recurse
-& $PythonExe -B (Join-Path $OutputDirectory '代码\ltv_mpc_tracking.py') --map B201 --horizon 60 --cruise-speed 3 --rate-fraction 0.72
+& $PythonExe -B (Join-Path $OutputDirectory '代码\ltv_mpc_tracking.py') --map B201 --horizon 60
 if ($LASTEXITCODE -ne 0) { throw '跟踪实验运行失败，已保留记录。' }
 & $PythonExe -B (Join-Path $OutputDirectory '代码\audit_ltv_mpc.py')
 if ($LASTEXITCODE -ne 0) { throw '核验脚本运行失败。' }

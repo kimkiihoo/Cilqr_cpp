@@ -9,7 +9,7 @@
    - 沿时变名义参考状态进行连续雅可比线性化与精确矩阵指数离散化；
    - 构建 OSQP 二次规划求解器，融合高增益横向偏差惩罚、执行器物理限幅、局部信任域以及时变超平面动态避障。
 3. 参考轨迹处理：
-   - 保留原上层规划生成的几何空间折线与目标点，采用显式离线重定时 (Offline Retiming) 确定时间-速度剖面；
+   - 保留原上层规划的全部时间戳、位姿、速度及铰接角速度，不重新定时；
    - 严格避免基于实时测量位置进行动态投影对齐，杜绝因横向误差扰动导致参考时间序列跳变。
 """
 from __future__ import annotations
@@ -393,114 +393,40 @@ class Safety:
         return result
 
 
-class RetimedReference:
-    """基于原空间几何路径的离线显式重定时 (Offline Retiming) 参考生成器。
+class OriginalReference:
+    """冻结原始时间轴：姿态线性插值，原速度/铰接角速度零阶保持。"""
 
-    本模块对输入的离散路点几何空间折线进行弧长积分，并结合曲率限速与加减速动力学约束，
-    生成时间单调、动力学可行的速度剖面与连续时间参考状态插值器。
-    """
-
-    def __init__(self, source, p, cruise_speed=4., rate_fraction=.72, settle_s=4.):
-        """初始化重定时参考生成器并计算速度剖面。
-
-        参数:
-            source (np.ndarray): 原规划器生成的参考轨迹，每行包含 [t_orig, x, y, theta, gamma, v_orig]。
-            p (dict): 车辆动力学与几何参数字典。
-            cruise_speed (float): 巡航限速上限 [单位: m/s]，默认 4.0 m/s。
-            rate_fraction (float): 允许用于曲率转弯的铰接角速度界限占比系数 [无量纲]，默认 0.72。
-            settle_s (float): 到达终点后的末端静止驻留缓冲时长 [单位: s]，默认 4.0 s。
-
-        异常:
-            ValueError: 空间折线出现重复顶点或回退点时抛出异常。
-        """
+    def __init__(self, source, p):
         self.source = source.copy()
+        self.times = source[:, 0].copy()
         self.s = np.r_[0., np.cumsum(np.linalg.norm(np.diff(source[:, 1:3], axis=0), axis=1))]
-        if np.any(np.diff(self.s) <= 0):
-            raise ValueError("No duplicate/reverse vertex is silently discarded")
-        ds = np.diff(self.s)
-        gamma_s = np.diff(source[:, 4]) / ds
-        self.segment_direction = np.sign(source[:-1, 5])
-        if np.any(self.segment_direction == 0):
-            raise ValueError("Zero-speed articulation-only segments require an explicit time parameterization")
-        # Slowing only: preserve even tiny forward/reverse terminal increments.
-        segment_cap = np.minimum(np.minimum(cruise_speed, abs(source[:-1, 5])),
-                                 rate_fraction * p["gamma_dot_max"] / np.maximum(abs(gamma_s), 1e-9))
-        cap = np.r_[segment_cap, segment_cap[-1]]
-        cap[1:-1] = np.minimum(segment_cap[:-1], segment_cap[1:])
-        v = cap.copy()
-        direction_switches = np.where(self.segment_direction[1:] != self.segment_direction[:-1])[0] + 1
-        v[direction_switches] = 0.
-        v[-1] = 0.
-        # Conservative 2 m/s^2 profile, leaving the physical acceleration bounds intact.
-        for j in range(len(v) - 2, -1, -1):
-            v[j] = min(v[j], math.sqrt(v[j + 1] ** 2 + 2 * 2. * ds[j]))
-        v[0] = p["initial_speed"]
-        # The preserved actual map speed requires a real braking transition.
-        for j in range(1, len(v)):
-            lower = math.sqrt(max(0., v[j - 1] ** 2 - 2 * 2. * ds[j - 1]))
-            upper = math.sqrt(v[j - 1] ** 2 + 2 * 1.5 * ds[j - 1])
-            v[j] = min(max(v[j], lower), upper)
-        if v[-1] > 1e-8:
-            raise ValueError("Insufficient original path distance to stop; endpoint is not extended")
-        self.v = v
-        duration = 2 * ds / (v[:-1] + v[1:])
-        self.times = np.r_[0., np.cumsum(duration)]
-        self.acc = np.diff(v) / duration
-        self.travel_time = float(self.times[-1])
-        self.end_time = math.ceil((self.travel_time + settle_s) / DT) * DT
-        self.gamma_s = gamma_s
-        self.cap = cap
-        self.rate_fraction = rate_fraction
-        self.direction_switch_indices = direction_switches.tolist()
+        self.travel_time = self.end_time = float(self.times[-1])
+        if not np.all(np.diff(self.times) > 0):
+            raise ValueError("Original timestamps must increase strictly")
 
     def sample(self, t):
-        """根据绝对仿真时间采样连续时间参考状态与前馈控制指令。
-
-        参数:
-            t (float): 绝对仿真时间 [单位: s]。
-
-        返回:
-            tuple[np.ndarray, np.ndarray, dict]:
-                - ref_x (np.ndarray): 参考状态向量 [x, y, \theta, \gamma, v, \omega]^T，形状 (6,)。
-                - ref_u (np.ndarray): 考虑执行器一阶滞后的前馈控制指令 [u_v, u_\omega]^T，形状 (2,)。
-                - meta (dict): 当前采样的弧长进度与原规划器元数据字典。
-        """
-        if t >= self.travel_time:
-            return np.r_[self.source[-1, 1:5], 0., 0.], np.zeros(2), {
-                "path_s": float(self.s[-1]), "original_time_s": float(self.source[-1, 0]),
-                "original_index": len(self.s) - 1, "progress_speed_mps": 0.}
-        j = min(max(int(np.searchsorted(self.times, t, side="right") - 1), 0), len(self.times) - 2)
-        local = max(t - self.times[j], 0.)
-        v = self.v[j] + self.acc[j] * local
-        s = self.s[j] + self.v[j] * local + .5 * self.acc[j] * local ** 2
-        frac = np.clip((s - self.s[j]) / (self.s[j + 1] - self.s[j]), 0., 1.)
-        pose = self.source[j, 1:5] + frac * (self.source[j + 1, 1:5] - self.source[j, 1:5])
-        signed_v = self.segment_direction[j] * v
-        w = self.gamma_s[j] * v
-        wdot = self.gamma_s[j] * self.acc[j]
-        ff = np.array([signed_v + TAU_V * self.segment_direction[j] * self.acc[j], w + TAU_W * wdot])
-        return np.r_[pose, signed_v, w], ff, {"path_s": float(s),
-                "original_time_s": float(self.source[j, 0] + frac * (self.source[j + 1, 0] - self.source[j, 0])),
-                "original_index": j, "progress_speed_mps": float(v)}
+        # Beyond the measured interval, hold only for MPC terminal prediction.
+        # No added settling interval enters the simulation or error statistics.
+        tc = float(np.clip(t, self.times[0], self.times[-1]))
+        j = min(max(int(np.searchsorted(self.times, tc + 1e-10, side="right") - 1), 0), len(self.times) - 2)
+        frac = float(np.clip((tc - self.times[j]) / (self.times[j+1] - self.times[j]), 0., 1.))
+        pose = self.source[j, 1:5] + frac * (self.source[j+1, 1:5] - self.source[j, 1:5])
+        velocity = self.source[j, 5:7].copy()
+        if t > self.end_time + 1e-10:
+            velocity[:] = 0.
+        state = np.r_[pose, velocity]
+        return state, velocity.copy(), {"path_s": float(self.s[j] + frac * (self.s[j+1] - self.s[j])),
+                "original_time_s": tc, "original_index": j,
+                "progress_speed_mps": float(abs(velocity[0]))}
 
     def save(self, folder):
-        """将重定时计算得到的进度速度剖面与离散化参考时序保存至 CSV 文件。
-
-        参数:
-            folder (Path): 目标保存文件夹路径。
-        """
-        profiles = [{"original_index": j, "path_s": float(self.s[j]), "original_time_s": float(self.source[j, 0]),
-                     "new_time_s": float(self.times[j]), "profile_speed_mps": float(self.v[j]),
-                     "local_speed_cap_mps": float(self.cap[j]),
-                     "initial_transition_exceeds_profile_cap": int(self.v[j] > self.cap[j] + 1e-8)} for j in range(len(self.s))]
-        save_csv(folder / "progress_profile.csv", profiles)
         rows = []
         for t in np.arange(0., self.end_time + DT / 2, DT):
             x, u, meta = self.sample(float(t))
             rows.append({"t": float(t), **dict(zip(("x", "y", "theta", "gamma", "v", "gamma_dot"), map(float, x))),
                          "v_command_ff": float(u[0]), "gamma_dot_command_ff": float(u[1]), **meta,
                          "time_delay_from_original_s": float(t - meta["original_time_s"])})
-        save_csv(folder / "retimed_reference.csv", rows)
+        save_csv(folder / "sampled_reference.csv", rows)
 
 
 class Controller:
@@ -514,7 +440,7 @@ class Controller:
         """初始化 LTV-MPC 控制器。
 
         参数:
-            ref (RetimedReference): 显式重定时参考生成器实例。
+            ref (OriginalReference): 原始时间序列参考生成器实例。
             p (dict): 车辆几何与物理参数字典。
             safety (Safety): 动态障碍物安全判定与分离超平面生成器。
             horizon (int): MPC 预测时域步数 N (时域总长 N * DT = 60 * 0.05 s = 3.0 s)，默认 60 步。
@@ -763,31 +689,41 @@ def main():
     ap.add_argument("--map", choices=["B201"], default="B201")
     ap.add_argument("--output-dir", type=Path)
     ap.add_argument("--horizon", type=int, default=60)
-    ap.add_argument("--cruise-speed", type=float, default=3.)
-    ap.add_argument("--rate-fraction", type=float, default=.72)
     ap.add_argument("--max-cycles", type=int, default=100000)
     args = ap.parse_args()
     folder = (args.output_dir or ROOT / "原始数据/LTV_MPC" / args.map / "cilqr").resolve()
     folder.mkdir(parents=True, exist_ok=True)
     p = shared.load_parameters(ROOT / "输入快照/full", args.map)
+    # The runtime metadata rate is a soft planning barrier, not the forward-pass
+    # hard input envelope. Match the original R-CILQR hard clipping (+/-1.5).
+    p["planning_gamma_dot_min"] = p["gamma_dot_min"]
+    p["planning_gamma_dot_max"] = p["gamma_dot_max"]
+    control_limits = read_json(HERE / "ltv_control_limits.json")
+    for key in ("gamma_dot_min", "gamma_dot_max", "v_min", "v_max"):
+        p[key] = float(control_limits[key])
     scene_path = ROOT / "输入快照/full" / args.map / "scene/scene.json"
     scene = read_json(scene_path)
     original_path = folder / "original_reference.csv"
     original, source_audit = shared.load_frozen_reference(ROOT / "输入快照/full" / args.map / "cilqr", p, original_path)
+    soft_excess = shared.violation(original[:-1, 6], p["planning_gamma_dot_min"], p["planning_gamma_dot_max"])
+    source_audit.update({"planning_soft_rate_threshold_min_radps": p["planning_gamma_dot_min"],
+                         "planning_soft_rate_threshold_max_radps": p["planning_gamma_dot_max"],
+                         "planning_soft_rate_exceedance_intervals": int(np.count_nonzero(soft_excess > 1e-9)),
+                         "planning_soft_rate_max_excess_radps": float(soft_excess.max())})
     save_json(folder / "original_reference_audit.json", source_audit)
     safety = Safety(scene, p)
     original_min_clear = min(safety.clearance(shared.sample_reference(original, float(t))[0], float(t))
                              for t in np.arange(0., original[-1, 0] + .005, .01))
     if original_min_clear <= 0:
-        raise RuntimeError("Original R spatial reference collides: retiming cannot repair its geometry")
-    ref = RetimedReference(original, p, args.cruise_speed, args.rate_fraction)
+        raise RuntimeError("Original R trajectory collides at its original timestamps")
+    ref = OriginalReference(original, p)
     ref.save(folder)
     ctrl = Controller(ref, p, safety, args.horizon, diagnostics=folder)
     state = np.r_[original[0, 1:5], p["initial_speed"], 0.]
     command = np.array([p["initial_speed"], 0.])
     rows, cycles = [], []
     end = min(int(round(ref.end_time / H)), args.max_cycles * 5)
-    reason = "scheduled_reference_and_settle_complete"
+    reason = "original_reference_time_complete" if end == int(round(ref.end_time / H)) else "max_cycles_reached"
     started = time.perf_counter()
     config = read_json(ROOT / "输入快照/full" / args.map / "cilqr/effective_config.json")
     run_config = config["main"]["run_configs"][args.map]
@@ -819,6 +755,7 @@ def main():
                "acceleration_mps2": float(rhs(state, command, p)[4]),
                "front_lateral_error_m": fl, "rear_lateral_error_m": rl,
                "front_position_error_m": float(np.linalg.norm(front_delta)),
+               "front_longitudinal_error_m": float(front_delta @ unit(desired[2])),
                "rear_position_error_m": float(np.linalg.norm(rear_delta)),
                "heading_error_rad": float(wrap(state[2] - desired[2])),
                "gamma_error_rad": float(wrap(state[3] - desired[3])), "speed_error_mps": float(state[4] - desired[4]),
@@ -837,7 +774,7 @@ def main():
     save_csv(folder / "mpc_cycles.csv", [{k: r.get(k, "") for k in keys} for r in cycles])
     summary = {"map": args.map, "planner": "R-CILQR", "controller": "LTV-MPC", "case": "nominal",
                "stop_reason": reason, "samples": len(rows), "duration_s": rows[-1]["t"],
-               "retimed_travel_time_s": ref.travel_time, "retimed_end_with_settle_s": ref.end_time,
+               "original_duration_s": ref.travel_time, "reference_mode": "original_time",
                "scheduled_time_completed": bool(rows[-1]["t"] >= ref.end_time - 1e-8),
                "simulation_wall_s": time.perf_counter() - started,
                "min_extended_body_clearance_m": min(r["extended_body_clearance_m"] for r in rows),
@@ -848,8 +785,8 @@ def main():
                "fallback_cycles": sum(r["fallback"] != "none" for r in cycles),
                "original_reference_csv": str(original_path.resolve()), "original_reference_sha256": shared.sha(original_path),
                "actual_csv_sha256": shared.sha(folder / "nominal.csv"),
-               "retimed_reference_sha256": shared.sha(folder / "retimed_reference.csv")}
-    for key in ("front_lateral_error_m", "rear_lateral_error_m", "front_position_error_m", "rear_position_error_m", "heading_error_rad", "gamma_error_rad", "speed_error_mps"):
+               "sampled_reference_sha256": shared.sha(folder / "sampled_reference.csv")}
+    for key in ("front_lateral_error_m", "rear_lateral_error_m", "front_position_error_m", "rear_position_error_m", "front_longitudinal_error_m", "heading_error_rad", "gamma_error_rad", "speed_error_mps"):
         a = np.array([r[key] for r in rows])
         summary[key + "_rmse"] = float(np.sqrt(np.mean(a ** 2)))
         summary[key + "_max_abs"] = float(abs(a).max())
@@ -862,6 +799,10 @@ def main():
         summary[name + "_max_violation"] = float(np.maximum(np.maximum(low - a, a - high), 0.).max())
     slew = np.array([r["command_speed_slew_mps2"] for r in rows])
     summary["command_speed_slew_max_violation"] = float(np.maximum(np.maximum(p["acc_min"] - slew, slew - p["acc_max"]), 0.).max())
+    summary["max_original_time_shift_s"] = float(max(abs(r["time_delay_from_original_s"]) for r in rows))
+    summary["reference_preserved"] = True
+    summary["actual_gamma_dot_max_abs_radps"] = float(max(abs(r["gamma_dot"]) for r in rows))
+    summary["command_gamma_dot_max_abs_radps"] = float(max(abs(r["gamma_dot_command"]) for r in rows))
     summary["goal_reached_and_stopped"] = bool(summary["scheduled_time_completed"] and summary["final_goal_distance_m"] <= 1.5 and abs(summary["final_speed_mps"]) <= .5)
     summary["engineering_precision_target_met"] = bool(summary["goal_reached_and_stopped"] and all(summary[k + "_rmse"] <= .1 and summary[k + "_max_abs"] <= .3 for k in ("front_lateral_error_m", "rear_lateral_error_m")))
     summary["sampled_safety_target_met"] = bool(summary["goal_reached_and_stopped"] and summary["min_extended_body_clearance_m"] >= .05 and summary["collision_samples"] == 0 and all(v <= 1e-5 for k, v in summary.items() if k.endswith("max_violation")))
@@ -869,20 +810,22 @@ def main():
     summary["controller_wall_max_s"] = float(max(r["controller_wall_s"] for r in cycles))
     summary["qp_total_solve_wall_mean_s"] = float(np.mean([r["qp_total_solve_wall_s"] for r in cycles]))
     save_json(folder / "summary.json", summary)
-    protocol = {"scope": "Only original R-CILQR B201 spatial path, offline retiming, nominal initial pose/speed, independent LTV-MPC tracking",
+    protocol = {"scope": "Original R-CILQR B201 40-second trajectory, unchanged timing, pose and applied inputs; nominal LTV-MPC tracking",
         "parameters": p, "controller_dt_s": DT, "plant_dt_s": H, "tau_v_s": TAU_V, "tau_gamma_dot_s": TAU_W,
         "horizon_steps": args.horizon, "horizon_s": args.horizon * DT,
-        "cruise_profile_cap_mps": args.cruise_speed, "rate_profile_fraction": args.rate_fraction,
-        "progress_rule": "Offline arc-length monotonic schedule from unchanged original x/y/theta/gamma vertices. Forward/backward speed feasibility passes; actual initial speed remains 5 m/s, with an explicit initial braking transition. Tiny reverse segments are retained with signed reference speed and zero progress speed at direction changes. No nearest-point reset, measurement-based phase alignment, spatial replan, original-point deletion, or endpoint extension.",
-        "direction_switch_original_indices": ref.direction_switch_indices,
-        "terminal": "Final original R spatial point held with zero speed/rate reference for 4 s (rounded to controller grid); original scene goal (80,80), distance<=1.5m and |speed|<=0.5m/s additionally required.",
+        "reference_mode": "original_time",
+        "control_limits": control_limits,
+        "control_limits_sha256": shared.sha(HERE / "ltv_control_limits.json"),
+        "rate_limit_source": "Original R-CILQR src/ilqr.cpp forward-pass clipping uses [-1.5,1.5] rad/s; initial_cpp_parameters gamma_dot limits are soft barrier thresholds, recorded separately as planning_gamma_dot_min/max. Numerical control envelope, not identified hardware capability.",
+        "progress_rule": "Original timestamps and all 401 poses retained; poses linearly interpolated in original time and the 400 applied speed/rate inputs held on their original 0.1-s intervals. No retiming, smoothing or measurement-based phase alignment.",
+        "terminal": "Simulation stops at the original final timestamp (40 s). A stationary terminal hold is used only beyond 40 s inside the MPC prediction horizon.",
         "obstacle_clock": "All obstacle centers use scene initial pose + speed*actual_simulation_time. MPC horizon uses t_actual+k*0.05 and nonlinear checks use actual .01 times, never original-reference progress time.",
-        "qp": "6-state Cartesian LTV model, 2 lagged actuator commands, finite horizon, OSQP. Full affine defect retained. Hard nominal articulation/rate, speed numeric envelope, actual acceleration and commanded-speed-slew bounds. Linearized separating halfplanes for two joint-extended body rectangles and all nearby obstacles. Nonlinear horizon rollout and dense first-command check; at failure no unverified candidate is executed.",
+        "qp": "6-state Cartesian LTV model, 2 lagged actuator commands, finite horizon, OSQP. Full affine defect retained. Hard articulation bound and original planning numerical rate/speed envelopes, actual acceleration and commanded-speed-slew bounds. Linearized separating halfplanes for two joint-extended body rectangles and all nearby obstacles. Nonlinear horizon rollout and dense first-command check; at failure no unverified candidate is executed.",
         "weights": {"longitudinal_position":60., "lateral_position":1200., "heading":100., "gamma":15., "v":4., "gamma_dot":2., "command":[.2,.5], "terminal_multiplier":8.},
         "qp_numerics": "All variables are deviations from the time-varying reference. Objective multiplied uniformly by0.001; OSQP internal scaling20, scaled termination, adaptive rho interval25, polishing, abs/rel tolerance1e-5, maxiter30000. Hard physical/numeric bounds are unchanged.",
         "safety_geometry": "Front local longitudinal [-lf,+box_length/2], rear [-box_length/2,+lr], width=3m, rear heading=theta+gamma. Both rectangles include the joint. Obstacles 5x3m rectangles at constant-speed predictions in actual time. Linearized margin0.075m; issued-command nonlinear .01s check requires0.05m. No continuous guarantee is implied by .01s logs.",
-        "error_definition": "Time-matched actual minus separately saved retimed reference; front/rear lateral use respective retimed reference heading normals. All .01s samples, including initial transition and terminal settling, enter errors.",
-        "not_claimed": ["Original 5m/s timing is preserved", "Tire/multibody dynamics or real-vehicle validation", "Online planner or solver-time delay is included", "QP status alone establishes safety"],
+        "error_definition": "Actual minus original reference at the same absolute time; front/rear lateral project onto the original front/rear heading normals. All .01s samples over the original 40 s are included.",
+        "not_claimed": ["Tire/multibody dynamics or real-vehicle validation", "Online planner or solver-time delay is included", "QP status alone establishes safety"],
         "script_sha256":shared.sha(__file__), "shared_parameters_script_sha256":shared.sha(HERE/'tracking_experiment.py'),
         "python":sys.version, "numpy":np.__version__, "scipy":scipy.__version__, "osqp":osqp.__version__}
     save_json(folder / "protocol.json", protocol)

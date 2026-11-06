@@ -2,6 +2,6 @@
   "cycle": 0,
   "time_s": 0.0,
   "status": "solved",
-  "primal_residual": 1.4836404864104757e-05,
-  "dual_residual": 3.0870739391354737e-06
+  "primal_residual": 1.3877787807814457e-17,
+  "dual_residual": 3.9962336825100087e-16
 }
